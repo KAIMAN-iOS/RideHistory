@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gQ8-hY-h29" customClass="RideHistoryCell" customModule="RideHistory">
+            <rect key="frame" x="0.0" y="0.0" width="492" height="335"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6de-q1-4uv">
+                <rect key="frame" x="0.0" y="0.0" width="492" height="335"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0R-E1-XYa">
+                        <rect key="frame" x="0.0" y="0.0" width="492" height="335"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ALn-2I-IYt">
+                                <rect key="frame" x="16" y="8" width="460" height="100"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="O12-dP-d9B">
+                                        <rect key="frame" x="0.0" y="9.5" width="432.5" height="81"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="uQH-JT-yiF">
+                                                <rect key="frame" x="0.0" y="0.0" width="432.5" height="24"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Aujourd'hui, 17h45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjL-7J-2Gl">
+                                                        <rect key="frame" x="0.0" y="0.0" width="363" height="24"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="900" text="23,50€" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Org-rZ-il5">
+                                                        <rect key="frame" x="369" y="0.0" width="63.5" height="24"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                        <color key="textColor" name="selectedTitleColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Mercedes Berlins Classe S" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Gcx-VB-0BC" customClass="TappableLabel" customModule="LabelExtension">
+                                                <rect key="frame" x="0.0" y="32" width="432.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" name="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6VZ-um-ckD">
+                                                <rect key="frame" x="0.0" y="60.5" width="432.5" height="20.5"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sea-rP-HM8">
+                                                        <rect key="frame" x="0.0" y="0.5" width="20" height="20"/>
+                                                        <color key="backgroundColor" red="0.34117648010000001" green="0.72156864399999998" blue="0.65098041299999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="05J-AW-Shz"/>
+                                                            <constraint firstAttribute="width" constant="20" id="wp3-hm-fZX"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="29 rue paradis 13009 Marseille" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="guE-2J-dLi" customClass="TappableLabel" customModule="LabelExtension">
+                                                        <rect key="frame" x="28" y="0.0" width="404.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <color key="textColor" name="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="900" image="rightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="9dN-w2-YXS">
+                                        <rect key="frame" x="444.5" y="42.5" width="15.5" height="15.5"/>
+                                        <color key="tintColor" red="0.34509339929999999" green="0.34509563450000003" blue="0.3451014161" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="g9J-jc-LeO">
+                                <rect key="frame" x="16" y="127" width="460" height="199.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="g9J-jc-LeO" secondAttribute="height" multiplier="443:192" id="kUW-SP-QdF"/>
+                                </constraints>
+                            </mapView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FP1-vp-MoS">
+                                <rect key="frame" x="16" y="127" width="460" height="199.5"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ALn-2I-IYt" firstAttribute="top" secondItem="d0R-E1-XYa" secondAttribute="top" constant="8" id="GJF-RY-VhJ"/>
+                            <constraint firstAttribute="trailing" secondItem="ALn-2I-IYt" secondAttribute="trailing" constant="16" id="GpR-Fr-jOn"/>
+                            <constraint firstItem="ALn-2I-IYt" firstAttribute="leading" secondItem="d0R-E1-XYa" secondAttribute="leading" constant="16" id="Odz-UK-i1i"/>
+                            <constraint firstItem="FP1-vp-MoS" firstAttribute="trailing" secondItem="g9J-jc-LeO" secondAttribute="trailing" id="UwO-Ti-T3S"/>
+                            <constraint firstItem="g9J-jc-LeO" firstAttribute="leading" secondItem="d0R-E1-XYa" secondAttribute="leading" constant="16" id="Ybp-je-bXU"/>
+                            <constraint firstItem="FP1-vp-MoS" firstAttribute="bottom" secondItem="g9J-jc-LeO" secondAttribute="bottom" id="anh-2F-Ttg"/>
+                            <constraint firstItem="FP1-vp-MoS" firstAttribute="leading" secondItem="g9J-jc-LeO" secondAttribute="leading" id="b1s-mE-8Ne"/>
+                            <constraint firstAttribute="trailing" secondItem="g9J-jc-LeO" secondAttribute="trailing" constant="16" id="eZU-GJ-pi7"/>
+                            <constraint firstItem="g9J-jc-LeO" firstAttribute="top" secondItem="ALn-2I-IYt" secondAttribute="bottom" constant="19" id="iCK-j1-7IX"/>
+                            <constraint firstItem="g9J-jc-LeO" firstAttribute="leading" secondItem="d0R-E1-XYa" secondAttribute="leading" constant="16" id="j54-aw-imO"/>
+                            <constraint firstItem="FP1-vp-MoS" firstAttribute="top" secondItem="g9J-jc-LeO" secondAttribute="top" id="twt-YJ-K0v"/>
+                            <constraint firstAttribute="bottom" secondItem="g9J-jc-LeO" secondAttribute="bottom" constant="8.5" id="ydN-5y-pci"/>
+                            <constraint firstAttribute="trailing" secondItem="g9J-jc-LeO" secondAttribute="trailing" constant="16" id="zhl-Ce-JN9"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="d0R-E1-XYa" secondAttribute="bottom" id="7ry-n0-eQh"/>
+                    <constraint firstItem="d0R-E1-XYa" firstAttribute="top" secondItem="6de-q1-4uv" secondAttribute="top" id="JFF-QG-6Dc"/>
+                    <constraint firstItem="d0R-E1-XYa" firstAttribute="leading" secondItem="6de-q1-4uv" secondAttribute="leading" id="JvP-NL-hHN"/>
+                    <constraint firstAttribute="trailing" secondItem="d0R-E1-XYa" secondAttribute="trailing" id="xEM-ls-Xzr"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="492" height="334"/>
+            <connections>
+                <outlet property="carLabel" destination="Gcx-VB-0BC" id="3Ht-Gy-c7z"/>
+                <outlet property="card" destination="d0R-E1-XYa" id="n7K-9w-Xj6"/>
+                <outlet property="dateLabel" destination="AjL-7J-2Gl" id="vn0-Vd-3C0"/>
+                <outlet property="fromIconView" destination="Sea-rP-HM8" id="pyZ-a1-qWh"/>
+                <outlet property="fromLabel" destination="guE-2J-dLi" id="hC9-TG-YQO"/>
+                <outlet property="map" destination="g9J-jc-LeO" id="umN-Fi-BE2"/>
+                <outlet property="mapImage" destination="FP1-vp-MoS" id="zyD-L9-ryi"/>
+                <outlet property="priceLabel" destination="Org-rZ-il5" id="wmC-eP-qhj"/>
+            </connections>
+            <point key="canvasLocation" x="463.768115942029" y="147.65625"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="rightArrow" width="15.5" height="15.5"/>
+        <namedColor name="selectedTitleColor">
+            <color red="0.84705882352941175" green="0.27058823529411763" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="textColor">
+            <color red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
