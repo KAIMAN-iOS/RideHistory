@@ -77,7 +77,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
             $0.top.equalTo(view.safeArea.top)
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
-            $0.height.equalTo(64)
+            $0.height.equalTo(50)
         }
         
         view.addSubview(scrollView)
@@ -116,7 +116,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         settings.style.buttonBarItemsShouldFillAvailableWidth = true
         settings.style.buttonBarLeftContentInset = 0
         settings.style.buttonBarRightContentInset = 0
-        changeCurrentIndexProgressive = { [weak self] (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
+        changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             oldCell?.label.textColor = RideHistoryTabController.conf.palette.mainTexts
             newCell?.label.textColor = RideHistoryTabController.conf.palette.primary

@@ -78,8 +78,8 @@ extension ViewController: RideHistoryMapDelegate {
         return nil
     }
     
-    func renderer(for overlay: MKOverlay) -> MKOverlayRenderer {
-        guard let line = overlay as? RidePolyline else { return MKOverlayRenderer() }
+    func renderer(for overlay: MKOverlay) -> MKPolylineRenderer {
+        guard let line = overlay as? RidePolyline else { return MKPolylineRenderer() }
         let renderer = MKPolylineRenderer(polyline: line)
         renderer.strokeColor = line.color
         renderer.lineWidth = line.lineWidth

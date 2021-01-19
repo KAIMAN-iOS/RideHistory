@@ -50,6 +50,7 @@ class RideHistoryCell: UICollectionViewCell {
     }
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var carLabel: UILabel!
+    private var snapshotter: SnapManager = SnapManager()
     
     private(set) var ride: RideHistoryModelable!
     private(set) var mapDelegate: RideHistoryMapDelegate!
@@ -79,13 +80,26 @@ class RideHistoryCell: UICollectionViewCell {
     override func prepareForReuse() {
         map.removeOverlays(map.overlays)
         map.removeAnnotations(map.annotations)
+        snapshotter = SnapManager()
+        mapImage.image = nil
     }
     
     func add(routes: [Route]) {
-        map.addOverlays(mapDelegate.overlays(for: routes))
+        let overlays = mapDelegate
+            .overlays(for: routes)
+            .compactMap({ $0 as? MKPolyline })
+        map.addOverlays(overlays)
         if let first = routes.first?.route {
             let rect = routes.compactMap({ $0.route?.polyline.boundingMapRect }).reduce(first.polyline.boundingMapRect, { $1.union($0) })
             map.setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30), animated: false)
+        }
+        snapshotter.snap(from: map,
+                         annotationViews: mapDelegate.annotations(for: ride).compactMap({ mapDelegate.view(for: $0) }),
+                         lines: overlays.compactMap({ PolylineData(polyline: $0, renderer: mapDelegate.renderer(for: $0)) })) { [weak self] image in
+            guard let self = self else { return }
+            guard let image = image else { return }
+            let res = try? ImageManager.save(image, imagePath: self.ride.id)
+            print(res)
         }
     }
 }

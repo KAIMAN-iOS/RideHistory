@@ -40,7 +40,7 @@ protocol RideHistoryCoordinatorDelegate: class {
 
 public protocol RideHistoryMapDelegate: class {
     func view(for annotation: MKAnnotation) -> MKAnnotationView?
-    func renderer(for overlay: MKOverlay) -> MKOverlayRenderer
+    func renderer(for overlay: MKOverlay) -> MKPolylineRenderer
     func annotations(for ride: RideHistoryModelable) -> [MKAnnotation]
     func overlays(for routes: [Route]) -> [MKOverlay]
     func loadRoutes(for ride: RideHistoryModelable, delegate: RideHistoryMapRouteDelegate)
