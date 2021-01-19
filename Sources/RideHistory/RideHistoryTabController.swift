@@ -93,7 +93,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         addViews()
         super.viewDidLoad()
         
-        title = "MES COURSES"
+        title = "Mes Courses".bundleLocale().capitalized
         navigationController?.navigationBar.prefersLargeTitles = true
         buttonBarView.reloadData()
 //        reloadPages()
