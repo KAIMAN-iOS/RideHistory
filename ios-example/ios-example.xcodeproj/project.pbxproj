@@ -3,19 +3,44 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C65F94E025B6FA4F007CEC41 /* RideDirectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65F94DF25B6FA4F007CEC41 /* RideDirectionManager.swift */; };
+		C65F94EB25B70DF5007CEC41 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C65F94E325B70DF5007CEC41 /* Poppins-ExtraLight.ttf */; };
+		C65F94EC25B70DF5007CEC41 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C65F94E425B70DF5007CEC41 /* Poppins-Light.ttf */; };
+		C65F94ED25B70DF5007CEC41 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C65F94E525B70DF5007CEC41 /* Poppins-Medium.ttf */; };
+		C65F94EE25B70DF5007CEC41 /* Poppins.json in Resources */ = {isa = PBXBuildFile; fileRef = C65F94E625B70DF5007CEC41 /* Poppins.json */; };
+		C65F94EF25B70DF5007CEC41 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C65F94E725B70DF5007CEC41 /* Poppins-Regular.ttf */; };
+		C65F94F025B70DF5007CEC41 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C65F94E825B70DF5007CEC41 /* Poppins-Bold.ttf */; };
+		C65F94F125B70DF5007CEC41 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C65F94E925B70DF5007CEC41 /* Poppins-Thin.ttf */; };
+		C65F94F225B70DF5007CEC41 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C65F94EA25B70DF5007CEC41 /* Poppins-SemiBold.ttf */; };
 		C6B5128225B6C45E0046C365 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5128125B6C45E0046C365 /* AppDelegate.swift */; };
 		C6B5128425B6C45E0046C365 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5128325B6C45E0046C365 /* SceneDelegate.swift */; };
 		C6B5128625B6C45E0046C365 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5128525B6C45E0046C365 /* ViewController.swift */; };
 		C6B5128925B6C45E0046C365 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6B5128725B6C45E0046C365 /* Main.storyboard */; };
 		C6B5128B25B6C4610046C365 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6B5128A25B6C4610046C365 /* Assets.xcassets */; };
 		C6B5128E25B6C4610046C365 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6B5128C25B6C4610046C365 /* LaunchScreen.storyboard */; };
+		C6B5129825B6C4E00046C365 /* RideHistory in Frameworks */ = {isa = PBXBuildFile; productRef = C6B5129725B6C4E00046C365 /* RideHistory */; };
+		C6B512A225B6C5CF0046C365 /* RideAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5129D25B6C5CF0046C365 /* RideAnnotation.swift */; };
+		C6B512A325B6C5CF0046C365 /* DriverAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5129E25B6C5CF0046C365 /* DriverAnnotationView.swift */; };
+		C6B512A425B6C5CF0046C365 /* RideAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5129F25B6C5CF0046C365 /* RideAnnotationView.swift */; };
+		C6B512A525B6C5CF0046C365 /* RidePolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B512A025B6C5CF0046C365 /* RidePolyline.swift */; };
+		C6B512A625B6C5CF0046C365 /* DriverAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B512A125B6C5CF0046C365 /* DriverAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C65F94D025B6E3A6007CEC41 /* RideHistory */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RideHistory; path = ..; sourceTree = "<group>"; };
+		C65F94DF25B6FA4F007CEC41 /* RideDirectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDirectionManager.swift; sourceTree = "<group>"; };
+		C65F94E325B70DF5007CEC41 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		C65F94E425B70DF5007CEC41 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		C65F94E525B70DF5007CEC41 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		C65F94E625B70DF5007CEC41 /* Poppins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Poppins.json; sourceTree = "<group>"; };
+		C65F94E725B70DF5007CEC41 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		C65F94E825B70DF5007CEC41 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		C65F94E925B70DF5007CEC41 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		C65F94EA25B70DF5007CEC41 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		C6B5127E25B6C45E0046C365 /* ios-example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6B5128125B6C45E0046C365 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6B5128325B6C45E0046C365 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +49,11 @@
 		C6B5128A25B6C4610046C365 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6B5128D25B6C4610046C365 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C6B5128F25B6C4610046C365 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6B5129D25B6C5CF0046C365 /* RideAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideAnnotation.swift; sourceTree = "<group>"; };
+		C6B5129E25B6C5CF0046C365 /* DriverAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverAnnotationView.swift; sourceTree = "<group>"; };
+		C6B5129F25B6C5CF0046C365 /* RideAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideAnnotationView.swift; sourceTree = "<group>"; };
+		C6B512A025B6C5CF0046C365 /* RidePolyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RidePolyline.swift; sourceTree = "<group>"; };
+		C6B512A125B6C5CF0046C365 /* DriverAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,15 +61,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B5129825B6C4E00046C365 /* RideHistory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C65F94E225B70DF5007CEC41 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C65F94E325B70DF5007CEC41 /* Poppins-ExtraLight.ttf */,
+				C65F94E425B70DF5007CEC41 /* Poppins-Light.ttf */,
+				C65F94E525B70DF5007CEC41 /* Poppins-Medium.ttf */,
+				C65F94E625B70DF5007CEC41 /* Poppins.json */,
+				C65F94E725B70DF5007CEC41 /* Poppins-Regular.ttf */,
+				C65F94E825B70DF5007CEC41 /* Poppins-Bold.ttf */,
+				C65F94E925B70DF5007CEC41 /* Poppins-Thin.ttf */,
+				C65F94EA25B70DF5007CEC41 /* Poppins-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		C6B5127525B6C45E0046C365 = {
 			isa = PBXGroup;
 			children = (
+				C65F94D025B6E3A6007CEC41 /* RideHistory */,
 				C6B5128025B6C45E0046C365 /* ios-example */,
 				C6B5127F25B6C45E0046C365 /* Products */,
 			);
@@ -56,6 +103,9 @@
 		C6B5128025B6C45E0046C365 /* ios-example */ = {
 			isa = PBXGroup;
 			children = (
+				C65F94DF25B6FA4F007CEC41 /* RideDirectionManager.swift */,
+				C65F94E225B70DF5007CEC41 /* Fonts */,
+				C6B5129C25B6C5CF0046C365 /* Common */,
 				C6B5128125B6C45E0046C365 /* AppDelegate.swift */,
 				C6B5128325B6C45E0046C365 /* SceneDelegate.swift */,
 				C6B5128525B6C45E0046C365 /* ViewController.swift */,
@@ -65,6 +115,18 @@
 				C6B5128F25B6C4610046C365 /* Info.plist */,
 			);
 			path = "ios-example";
+			sourceTree = "<group>";
+		};
+		C6B5129C25B6C5CF0046C365 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C6B5129D25B6C5CF0046C365 /* RideAnnotation.swift */,
+				C6B5129E25B6C5CF0046C365 /* DriverAnnotationView.swift */,
+				C6B5129F25B6C5CF0046C365 /* RideAnnotationView.swift */,
+				C6B512A025B6C5CF0046C365 /* RidePolyline.swift */,
+				C6B512A125B6C5CF0046C365 /* DriverAnnotation.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +145,9 @@
 			dependencies = (
 			);
 			name = "ios-example";
+			packageProductDependencies = (
+				C6B5129725B6C4E00046C365 /* RideHistory */,
+			);
 			productName = "ios-example";
 			productReference = C6B5127E25B6C45E0046C365 /* ios-example.app */;
 			productType = "com.apple.product-type.application";
@@ -110,6 +175,9 @@
 				Base,
 			);
 			mainGroup = C6B5127525B6C45E0046C365;
+			packageReferences = (
+				C6B5129625B6C4E00046C365 /* XCRemoteSwiftPackageReference "RideHistory" */,
+			);
 			productRefGroup = C6B5127F25B6C45E0046C365 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -124,9 +192,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C65F94EB25B70DF5007CEC41 /* Poppins-ExtraLight.ttf in Resources */,
+				C65F94F025B70DF5007CEC41 /* Poppins-Bold.ttf in Resources */,
+				C65F94F225B70DF5007CEC41 /* Poppins-SemiBold.ttf in Resources */,
+				C65F94EC25B70DF5007CEC41 /* Poppins-Light.ttf in Resources */,
 				C6B5128E25B6C4610046C365 /* LaunchScreen.storyboard in Resources */,
+				C65F94ED25B70DF5007CEC41 /* Poppins-Medium.ttf in Resources */,
 				C6B5128B25B6C4610046C365 /* Assets.xcassets in Resources */,
 				C6B5128925B6C45E0046C365 /* Main.storyboard in Resources */,
+				C65F94EE25B70DF5007CEC41 /* Poppins.json in Resources */,
+				C65F94EF25B70DF5007CEC41 /* Poppins-Regular.ttf in Resources */,
+				C65F94F125B70DF5007CEC41 /* Poppins-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,9 +213,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B512A625B6C5CF0046C365 /* DriverAnnotation.swift in Sources */,
+				C6B512A325B6C5CF0046C365 /* DriverAnnotationView.swift in Sources */,
+				C6B512A525B6C5CF0046C365 /* RidePolyline.swift in Sources */,
+				C6B512A425B6C5CF0046C365 /* RideAnnotationView.swift in Sources */,
 				C6B5128625B6C45E0046C365 /* ViewController.swift in Sources */,
 				C6B5128225B6C45E0046C365 /* AppDelegate.swift in Sources */,
+				C6B512A225B6C5CF0046C365 /* RideAnnotation.swift in Sources */,
 				C6B5128425B6C45E0046C365 /* SceneDelegate.swift in Sources */,
+				C65F94E025B6FA4F007CEC41 /* RideDirectionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +423,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C6B5129625B6C4E00046C365 /* XCRemoteSwiftPackageReference "RideHistory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jerometonnelier/RideHistory";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C6B5129725B6C4E00046C365 /* RideHistory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C6B5129625B6C4E00046C365 /* XCRemoteSwiftPackageReference "RideHistory" */;
+			productName = RideHistory;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C6B5127625B6C45E0046C365 /* Project object */;
 }

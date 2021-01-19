@@ -10,17 +10,20 @@ import UIKit
 class RideHistoryController: UIViewController {
     
     static func create(rides: [RideHistoryModelable],
+                       rideType: RideHistoryType,
                        delegate: RideHistoryActionnable,
                        coordinatorDelegate: RideHistoryCoordinatorDelegate,
                        mapDelegate: RideHistoryMapDelegate) -> RideHistoryController {
         let ctrl: RideHistoryController = UIStoryboard(name: "RideHistory", bundle: Bundle.module).instantiateViewController(identifier: "RideHistoryController")
         ctrl.rides = rides
+        ctrl.rideType = rideType
         ctrl.rideDelegate = delegate
         ctrl.mapDelegate = mapDelegate
         ctrl.coordinatorDelegate = coordinatorDelegate
-        ctrl.model = RideHistoryViewModel(rides: rides)
+        ctrl.model = RideHistoryViewModel(rides: rides, mapDelegate: mapDelegate)
         return ctrl
     }
+    var rideType: RideHistoryType!
     var rides: [RideHistoryModelable] =  []
     weak var rideDelegate: RideHistoryActionnable!
     weak var coordinatorDelegate: RideHistoryCoordinatorDelegate!
@@ -33,4 +36,21 @@ class RideHistoryController: UIViewController {
     }
 
     var model: RideHistoryViewModel!
+    
+    var datasource: RideHistoryViewModel.DataSource!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        datasource = model.dataSource(for: collectionView)
+        collectionView.dataSource = datasource
+        collectionView.collectionViewLayout = model.layout()
+        model.applySnapshot(in: datasource) {
+            
+        }
+    }
+}
+
+extension RideHistoryController: IndicatorInfoProvider {
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        IndicatorInfo(title: rideType.title)
+    }
 }

@@ -10,17 +10,21 @@ import KCoordinatorKit
 import ATAConfiguration
 import MapKit
 
-public enum RideHistoryType: Int, CaseIterable {
-    case booked, completed, cancelled
+public enum RideHistoryType: Int, CaseIterable, Comparable {
+    public static func < (lhs: RideHistoryType, rhs: RideHistoryType) -> Bool {
+        lhs.rawValue < rhs.rawValue
+    }
+    
+    case booked = 0, completed, cancelled
     var canCancel: Bool {
         return self == .booked
     }
     
     var title: String {
         switch self {
-        case .booked: return "booked".bundleLocale()
-        case .completed: return "completed".bundleLocale()
-        case .cancelled: return "cancelled".bundleLocale()
+        case .booked: return "booked".bundleLocale().uppercased()
+        case .completed: return "completed".bundleLocale().uppercased()
+        case .cancelled: return "cancelled".bundleLocale().uppercased()
         }
     }
 }
@@ -38,16 +42,20 @@ public protocol RideHistoryMapDelegate: class {
     func view(for annotation: MKAnnotation) -> MKAnnotationView?
     func renderer(for overlay: MKOverlay) -> MKOverlayRenderer
     func annotations(for ride: RideHistoryModelable) -> [MKAnnotation]
-    func overlays(for ride: RideHistoryModelable) -> [MKOverlay]
+    func overlays(for routes: [Route]) -> [MKOverlay]
     func loadRoutes(for ride: RideHistoryModelable, delegate: RideHistoryMapRouteDelegate)
 }
 
 public struct Route {
-    enum RouteType {
+    public enum RouteType {
         case approach, ride
     }
-    var routeType: RouteType!
-    var route: MKRoute?
+    public var routeType: RouteType!
+    public var route: MKRoute?
+    public init(routeType: RouteType!, route: MKRoute?) {
+        self.routeType = routeType
+        self.route = route
+    }
 }
 
 public protocol RideHistoryMapRouteDelegate: class {

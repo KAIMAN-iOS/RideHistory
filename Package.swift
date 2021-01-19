@@ -17,7 +17,6 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/jerometonnelier/KExtensions", from: "1.0.0"),
         .package(url: "https://github.com/jerometonnelier/ATAConfiguration", from: "1.0.0"),
-        .package(url: "https://github.com/uias/Tabman", from: "2.9.1"),
         .package(url: "https://github.com/jerometonnelier/KCoordinatorKit", from: "1.0.1"),
         .package(url: "https://github.com/jerometonnelier/KStorage", from: "1.0.0"),
     ],
@@ -26,6 +25,6 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "RideHistory",
-            dependencies: ["KExtensions", "ATAConfiguration", "Tabman", "KCoordinatorKit", "KStorage"])
+            dependencies: ["KExtensions", "ATAConfiguration", "KCoordinatorKit", "KStorage"])
     ]
 )

@@ -41,8 +41,9 @@ class RideHistoryViewModel {
     typealias SnapShot = NSDiffableDataSourceSnapshot<Section, CellType>
     private var dataSource: DataSource!
     
-    init(rides: [RideHistoryModelable]) {
+    init(rides: [RideHistoryModelable], mapDelegate: RideHistoryMapDelegate) {
         self.rides = rides
+        self.mapDelegate = mapDelegate
     }
     
     func dataSource(for collectionView: UICollectionView) -> DataSource {
@@ -65,7 +66,10 @@ class RideHistoryViewModel {
     private var rides: [RideHistoryModelable] = []
     func applySnapshot(in dataSource: DataSource, animatingDifferences: Bool = true, completion: @escaping (() -> Void)) {
         var snap = dataSource.snapshot()
-        snap.appendItems(rides.compactMap({ CellType.ride($0) }), toSection: .main)
+        if snap.itemIdentifiers.isEmpty {
+            snap.appendSections([.main])
+            snap.appendItems(rides.compactMap({ CellType.ride($0) }), toSection: .main)
+        }
         dataSource.apply(snap, animatingDifferences: animatingDifferences, completion: completion)
     }
     

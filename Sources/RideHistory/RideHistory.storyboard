@@ -13,7 +13,7 @@
         <!--Ride History Tab Controller-->
         <scene sceneID="wZ3-El-hSZ">
             <objects>
-                <viewController id="mvU-bc-IRx" customClass="RideHistoryTabController" customModule="RideHistory" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RideHistoryTabController" id="mvU-bc-IRx" customClass="RideHistoryTabController" customModule="RideHistory" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FDA-rS-BYh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -26,15 +26,18 @@
                         <viewLayoutGuide key="safeArea" id="wW2-Nf-0Ic"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="loader" destination="15f-gg-X7k" id="LSk-TT-5ke"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1f-Lf-Tob" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-736" y="143"/>
+            <point key="canvasLocation" x="-736.23188405797111" y="142.63392857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Ride History Controller-->
         <scene sceneID="uIw-2I-wo1">
             <objects>
-                <viewController id="PyS-Qn-fPb" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RideHistoryController" id="PyS-Qn-fPb" customClass="RideHistoryController" customModule="RideHistory" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hXO-fK-eqA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -69,6 +72,9 @@
                             <constraint firstAttribute="bottom" secondItem="74C-Id-WCp" secondAttribute="bottom" id="v3L-Lz-E8z"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="74C-Id-WCp" id="cb6-Nu-Oba"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UeT-Ay-PgH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
