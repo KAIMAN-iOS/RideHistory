@@ -40,9 +40,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    var rides = [Ride.with(id: "765426"), Ride.with(id: "878927"), Ride.with(id: "9870987"), Ride.with(id: "9087967")]
     @IBAction func show(_ sender: Any) {
         let router = Router(navigationController: navigationController!)
-        let rides = [Ride.with(id: "765426"), Ride.with(id: "878927"), Ride.with(id: "9870987"), Ride.with(id: "9087967")]
         print(rides.reduce("", { $0 + "\n\($1)" }))
         coord = RideHistoryCoordinator(router: router,
                                        mode: .driver,
@@ -56,23 +56,26 @@ class ViewController: UIViewController {
 
 extension ViewController: RideHistoryActionnable {
     func printTicket(for ride: RideHistoryModelable) {
-        
+        print("printTicket")
     }
     
     func openDispute(for ride: RideHistoryModelable) {
-        
+        print("openDispute")
     }
     
     func foundObject(for ride: RideHistoryModelable) {
-        
+        print("foundObject")
     }
     
     func cancel(_ rideId: String, completion: @escaping (() -> Void)) {
-        
+        print("cancel")
     }
     
     func loadRides(completion: @escaping (([RideHistoryModelable]) -> Void)) {
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.rides.append(contentsOf: [Ride.with(id: "87987"), Ride.with(id: "28E97"), Ride.with(id: "389749")])
+            completion(self.rides)
+        }
     }
 }
 

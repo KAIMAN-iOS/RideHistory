@@ -44,3 +44,24 @@ class RideHistoryDetailController: UIViewController {
     var datasource: RideHistoryDetailViewModel.DataSource!
 
 }
+
+extension RideHistoryDetailController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cellType = model.cellType(at: indexPath) else { return }
+        switch cellType {
+        case .mainAction(let action):
+            switch action {
+            case .printTicket: rideDelegate.printTicket(for: ride)
+            case .cancel: rideDelegate.cancel(ride.id) {}
+            }
+            
+        case .secondaryAction(let action):
+            switch action {
+            case .dispute: rideDelegate.openDispute(for: ride)
+            case.lostAndFound: rideDelegate.foundObject(for: ride)
+            }
+            
+        default: ()
+        }
+    }
+}

@@ -73,6 +73,7 @@ class RideHistoryDetailViewModel {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, CellType>
     typealias SnapShot = NSDiffableDataSourceSnapshot<Section, CellType>
     private var dataSource: DataSource!
+    var routeState: RouteStateResult?
     
     func dataSource(for collectionView: UICollectionView) -> DataSource {
         // Handle cells
@@ -82,6 +83,12 @@ class RideHistoryDetailViewModel {
             case .map:
                 guard let cell: RideHistoryDetailMapCell = collectionView.automaticallyDequeueReusableCell(forIndexPath: indexPath) else { return nil }
                 cell.configure(self.ride, mapDelegate: self.mapDelegate)
+                if let state = self.routeState, state.state == .completed {
+                    cell.add(routes: state.routes)
+                } else if self.routeState == nil && ImageManager.fetchImage(with: ride.id) == nil {
+                    self.routeState = (state: .requested, routes: [])
+                    self.mapDelegate.loadRoutes(for: self.ride, delegate: self)
+                }
                 return cell
                 
             case .stats:
@@ -109,8 +116,6 @@ class RideHistoryDetailViewModel {
                 cell.configure(action)
                 return cell
             }
-            
-            return nil
         }
         return dataSource
     }
@@ -153,4 +158,18 @@ class RideHistoryDetailViewModel {
         let layoutSection = NSCollectionLayoutSection(group: group)
         return layoutSection
     }
+    
+    func cellType(at indexPath: IndexPath) -> CellType? {
+        return dataSource.itemIdentifier(for: indexPath)
+    }
 }
+
+extension RideHistoryDetailViewModel: RideHistoryMapRouteDelegate {
+    func routes(_ routes: [Route], for ride: RideHistoryModelable) {
+        routeState = (state: .completed, routes: routes)
+        var snap = dataSource.snapshot()
+        snap.reloadItems([.map])
+        applySnapshot(in: dataSource) {  }
+    }
+}
+

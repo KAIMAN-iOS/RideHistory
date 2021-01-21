@@ -9,6 +9,11 @@ import UIKit
 import UIViewExtension
 import TableViewExtension
 
+typealias RouteStateResult = (state: RouteState, routes: [Route])
+enum RouteState {
+    case requested, completed
+}
+
 class RideHistoryViewModel {
     enum Section: Int, Hashable {
         case main
@@ -33,10 +38,6 @@ class RideHistoryViewModel {
         }
     }
     
-    enum RouteState {
-        case requested, completed
-    }
-    typealias RouteStateResult = (state: RouteState, routes: [Route])
     private var routes: [String: RouteStateResult] = [:]
     private(set) var mapDelegate: RideHistoryMapDelegate!
     typealias DataSource = UICollectionViewDiffableDataSource<Section, CellType>

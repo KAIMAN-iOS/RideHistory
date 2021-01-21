@@ -9,7 +9,12 @@ import UIKit
 import MapKit
 
 class RideHistoryDetailMapCell: UICollectionViewCell {
-    @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var map: MKMapView!  {
+        didSet {
+            map.delegate = self
+        }
+    }
+
     @IBOutlet weak var image: UIImageView!
     private(set) var mapDelegate: RideHistoryMapDelegate!
     private var snapshotter: SnapManager = SnapManager()
@@ -36,7 +41,7 @@ class RideHistoryDetailMapCell: UICollectionViewCell {
         map.addOverlays(overlays)
         if let first = routes.first?.route {
             let rect = routes.compactMap({ $0.route?.polyline.boundingMapRect }).reduce(first.polyline.boundingMapRect, { $1.union($0) })
-            map.setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30), animated: false)
+            map.setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30), animated: true)
         }
         snapshotter.snap(from: map,
                          annotationViews: mapDelegate.annotations(for: ride).compactMap({ mapDelegate.view(for: $0) }),
