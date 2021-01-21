@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "ActionButton",
+        "repositoryURL": "https://github.com/jerometonnelier/ActionButton",
+        "state": {
+          "branch": null,
+          "revision": "379ad87fa9895546ecb2eeb0bd2628467e992ac8",
+          "version": "1.0.7"
+        }
+      },
+      {
         "package": "Ampersand",
         "repositoryURL": "https://github.com/darjeelingsteve/Ampersand",
         "state": {
@@ -15,8 +24,8 @@
         "repositoryURL": "https://github.com/jerometonnelier/ATAConfiguration",
         "state": {
           "branch": null,
-          "revision": "8ec9be62f1f5783ce0acb71ff1cb885ca8265df2",
-          "version": "1.0.3"
+          "revision": "0c1bb6372ec4b9fca70ea96d406cfe958fd786fc",
+          "version": "1.0.4"
         }
       },
       {

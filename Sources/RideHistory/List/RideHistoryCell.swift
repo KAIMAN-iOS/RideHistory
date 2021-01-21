@@ -14,7 +14,7 @@ import UIViewExtension
 import KStorage
 
 class RideHistoryCell: UICollectionViewCell {
-    private static var dayFormatter: DateFormatter = {
+    static var dayFormatter: DateFormatter = {
         let form = DateFormatter()
         form.locale = .current
         form.dateStyle = .medium
@@ -22,7 +22,7 @@ class RideHistoryCell: UICollectionViewCell {
         form.doesRelativeDateFormatting = true
         return form
     }()
-    private static var timeFormatter: DateFormatter = {
+    static var timeFormatter: DateFormatter = {
         let form = DateFormatter()
         form.locale = .current
         form.doesRelativeDateFormatting = true

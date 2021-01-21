@@ -31,11 +31,14 @@ public enum RideHistoryType: Int, CaseIterable, Comparable {
 
 public protocol RideHistoryActionnable: class {
     func cancel(_ rideId: String, completion: @escaping (() -> Void))
+    func printTicket(for ride: RideHistoryModelable)
+    func openDispute(for ride: RideHistoryModelable)
+    func foundObject(for ride: RideHistoryModelable)
     func loadRides(completion: @escaping (([RideHistoryModelable]) -> Void))
 }
 
 protocol RideHistoryCoordinatorDelegate: class {
-    func didSelect(_ rideId: String)
+    func didSelect(_ ride: RideHistoryModelable)
 }
 
 public protocol RideHistoryMapDelegate: class {
@@ -62,27 +65,39 @@ public protocol RideHistoryMapRouteDelegate: class {
     func routes(_ routes: [Route], for ride: RideHistoryModelable)
 }
 
+public enum Mode {
+    case driver, passenger, business
+}
+
 public class RideHistoryCoordinator<DeepLink>: Coordinator<DeepLink> {
-    var controller: RideHistoryTabController!    
+    var controller: RideHistoryTabController!
+    private var mode: Mode!
     public init(router: RouterType,
-         rides: [RideHistoryModelable],
-         delegate: RideHistoryActionnable,
-         mapDelegate: RideHistoryMapDelegate,
-         conf: ATAConfiguration) {
+                mode: Mode,
+                rides: [RideHistoryModelable],
+                delegate: RideHistoryActionnable,
+                mapDelegate: RideHistoryMapDelegate,
+                conf: ATAConfiguration) {
         super.init(router: router)
         controller = RideHistoryTabController.create(rides: rides,
-                                                  delegate: delegate,
-                                                  coordinatorDelegate: self,
-                                                  mapDelegate: mapDelegate,
-                                                  conf: conf)
+                                                     delegate: delegate,
+                                                     coordinatorDelegate: self,
+                                                     mapDelegate: mapDelegate,
+                                                     conf: conf)
+        self.mode = mode
     }
     
     public override func toPresentable() -> UIViewController { controller }
 }
 
 extension RideHistoryCoordinator: RideHistoryCoordinatorDelegate {
-    func didSelect(_ rideId: String) {
-        
+    func didSelect(_ ride: RideHistoryModelable) {
+        let ctrl: RideHistoryDetailController = RideHistoryDetailController.create(ride: ride,
+                                                                                   mode: mode,
+                                                                                   delegate: controller.rideDelegate,
+                                                                                   coordinatorDelegate: self,
+                                                                                   mapDelegate: controller.mapDelegate)
+        router.push(ctrl, animated: true, completion: nil)
     }
 }
 

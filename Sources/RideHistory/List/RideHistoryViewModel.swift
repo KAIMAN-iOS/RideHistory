@@ -15,7 +15,7 @@ class RideHistoryViewModel {
     }
     enum CellType: Hashable {
         static func == (lhs: CellType, rhs: CellType) -> Bool {
-            return lhs.hashValue == rhs.hashValue
+            return lhs.ride.id == rhs.ride.id
         }
         case ride(_: RideHistoryModelable)
         var ride: RideHistoryModelable {
@@ -26,7 +26,9 @@ class RideHistoryViewModel {
         
         func hash(into hasher: inout Hasher) {
             switch self {
-            case .ride(let ride): hasher.combine(ride.id)
+            case .ride(let ride):
+                hasher.combine(ride.id)
+                hasher.combine(ride.rideType)
             }
         }
     }

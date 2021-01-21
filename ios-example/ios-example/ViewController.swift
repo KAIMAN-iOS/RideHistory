@@ -17,21 +17,17 @@ class Configuration: ATAConfiguration {
 }
 
 class Palette: Palettable {
+    var action: UIColor { #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1) }
+    var confirmation: UIColor { #colorLiteral(red: 0.3411764801, green: 0.721568644, blue: 0.650980413, alpha: 1) }
+    var alert: UIColor { #colorLiteral(red: 0.8313725591, green: 0.2156862766, blue: 0.180392161, alpha: 1) }
     var primary: UIColor { #colorLiteral(red: 0.8313725591, green: 0.2156862766, blue: 0.180392161, alpha: 1) }
     var secondary: UIColor { #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) }
-    
     var mainTexts: UIColor { #colorLiteral(red: 0.09803921729, green: 0.09803921729, blue: 0.09803921729, alpha: 1)}
-    
     var secondaryTexts: UIColor { #colorLiteral(red: 0.1879811585, green: 0.1879865527, blue: 0.1879836619, alpha: 1) }
-    
     var textOnPrimary: UIColor { #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) }
-    
     var inactive: UIColor { #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) }
-    
     var placeholder: UIColor { #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) }
-    var lightGray: UIColor { #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1) }
-    
-    
+    var lightGray: UIColor { #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1) }
 }
 
 class ViewController: UIViewController {
@@ -49,6 +45,7 @@ class ViewController: UIViewController {
         let rides = [Ride.with(id: "765426"), Ride.with(id: "878927"), Ride.with(id: "9870987"), Ride.with(id: "9087967")]
         print(rides.reduce("", { $0 + "\n\($1)" }))
         coord = RideHistoryCoordinator(router: router,
+                                       mode: .driver,
                                        rides: rides,
                                        delegate: self,
                                        mapDelegate: self,
@@ -58,6 +55,18 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: RideHistoryActionnable {
+    func printTicket(for ride: RideHistoryModelable) {
+        
+    }
+    
+    func openDispute(for ride: RideHistoryModelable) {
+        
+    }
+    
+    func foundObject(for ride: RideHistoryModelable) {
+        
+    }
+    
     func cancel(_ rideId: String, completion: @escaping (() -> Void)) {
         
     }
@@ -145,6 +154,10 @@ struct Ride: RideHistoryModelable, Hashable, CustomStringConvertible {
     var originDisplay: String
     var rideType: RideHistoryType
     var options: OptionsReprensentable
+    var stats: [RideStatsModelable] = []
+    var plate: String?
+    var username: String
+    var userIconURL: String?
     
     static func with(id: String) -> Ride {
         let randomType = Int.random(in: 0...2)
@@ -159,7 +172,11 @@ struct Ride: RideHistoryModelable, Hashable, CustomStringConvertible {
              isImmediate: Int.random(in: 0...1) == 0 ? true : false,
              originDisplay: "1001 BUSINESS",
              rideType: randomType == 0 ? .booked : (randomType == 1 ? .cancelled : .completed),
-             options: Option.random)
+             options: Option.random,
+             stats: [RideStats.distanceStat, RideStats.timeStat, RideStats.priceStat].compactMap({$0}),
+             plate: Int.random(in: 0...1) == 0 ? nil : "BU-682-VT",
+             username: "Jean-Pierre Bacri",
+             userIconURL: "https://images.laprovence.com/media/afp/2021-01/2021-01-18/6b1814044de4a65ba1376d500122ec3972e17570.jpg?twic=v1/dpr=2/focus=900x576.5/cover=1000x562")
     }
     
     func hash(into hasher: inout Hasher) {
@@ -175,6 +192,32 @@ struct Ride: RideHistoryModelable, Hashable, CustomStringConvertible {
             str.append(" - ➡ \(end)")
         }
         return str
+    }
+}
+
+struct RideStats: RideStatsModelable {
+    var value: Double
+    var additionnalValue: Double?
+    var unit: String
+    var statType: RideStat
+    
+    static var distanceStat: RideStats? {
+        [RideStats(value: 25, additionnalValue: nil, unit: "km", statType: .distance),
+         RideStats(value: 216, additionnalValue: nil, unit: "km", statType: .distance),
+         RideStats(value: 8, additionnalValue: nil, unit: "km", statType: .distance),
+        nil][Int.random(in: 0...3)]
+    }
+    static var priceStat: RideStats? {
+        [RideStats(value: 25.9, additionnalValue: nil, unit: "€", statType: .amount),
+         RideStats(value: 216.3, additionnalValue: nil, unit: "$", statType: .amount),
+         RideStats(value: 8, additionnalValue: nil, unit: "£", statType: .amount),
+         nil][Int.random(in: 0...3)]
+    }
+    static var timeStat: RideStats? {
+        [RideStats(value: 40, additionnalValue: nil, unit: "min", statType: .time),
+         RideStats(value: 216, additionnalValue: nil, unit: "min", statType: .time),
+         RideStats(value: 8, additionnalValue: nil, unit: "sec", statType: .time),
+         nil][Int.random(in: 0...3)]
     }
 }
 
@@ -235,45 +278,3 @@ struct Option: OptionsReprensentable, CustomStringConvertible {
         "😬 \(numberOfPassengers) - 💼 \(numberOfLuggages) - 🚕 \(vehicleTypeDisplay)"
     }
 }
-
-/*
- let ride = Ride(id: "8976987986",
-                 date: CustomDate<ISODateFormatterDecodable>.init(date: Date().addingTimeInterval(2400)),
-                 validUntil: CustomDate<ISODateFormatterDecodable>.init(date: Date().addingTimeInterval(15)),
-                 isImmediate: false,
-                 fromAddress: Address(address: "la barque 13710 FUVEAU", coordinates: Coordinates(location: CLLocationCoordinate2D(latitude: 43.47865284174063,
-                                                                                                                                          longitude: 5.53859787072443))),
-                 toAddress: Address(address: "Place Saint-Jean de Malte, 13100 Aix-en-Provence", coordinates: Coordinates(location: CLLocationCoordinate2D(latitude: 43.52645372148015,
-                                                                                                                                         longitude: 5.452597832139817))),
-                 options: Rideoptions(numberOfPassengers: 2, numberOfLuggages: 1, vehicleType: nil),
-                 origin: .default)
- 
- DispatchQueue.main.async {
-     self.load(ride: ride)
- }
- 
- let ride2 = Ride(id: "7698675",
-                  date: CustomDate<ISODateFormatterDecodable>.init(date: Date().addingTimeInterval(3600)),
-                  validUntil: CustomDate<ISODateFormatterDecodable>.init(date: Date().addingTimeInterval(30)),
-                  isImmediate: true,
-                  fromAddress: Address(address: "départ adresse 13510 Fuveau", coordinates: Coordinates(location: CLLocationCoordinate2D(latitude: 43.454551591901144,
-                                                                                                                                          longitude: 5.468953808988056))),
-                  toAddress: nil,
-                  options: Rideoptions(numberOfPassengers: 2, numberOfLuggages: 1, vehicleType: nil),
-                  origin: .default)
- 
- DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-     self.load(ride: ride2)
- }
- 
- let ride3 = Ride(id: "908076756",
-                  date: CustomDate<ISODateFormatterDecodable>.init(date: Date().addingTimeInterval(1000)),
-                  validUntil: CustomDate<ISODateFormatterDecodable>.init(date: Date().addingTimeInterval(20)),
-                  isImmediate: true,
-                  fromAddress: Address(address: "rue Courbet 13736 Gardanne", coordinates: Coordinates(location: CLLocationCoordinate2D(latitude: 43.471590283851015,
-                                                                                                                                                longitude: 5.4925626895974045))),
-                  toAddress: Address(address: "Gare Saint Charles 13000 Marseille", coordinates: Coordinates(location: CLLocationCoordinate2D(latitude: 43.30295892353656,
-                                                                                                                                          longitude: 5.380216342283413))),
-                  options: Rideoptions(numberOfPassengers: 6, numberOfLuggages: 10, vehicleType: nil),
-                  origin: .leTaxi)
- */

@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "RideHistory",
-    defaultLocalization: "en",
+    defaultLocalization: "fr",
     platforms: [.iOS("13.0")],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
@@ -16,7 +16,8 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/jerometonnelier/KExtensions", from: "1.0.0"),
-        .package(url: "https://github.com/jerometonnelier/ATAConfiguration", from: "1.0.0"),
+        .package(url: "https://github.com/jerometonnelier/ATAConfiguration", from: "1.0.4"),
+        .package(url: "https://github.com/jerometonnelier/ActionButton", from: "1.0.0"),
         .package(url: "https://github.com/jerometonnelier/KCoordinatorKit", from: "1.0.1"),
         .package(url: "https://github.com/jerometonnelier/KStorage", from: "1.0.0"),
     ],
@@ -25,6 +26,6 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "RideHistory",
-            dependencies: ["KExtensions", "ATAConfiguration", "KCoordinatorKit", "KStorage"])
+            dependencies: ["KExtensions", "ATAConfiguration", "KCoordinatorKit", "KStorage", "ActionButton"])
     ]
 )

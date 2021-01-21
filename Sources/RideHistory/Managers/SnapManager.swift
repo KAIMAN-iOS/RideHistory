@@ -66,10 +66,10 @@ struct SnapManager {
         annotationView.contentMode = .scaleAspectFit
         annotationView.bounds = CGRect(x: 0, y: 0, width: 40, height: 40)
         annotationView.drawHierarchy(in: CGRect(
-            x: point.x - annotationView.bounds.size.width / 2.0,
-            y: point.y - annotationView.bounds.size.height,
-            width: annotationView.bounds.width,
-            height: annotationView.bounds.height),
+                                        x: point.x - annotationView.bounds.size.width / 2.0,
+                                        y: point.y - annotationView.bounds.size.height / 2.0,
+                                        width: annotationView.bounds.width,
+                                        height: annotationView.bounds.height),
                                      afterScreenUpdates: true)
     }
 }

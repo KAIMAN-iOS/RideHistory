@@ -32,6 +32,7 @@ class RideHistoryController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!  {
         didSet {
             collectionView.register(UINib(nibName: "RideHistoryCell", bundle: .module), forCellWithReuseIdentifier: "RideHistoryCell")
+            collectionView.delegate = self
         }
     }
 
@@ -46,6 +47,12 @@ class RideHistoryController: UIViewController {
         model.applySnapshot(in: datasource) {
             
         }
+    }
+}
+
+extension RideHistoryController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        coordinatorDelegate?.didSelect(rides[indexPath.row])
     }
 }
 

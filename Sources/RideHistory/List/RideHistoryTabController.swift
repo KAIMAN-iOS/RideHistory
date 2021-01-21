@@ -9,6 +9,7 @@ import UIKit
 import ATAConfiguration
 import Ampersand
 import SnapKit
+import UIViewControllerExtension
 
 extension Array where Element == RideHistoryModelable {
     var tabs: [RideHistoryType : [RideHistoryModelable]] {
@@ -93,6 +94,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         addViews()
         super.viewDidLoad()
         
+        hideBackButtonText = true
         title = "Mes Courses".bundleLocale().capitalized
         navigationController?.navigationBar.prefersLargeTitles = true
         buttonBarView.reloadData()
