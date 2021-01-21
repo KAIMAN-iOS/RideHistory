@@ -85,7 +85,7 @@ class RideHistoryDetailViewModel {
                 cell.configure(self.ride, mapDelegate: self.mapDelegate)
                 if let state = self.routeState, state.state == .completed {
                     cell.add(routes: state.routes)
-                } else if self.routeState == nil && ImageManager.fetchImage(with: ride.id) == nil {
+                } else if self.routeState == nil && ImageManager.fetchImage(with: self.ride.id) == nil {
                     self.routeState = (state: .requested, routes: [])
                     self.mapDelegate.loadRoutes(for: self.ride, delegate: self)
                 }
