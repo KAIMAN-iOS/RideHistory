@@ -13,17 +13,16 @@ protocol RideDirectionsDelegate: class {
     func routesReady(_ routes: [Route], for ride: Ride)
 }
 
+typealias RouteCompletion = ((_ routes: [Route]) -> Void)
 class RideDirectionManager {
+    
     static let shared: RideDirectionManager = RideDirectionManager()
-    weak var delegate: RideHistoryMapRouteDelegate?
     private var routes: [Ride: [Route]] = [:]
     private init() {}
     
     private var loadQueue: DispatchQueue = DispatchQueue(label: "LoadRoutes", qos: .default)
     
-    func loadDirections(for ride: Ride, delegate: RideHistoryMapRouteDelegate) {
-        self.delegate = delegate
-        
+    func loadDirections(for ride: Ride, completion: @escaping RouteCompletion) {        
         let group = DispatchGroup()
         // init in order to simplify process
         routes[ride] = []
@@ -34,8 +33,10 @@ class RideDirectionManager {
         }
         group.notify(queue: loadQueue) {
             // refreh the view if it is curretnly displayed
-            DispatchQueue.main.async { [weak self] in
-                self?.delegate?.routes(self?.routes[ride] ?? [], for: ride)
+            DispatchQueue.main.async {  [weak self, completion] in
+                completion(self?.routes[ride] ?? [])
+                // delete routes
+                self?.routes[ride] = nil
                 // delete routes
                 self?.routes[ride] = nil
             }
@@ -43,13 +44,13 @@ class RideDirectionManager {
     }
     
     func loadApproachDirections(for ride: Ride, group: DispatchGroup) {
-        guard let userLocation = ride.pickUpLocation?.coordinates else {
+        guard let userLocation = ride.pickUpLocation?.addressCoordinates else {
             return
         }
         
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation, addressDictionary: nil))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: ride.startLocation.coordinates, addressDictionary: nil))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: ride.startLocation.addressCoordinates, addressDictionary: nil))
         request.transportType = .automobile
         loadRoute(.approach,
                   request: request,
@@ -59,8 +60,8 @@ class RideDirectionManager {
     
     func loadRideDirections(for ride: Ride, toAdress: Address, group: DispatchGroup) {
         let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: ride.startLocation.coordinates, addressDictionary: nil))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: toAdress.coordinates, addressDictionary: nil))
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: ride.startLocation.addressCoordinates, addressDictionary: nil))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: toAdress.addressCoordinates, addressDictionary: nil))
         request.transportType = .automobile
         loadRoute(.ride,
                   request: request,

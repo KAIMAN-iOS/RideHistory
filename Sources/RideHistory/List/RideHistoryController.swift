@@ -38,6 +38,10 @@ class RideHistoryController: UIViewController {
 
     var model: RideHistoryViewModel!
     
+    deinit {
+        print("💀 DEINIT \(rideType) - \(URL(fileURLWithPath: #file).lastPathComponent)")
+    }
+    
     var datasource: RideHistoryViewModel.DataSource!
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -12,7 +12,7 @@ import ATAConfiguration
 import Ampersand
 
 public protocol AddressReprensentable {
-    var coordinates: CLLocationCoordinate2D { get }
+    var addressCoordinates: CLLocationCoordinate2D { get }
     var displayAddress: String { get }
 }
 
@@ -30,12 +30,11 @@ public protocol RideHistoryModelable {
     var priceDisplay: String? { get }
     var vat: Double? { get }
     var startDate: Date { get }
-    var endDate: Date? { get }
     var isImmediate: Bool { get }
     var originDisplay: String { get }
     var rideType: RideHistoryType { get }
-    var options: OptionsReprensentable { get }
-    var stats: [RideStatsModelable] { get }
+    var rideOptions: OptionsReprensentable { get }
+    var rideStats: [RideStatsModelable] { get }
     var plate: String? { get }
     var username: String { get }
     var userIconURL: String? { get }

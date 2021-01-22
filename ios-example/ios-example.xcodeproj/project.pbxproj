@@ -31,7 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C65F94D025B6E3A6007CEC41 /* RideHistory */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RideHistory; path = ..; sourceTree = "<group>"; };
+		C65DFC3425BAC40C00354AFA /* RideHistory */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RideHistory; path = ..; sourceTree = "<group>"; };
 		C65F94DF25B6FA4F007CEC41 /* RideDirectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDirectionManager.swift; sourceTree = "<group>"; };
 		C65F94E325B70DF5007CEC41 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		C65F94E425B70DF5007CEC41 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		C6B5127525B6C45E0046C365 = {
 			isa = PBXGroup;
 			children = (
-				C65F94D025B6E3A6007CEC41 /* RideHistory */,
+				C65DFC3425BAC40C00354AFA /* RideHistory */,
 				C6B5128025B6C45E0046C365 /* ios-example */,
 				C6B5127F25B6C45E0046C365 /* Products */,
 			);

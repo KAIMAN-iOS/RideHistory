@@ -64,7 +64,7 @@ class RideHistoryCell: UICollectionViewCell {
         priceLabel.isHidden = ride.priceDisplay == nil
         priceLabel.set(text: ride.priceDisplay, for: .callout, textColor: RideHistoryTabController.conf.palette.primary)
         fromLabel.set(text: ride.startLocation.displayAddress, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
-        carLabel.set(text: ride.options.vehicleTypeDisplay, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        carLabel.set(text: ride.rideOptions.vehicleTypeDisplay, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         // map data
         if let image = ImageManager.fetchImage(with: ride.id) {
             mapImage.image = image

@@ -89,6 +89,17 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         }
     }
     
+    func addLoadingBar() {
+        let activity = UIActivityIndicatorView(style: .medium)
+        activity.color = RideHistoryTabController.conf.palette.primary
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activity)
+        activity.startAnimating()
+    }
+    
+    deinit {
+        print("💀 DEINIT \(URL(fileURLWithPath: #file).lastPathComponent)")
+    }
+    
     override func viewDidLoad() {
         updateSettings()
         addViews()
@@ -100,8 +111,9 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         buttonBarView.reloadData()
 //        reloadPages()
         // load rides from WS too...
-        loader.startAnimating()
+        addLoadingBar()
         rideDelegate.loadRides { [weak self] rides in
+            self?.navigationItem.rightBarButtonItem = nil
             self?.rides = rides
             self?.reloadPagerTabStripView()
         }

@@ -64,7 +64,7 @@ class RideHistoryDetailPassengerCell: UICollectionViewCell {
         } else {
             passengerImage.image = UIImage(named: "documentUser", in: .module, compatibleWith: nil)
         }
-        options.set(text: String(format: "%d pers. %d bag.".bundleLocale(), ride.options.numberOfPassengers, ride.options.numberOfLuggages),
+        options.set(text: String(format: "%d pers. %d bag.".bundleLocale(), ride.rideOptions.numberOfPassengers, ride.rideOptions.numberOfLuggages),
                     for: .caption1,
                     textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         stateContainer.backgroundColor = ride.rideType.color

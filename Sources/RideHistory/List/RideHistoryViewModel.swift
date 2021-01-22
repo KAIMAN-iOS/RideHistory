@@ -39,10 +39,14 @@ class RideHistoryViewModel {
     }
     
     private var routes: [String: RouteStateResult] = [:]
-    private(set) var mapDelegate: RideHistoryMapDelegate!
+    private(set) weak var mapDelegate: RideHistoryMapDelegate!
     typealias DataSource = UICollectionViewDiffableDataSource<Section, CellType>
     typealias SnapShot = NSDiffableDataSourceSnapshot<Section, CellType>
     private var dataSource: DataSource!
+    
+    deinit {
+        print("💀 DEINIT \(rides.first?.rideType) - \(URL(fileURLWithPath: #file).lastPathComponent)")
+    }
     
     init(rides: [RideHistoryModelable], mapDelegate: RideHistoryMapDelegate) {
         self.rides = rides
@@ -59,7 +63,9 @@ class RideHistoryViewModel {
                 cell.add(routes: route.routes)
             } else if self.routes[model.ride.id] == nil {
                 self.routes[model.ride.id] = (state: .requested, routes: [])
-                self.mapDelegate.loadRoutes(for: model.ride, delegate: self)
+                self.mapDelegate.loadRoutes(for: model.ride) { [weak cell] routes in
+                    cell?.add(routes: routes)
+                }
             }
             return cell
         }
@@ -95,12 +101,5 @@ class RideHistoryViewModel {
         var snap = dataSource.snapshot()
         snap.reloadItems([CellType.ride(ride)])
         applySnapshot(in: dataSource, animatingDifferences: false) {}
-    }
-}
-
-extension RideHistoryViewModel: RideHistoryMapRouteDelegate {
-    func routes(_ routes: [Route], for ride: RideHistoryModelable) {
-        self.routes[ride.id] = (state: .completed, routes: routes)
-        reload(ride)
     }
 }

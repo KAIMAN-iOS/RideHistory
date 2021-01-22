@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "ActionButton",
+        "repositoryURL": "https://github.com/jerometonnelier/ActionButton",
+        "state": {
+          "branch": null,
+          "revision": "379ad87fa9895546ecb2eeb0bd2628467e992ac8",
+          "version": "1.0.7"
+        }
+      },
+      {
         "package": "Ampersand",
         "repositoryURL": "https://github.com/darjeelingsteve/Ampersand",
         "state": {
@@ -15,8 +24,17 @@
         "repositoryURL": "https://github.com/jerometonnelier/ATAConfiguration",
         "state": {
           "branch": null,
-          "revision": "8ec9be62f1f5783ce0acb71ff1cb885ca8265df2",
-          "version": "1.0.3"
+          "revision": "0c1bb6372ec4b9fca70ea96d406cfe958fd786fc",
+          "version": "1.0.4"
+        }
+      },
+      {
+        "package": "GradientLoadingBar",
+        "repositoryURL": "https://github.com/fxm90/GradientLoadingBar",
+        "state": {
+          "branch": null,
+          "revision": "75593d9d14e698bf0fad1da9bde94b2729b8c7c2",
+          "version": "2.1.0"
         }
       },
       {
@@ -44,6 +62,15 @@
           "branch": null,
           "revision": "330de84d7b9601468a842c099c7627069ab92016",
           "version": "1.0.0"
+        }
+      },
+      {
+        "package": "LightweightObservable",
+        "repositoryURL": "https://github.com/fxm90/LightweightObservable",
+        "state": {
+          "branch": null,
+          "revision": "24ceae1b9557238ee13c007ca2c01a356e0eefc1",
+          "version": "2.1.2"
         }
       },
       {

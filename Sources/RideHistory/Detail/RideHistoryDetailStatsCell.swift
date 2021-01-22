@@ -30,11 +30,11 @@ class RideHistoryDetailStatsCell: UICollectionViewCell {
         dayLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.startDate), RideHistoryCell.timeFormatter.string(from: ride.startDate)),
                      for: .subheadline,
                      textColor: RideHistoryTabController.conf.palette.mainTexts)
-        vehicleType.set(text: ride.options.vehicleTypeDisplay, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        vehicleType.set(text: ride.rideOptions.vehicleTypeDisplay, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         plate.set(text: ride.plate, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         plate.isHidden = ride.plate?.isEmpty ?? true
         [priceContainer, distanceContainer, timeContainer].forEach({ $0?.isHidden = true })
-        ride.stats.forEach { stat in
+        ride.rideStats.forEach { stat in
             switch stat.statType {
             case .amount: update(priceContainer, value: priceValue, unit: priceUnit, stat: stat)
             case .distance: update(distanceContainer, value: distanceValue, unit: distanceUnit, stat: stat)

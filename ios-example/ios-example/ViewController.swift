@@ -52,6 +52,10 @@ class ViewController: UIViewController {
                                        conf: Configuration())
         navigationController?.pushViewController(coord.toPresentable(), animated: true)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        coord = nil
+    }
 }
 
 extension ViewController: RideHistoryActionnable {
@@ -72,7 +76,7 @@ extension ViewController: RideHistoryActionnable {
     }
     
     func loadRides(completion: @escaping (([RideHistoryModelable]) -> Void)) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.rides.append(contentsOf: [Ride.with(id: "87987"), Ride.with(id: "28E97"), Ride.with(id: "389749")])
             completion(self.rides)
         }
@@ -108,7 +112,7 @@ extension ViewController: RideHistoryMapDelegate {
             anno.append(RideAnnotation(address: end, isStart: false))
         }
         if let pickUp = ride.pickUpLocation {
-            anno.append(DriverAnnotation(coordinate: pickUp.coordinates))
+            anno.append(DriverAnnotation(coordinate: pickUp.addressCoordinates))
         }
         print("Annos \(anno.count) for \(ride.id)")
         return anno
@@ -124,9 +128,9 @@ extension ViewController: RideHistoryMapDelegate {
         return overlays
     }
     
-    func loadRoutes(for ride: RideHistoryModelable, delegate: RideHistoryMapRouteDelegate) {
+    func loadRoutes(for ride: RideHistoryModelable, completion: @escaping RouteCompletion) {
         guard let ride = ride as? Ride else { return }
-        RideDirectionManager.shared.loadDirections(for: ride, delegate: delegate)
+        RideDirectionManager.shared.loadDirections(for: ride, completion: completion)
     }
 }
 
@@ -152,12 +156,11 @@ struct Ride: RideHistoryModelable, Hashable, CustomStringConvertible {
     var priceDisplay: String?
     var vat: Double?
     var startDate: Date
-    var endDate: Date?
     var isImmediate: Bool
     var originDisplay: String
     var rideType: RideHistoryType
-    var options: OptionsReprensentable
-    var stats: [RideStatsModelable] = []
+    var rideOptions: OptionsReprensentable
+    var rideStats: [RideStatsModelable] = []
     var plate: String?
     var username: String
     var userIconURL: String?
@@ -171,12 +174,11 @@ struct Ride: RideHistoryModelable, Hashable, CustomStringConvertible {
              priceDisplay: Int.random(in: 0...1) == 0 ? "23,50 €" : nil,
              vat: Int.random(in: 0...1) == 0 ? 20 : nil,
              startDate: Int.random(in: 0...1) == 0 ? Date() : Date().addingTimeInterval(23*87*7),
-             endDate: Int.random(in: 0...1) == 0 ? Date().addingTimeInterval(3680) : nil,
              isImmediate: Int.random(in: 0...1) == 0 ? true : false,
              originDisplay: "1001 BUSINESS",
              rideType: randomType == 0 ? .booked : (randomType == 1 ? .cancelled : .completed),
-             options: Option.random,
-             stats: [RideStats.distanceStat, RideStats.timeStat, RideStats.priceStat].compactMap({$0}),
+             rideOptions: Option.random,
+             rideStats: [RideStats.distanceStat, RideStats.timeStat, RideStats.priceStat].compactMap({$0}),
              plate: Int.random(in: 0...1) == 0 ? nil : "BU-682-VT",
              username: "Jean-Pierre Bacri",
              userIconURL: "https://images.laprovence.com/media/afp/2021-01/2021-01-18/6b1814044de4a65ba1376d500122ec3972e17570.jpg?twic=v1/dpr=2/focus=900x576.5/cover=1000x562")
@@ -225,23 +227,23 @@ struct RideStats: RideStatsModelable {
 }
 
 struct Address: AddressReprensentable, CustomStringConvertible {
-    var coordinates: CLLocationCoordinate2D
+    var addressCoordinates: CLLocationCoordinate2D
     var displayAddress: String
     
     static var add1: Address {
-        Address(coordinates: CLLocationCoordinate2D(latitude: 43.47865284174063, longitude: 5.53859787072443), displayAddress: "la barque 13710 FUVEAU")
+        Address(addressCoordinates: CLLocationCoordinate2D(latitude: 43.47865284174063, longitude: 5.53859787072443), displayAddress: "la barque 13710 FUVEAU")
     }
     static var add2: Address {
-        Address(coordinates: CLLocationCoordinate2D(latitude: 43.52645372148015, longitude: 5.452597832139817), displayAddress: "Place Saint-Jean de Malte, 13100 Aix-en-Provence")
+        Address(addressCoordinates: CLLocationCoordinate2D(latitude: 43.52645372148015, longitude: 5.452597832139817), displayAddress: "Place Saint-Jean de Malte, 13100 Aix-en-Provence")
     }
     static var add3: Address {
-        Address(coordinates: CLLocationCoordinate2D(latitude: 43.454551591901144, longitude: 5.468953808988056), displayAddress: "départ adresse 13510 Fuveau")
+        Address(addressCoordinates: CLLocationCoordinate2D(latitude: 43.454551591901144, longitude: 5.468953808988056), displayAddress: "départ adresse 13510 Fuveau")
     }
     static var add4: Address {
-        Address(coordinates: CLLocationCoordinate2D(latitude: 43.471590283851015, longitude: 5.4925626895974045), displayAddress: "rue Courbet 13736 Gardanne")
+        Address(addressCoordinates: CLLocationCoordinate2D(latitude: 43.471590283851015, longitude: 5.4925626895974045), displayAddress: "rue Courbet 13736 Gardanne")
     }
     static var add5: Address {
-        Address(coordinates: CLLocationCoordinate2D(latitude: 43.30295892353656, longitude: 5.380216342283413), displayAddress: "Gare Saint Charles 13000 Marseille")
+        Address(addressCoordinates: CLLocationCoordinate2D(latitude: 43.30295892353656, longitude: 5.380216342283413), displayAddress: "Gare Saint Charles 13000 Marseille")
     }
     
     static var random: Address {

@@ -20,7 +20,7 @@ class RideAnnotation: NSObject, MKAnnotation {
     
     init(address: AddressReprensentable, isStart: Bool = true) {
         self.isStart = isStart
-        coordinate = address.coordinates
+        coordinate = address.addressCoordinates
         title = address.displayAddress
     }
     

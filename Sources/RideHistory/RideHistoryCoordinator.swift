@@ -46,7 +46,7 @@ public protocol RideHistoryMapDelegate: class {
     func renderer(for overlay: MKOverlay) -> MKPolylineRenderer
     func annotations(for ride: RideHistoryModelable) -> [MKAnnotation]
     func overlays(for routes: [Route]) -> [MKOverlay]
-    func loadRoutes(for ride: RideHistoryModelable, delegate: RideHistoryMapRouteDelegate)
+    func loadRoutes(for ride: RideHistoryModelable, completion: @escaping (([Route]) -> Void))
 }
 
 public struct Route {
@@ -59,10 +59,6 @@ public struct Route {
         self.routeType = routeType
         self.route = route
     }
-}
-
-public protocol RideHistoryMapRouteDelegate: class {
-    func routes(_ routes: [Route], for ride: RideHistoryModelable)
 }
 
 public enum Mode {
@@ -88,6 +84,10 @@ public class RideHistoryCoordinator<DeepLink>: Coordinator<DeepLink> {
     }
     
     public override func toPresentable() -> UIViewController { controller }
+    
+    deinit {
+        print("💀 DEINIT \(URL(fileURLWithPath: #file).lastPathComponent)")
+    }
 }
 
 extension RideHistoryCoordinator: RideHistoryCoordinatorDelegate {
