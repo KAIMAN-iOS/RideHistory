@@ -35,6 +35,7 @@ class RideHistoryDetailController: UIViewController {
         title = "ride detail".bundleLocale()
         datasource = model.dataSource(for: collectionView)
         collectionView.dataSource = datasource
+        collectionView.delegate = self
         collectionView.collectionViewLayout = model.layout()
         model.applySnapshot(in: datasource) {
             
