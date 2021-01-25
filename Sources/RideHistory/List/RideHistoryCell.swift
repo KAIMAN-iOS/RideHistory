@@ -100,6 +100,9 @@ class RideHistoryCell: UICollectionViewCell {
             guard let image = image else { return }
             let res = try? ImageManager.save(image, imagePath: self.ride.id)
             print(res)
+            self.mapImage.image = image
+            self.map.isHidden = true
+            self.mapImage.isHidden = false
         }
     }
 }

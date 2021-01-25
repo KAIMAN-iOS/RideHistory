@@ -46,7 +46,7 @@ public protocol RideHistoryMapDelegate: class {
     func renderer(for overlay: MKOverlay) -> MKPolylineRenderer
     func annotations(for ride: RideHistoryModelable) -> [MKAnnotation]
     func overlays(for routes: [Route]) -> [MKOverlay]
-    func loadRoutes(for ride: RideHistoryModelable, completion: @escaping (([Route]) -> Void))
+    func loadRoutes(for ride: RideHistoryModelable, completion: @escaping ((RideHistoryModelable, [Route]) -> Void))
 }
 
 public struct Route {

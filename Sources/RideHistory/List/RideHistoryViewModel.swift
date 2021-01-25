@@ -63,8 +63,9 @@ class RideHistoryViewModel {
                 cell.add(routes: route.routes)
             } else if self.routes[model.ride.id] == nil {
                 self.routes[model.ride.id] = (state: .requested, routes: [])
-                self.mapDelegate.loadRoutes(for: model.ride) { [weak cell] routes in
-                    cell?.add(routes: routes)
+                self.mapDelegate.loadRoutes(for: model.ride) { [weak self] ride, routes in
+                    self?.routes[ride.id] = (state: .completed, routes: routes)
+                    self?.reload(ride)
                 }
             }
             return cell

@@ -87,8 +87,9 @@ class RideHistoryDetailViewModel {
                     cell.add(routes: state.routes)
                 } else if self.routeState == nil && ImageManager.fetchImage(with: self.ride.id) == nil {
                     self.routeState = (state: .requested, routes: [])
-                    self.mapDelegate.loadRoutes(for: self.ride) { [weak cell] routes in
-                        cell?.add(routes: routes)
+                    self.mapDelegate.loadRoutes(for: self.ride) { [weak self] ride, routes in
+                        self?.routeState = (state: .completed, routes: routes)
+                        self?.reloadMap()
                     }
                 }
                 return cell
@@ -120,6 +121,12 @@ class RideHistoryDetailViewModel {
             }
         }
         return dataSource
+    }
+    
+    func reloadMap() {
+        var snap = dataSource.snapshot()
+        snap.reloadItems([.map])
+        applySnapshot(in: dataSource) { }
     }
     
     func applySnapshot(in dataSource: DataSource, animatingDifferences: Bool = true, completion: @escaping (() -> Void)) {
