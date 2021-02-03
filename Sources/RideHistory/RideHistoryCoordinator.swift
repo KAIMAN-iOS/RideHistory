@@ -27,6 +27,14 @@ public enum RideHistoryType: Int, CaseIterable, Comparable {
         case .cancelled: return "cancelled".bundleLocale().uppercased()
         }
     }
+    
+    var subtitle: String {
+        switch self {
+        case .booked: return "booked subtitle".bundleLocale().uppercased()
+        case .completed: return "completed subtitle".bundleLocale().uppercased()
+        case .cancelled: return "cancelled subtitle".bundleLocale().uppercased()
+        }
+    }
 }
 
 public protocol RideHistoryActionnable: class {

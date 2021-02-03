@@ -35,6 +35,19 @@ class RideHistoryController: UIViewController {
             collectionView.delegate = self
         }
     }
+    @IBOutlet weak var noRidesIcon: UIImageView!  {
+        didSet {
+            noRidesIcon.tintColor = RideHistoryTabController.conf.palette.inactive
+        }
+    }
+
+    @IBOutlet weak var noRidesLabel: UILabel!  {
+        didSet {
+            noRidesLabel.numberOfLines = 0
+        }
+    }
+
+    @IBOutlet weak var noRidesContainer: UIStackView!
 
     var model: RideHistoryViewModel!
     
@@ -48,6 +61,8 @@ class RideHistoryController: UIViewController {
         datasource = model.dataSource(for: collectionView)
         collectionView.dataSource = datasource
         collectionView.collectionViewLayout = model.layout()
+        noRidesContainer.isHidden = rides.count > 0
+        noRidesLabel.set(text: rideType.subtitle, for: .subheadline, textColor: RideHistoryTabController.conf.palette.inactive)
         model.applySnapshot(in: datasource) {
             
         }

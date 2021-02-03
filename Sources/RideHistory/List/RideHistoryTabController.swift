@@ -42,9 +42,14 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     
     private(set) var rides: [RideHistoryModelable] = []  {
         didSet {
-            tabs = rides.tabs
+            let tabs = rides.tabs
             controllers.removeAll()
-            tabs.forEach { (tab, rides) in
+            RideHistoryType.allCases.forEach { tab in
+                var rides: [RideHistoryModelable] = []
+                if let index = tabs.index(forKey: tab) {
+                    rides = tabs[index].value
+                }
+                
                 let ctrl: RideHistoryController = RideHistoryController.create(rides: rides,
                                                                                rideType: tab,
                                                                                delegate: rideDelegate,
@@ -54,7 +59,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
             }
         }
     }
-    var tabs: [RideHistoryType : [RideHistoryModelable]] = [:]
+//    var tabs: [RideHistoryType : [RideHistoryModelable]] = [:]
     var controllers: [RideHistoryType : RideHistoryController] = [:]
     weak var rideDelegate: RideHistoryActionnable!
     weak var coordinatorDelegate: RideHistoryCoordinatorDelegate!
@@ -138,11 +143,11 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     }
     
     private func key(at index: Int) -> RideHistoryType? {
-        return index < tabs.keys.count ? tabs.keys.sorted(by: { $0.rawValue < $1.rawValue })[index] : nil
+        return index < controllers.keys.count ? controllers.keys.sorted(by: { $0.rawValue < $1.rawValue })[index] : nil
     }
     
     override public func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let ctrls = tabs.keys.sorted().compactMap({ controllers[$0] })
+        let ctrls = controllers.keys.sorted().compactMap({ controllers[$0] })
         print("ctrls \(ctrls)")
         return ctrls
     }

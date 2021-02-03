@@ -17,3 +17,6 @@
 "cancelled display" = "course\nannulée";
 "immediate ride" = "course immédiate";
 "booked ride" = "course programmée";
+"booked subtitle" = "Aucune course à venir pour l'instant";
+"completed subtitle" = "Aucune course terminée pour l'instant";
+"cancelled subtitle" = "Aucune course annulée pour l'instant";

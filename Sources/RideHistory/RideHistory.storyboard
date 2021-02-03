@@ -259,13 +259,13 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ba4-GZ-fNC">
                                                                     <rect key="frame" x="38" y="16" width="212" height="29.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Sergio LOPEZ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDy-fF-NHr">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="Sergio LOPEZ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDy-fF-NHr">
                                                                             <rect key="frame" x="0.0" y="0.0" width="212" height="16"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 pers. 2 bag." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aR4-7Z-Win">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2 pers. 2 bag." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aR4-7Z-Win">
                                                                             <rect key="frame" x="0.0" y="16" width="212" height="13.5"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                                             <nil key="textColor"/>
@@ -633,18 +633,42 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aj7-ON-10Q">
+                                <rect key="frame" x="50" y="334.5" width="314" height="227"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoRides" translatesAutoresizingMaskIntoConstraints="NO" id="vPB-Pb-g8s">
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="209"/>
+                                        <color key="tintColor" red="0.34509339929999999" green="0.34509563450000003" blue="0.3451014161" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="vPB-Pb-g8s" secondAttribute="height" multiplier="3/2" id="ymJ-Aq-VXb"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SnM-OM-Chj">
+                                        <rect key="frame" x="0.0" y="209" width="314" height="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1no-kZ-alY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="1no-kZ-alY" firstAttribute="trailing" secondItem="aj7-ON-10Q" secondAttribute="trailing" constant="50" id="OdX-tP-g2I"/>
                             <constraint firstItem="74C-Id-WCp" firstAttribute="top" secondItem="hXO-fK-eqA" secondAttribute="top" id="Qzp-S8-79b"/>
+                            <constraint firstItem="aj7-ON-10Q" firstAttribute="centerY" secondItem="hXO-fK-eqA" secondAttribute="centerY" id="TlW-SU-DS1"/>
                             <constraint firstItem="74C-Id-WCp" firstAttribute="trailing" secondItem="1no-kZ-alY" secondAttribute="trailing" id="UA8-Iz-ocH"/>
+                            <constraint firstItem="aj7-ON-10Q" firstAttribute="leading" secondItem="1no-kZ-alY" secondAttribute="leading" constant="50" id="aEY-He-07w"/>
                             <constraint firstItem="74C-Id-WCp" firstAttribute="leading" secondItem="1no-kZ-alY" secondAttribute="leading" id="lK7-in-dTX"/>
                             <constraint firstAttribute="bottom" secondItem="74C-Id-WCp" secondAttribute="bottom" id="v3L-Lz-E8z"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="74C-Id-WCp" id="cb6-Nu-Oba"/>
+                        <outlet property="noRidesContainer" destination="aj7-ON-10Q" id="lzp-Nb-RMM"/>
+                        <outlet property="noRidesIcon" destination="vPB-Pb-g8s" id="EQN-xW-KZY"/>
+                        <outlet property="noRidesLabel" destination="SnM-OM-Chj" id="iXr-sd-M3L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UeT-Ay-PgH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -653,6 +677,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="NoRides" width="231" height="231"/>
         <image name="documentUser" width="83.5" height="82.5"/>
         <image name="envelope.fill" catalog="system" width="128" height="93"/>
         <namedColor name="placeholderColor">
@@ -668,7 +693,7 @@
             <color red="0.84705882352941175" green="0.27058823529411763" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="textColor">
-            <color red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.16099999845027924" green="0.17599999904632568" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
