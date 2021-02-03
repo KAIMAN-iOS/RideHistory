@@ -123,10 +123,10 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         settings.style.buttonBarBackgroundColor = navigationController?.navigationBar.barTintColor ?? .white
         settings.style.buttonBarItemBackgroundColor = navigationController?.navigationBar.barTintColor ?? .white
         settings.style.selectedBarBackgroundColor = RideHistoryTabController.conf.palette.primary
-        settings.style.buttonBarItemFont = .applicationFont(forTextStyle: .callout)
+        settings.style.buttonBarItemFont = .applicationFont(forTextStyle: .subheadline)
         settings.style.selectedBarHeight = 2.0
         settings.style.buttonBarMinimumLineSpacing = 0
-        settings.style.buttonBarItemTitleColor = RideHistoryTabController.conf.palette.mainTexts
+        settings.style.buttonBarItemTitleColor = RideHistoryTabController.conf.palette.secondaryTexts
         settings.style.buttonBarItemsShouldFillAvailableWidth = true
         settings.style.buttonBarLeftContentInset = 0
         settings.style.buttonBarRightContentInset = 0

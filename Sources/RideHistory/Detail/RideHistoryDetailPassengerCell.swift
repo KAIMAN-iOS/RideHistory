@@ -39,7 +39,7 @@ class RideHistoryDetailPassengerCell: UICollectionViewCell {
             state.textAlignment = .center
         }
     }
-
+    @IBOutlet weak var reason: UILabel!
     @IBOutlet weak var stateContainer: UIView!
     @IBOutlet weak var passengerImage: UIImageView!  {
         didSet {
@@ -57,20 +57,24 @@ class RideHistoryDetailPassengerCell: UICollectionViewCell {
     
     func configure(_ ride: RideHistoryModelable) {
         backgroundColor = RideHistoryTabController.conf.palette.lightGray
-        passenger.set(text: ride.username, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        passenger.set(text: ride.username, for: .body, fontScale: 0.9, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         if let url = ride.userIconURL,
            let imageUrl = URL(string: url) {
             imageTast = passengerImage.downloadImage(from: imageUrl, placeholder: UIImage(named: "documentUser", in: .module, compatibleWith: nil))
+            passengerImage.contentMode = .scaleAspectFill
         } else {
             passengerImage.image = UIImage(named: "documentUser", in: .module, compatibleWith: nil)
+            passengerImage.contentMode = .scaleAspectFit
         }
         options.set(text: String(format: "%d pers. %d bag.".bundleLocale(), ride.rideOptions.numberOfPassengers, ride.rideOptions.numberOfLuggages),
-                    for: .caption1,
+                    for: .footnote,
                     textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         stateContainer.backgroundColor = ride.rideType.color
         state.set(text: ride.rideType.stateDisplay.uppercased(),
                   for: .callout,
-                  fontScale: 0.8,
+//                  fontScale: 0.8,
                   textColor:RideHistoryTabController.conf.palette.textOnPrimary)
+        reason.superview?.isHidden = ride.cancellationReason?.isEmpty ?? true == true
+        reason.set(text: ride.cancellationReason, for: .caption1, textColor: RideHistoryTabController.conf.palette.primary)
     }
 }

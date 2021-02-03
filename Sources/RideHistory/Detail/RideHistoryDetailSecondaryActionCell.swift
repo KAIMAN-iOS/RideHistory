@@ -33,6 +33,11 @@ class RideHistoryDetailSecondaryActionCell: UICollectionViewCell {
             icon.tintColor = RideHistoryTabController.conf.palette.secondary
         }
     }
+    @IBOutlet weak var separator: UIView!  {
+        didSet {
+            separator.backgroundColor = RideHistoryTabController.conf.palette.lightGray
+        }
+    }
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subtitle: UILabel!

@@ -29,15 +29,6 @@
         }
       },
       {
-        "package": "GradientLoadingBar",
-        "repositoryURL": "https://github.com/fxm90/GradientLoadingBar",
-        "state": {
-          "branch": null,
-          "revision": "75593d9d14e698bf0fad1da9bde94b2729b8c7c2",
-          "version": "2.1.0"
-        }
-      },
-      {
         "package": "KCoordinatorKit",
         "repositoryURL": "https://github.com/jerometonnelier/KCoordinatorKit",
         "state": {
@@ -62,15 +53,6 @@
           "branch": null,
           "revision": "330de84d7b9601468a842c099c7627069ab92016",
           "version": "1.0.0"
-        }
-      },
-      {
-        "package": "LightweightObservable",
-        "repositoryURL": "https://github.com/fxm90/LightweightObservable",
-        "state": {
-          "branch": null,
-          "revision": "24ceae1b9557238ee13c007ca2c01a356e0eefc1",
-          "version": "2.1.2"
         }
       },
       {

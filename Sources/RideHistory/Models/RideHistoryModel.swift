@@ -33,6 +33,7 @@ public protocol RideHistoryModelable {
     var isImmediate: Bool { get }
     var originDisplay: String { get }
     var rideType: RideHistoryType { get }
+    var cancellationReason: String? { get }
     var rideOptions: OptionsReprensentable { get }
     var rideStats: [RideStatsModelable] { get }
     var plate: String? { get }

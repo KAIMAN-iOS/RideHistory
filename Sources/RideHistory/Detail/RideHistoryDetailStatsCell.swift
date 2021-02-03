@@ -27,10 +27,10 @@ class RideHistoryDetailStatsCell: UICollectionViewCell {
     @IBOutlet weak var rideTypeContainer: UIView!
     
     func configure(_ ride: RideHistoryModelable) {
-        dayLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.startDate), RideHistoryCell.timeFormatter.string(from: ride.startDate)),
+        dayLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.startDate).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.startDate)),
                      for: .subheadline,
                      textColor: RideHistoryTabController.conf.palette.mainTexts)
-        vehicleType.set(text: ride.rideOptions.vehicleTypeDisplay, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        vehicleType.set(text: ride.rideOptions.vehicleTypeDisplay.isEmpty ? "-" : ride.rideOptions.vehicleTypeDisplay, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         plate.set(text: ride.plate, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         plate.isHidden = ride.plate?.isEmpty ?? true
         [priceContainer, distanceContainer, timeContainer].forEach({ $0?.isHidden = true })

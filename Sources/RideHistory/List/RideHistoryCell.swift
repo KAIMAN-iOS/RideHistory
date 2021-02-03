@@ -58,13 +58,13 @@ class RideHistoryCell: UICollectionViewCell {
         self.ride = ride
         self.mapDelegate = mapDelegate
         
-        dateLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.startDate), RideHistoryCell.timeFormatter.string(from: ride.startDate)),
+        dateLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.startDate).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.startDate)),
                       for: .subheadline,
                       textColor: RideHistoryTabController.conf.palette.mainTexts)
         priceLabel.isHidden = ride.priceDisplay == nil
-        priceLabel.set(text: ride.priceDisplay, for: .callout, textColor: RideHistoryTabController.conf.palette.primary)
+        priceLabel.set(text: ride.priceDisplay, for: .callout, traits: [.traitBold], textColor: RideHistoryTabController.conf.palette.primary)
         fromLabel.set(text: ride.startLocation.displayAddress, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
-        carLabel.set(text: ride.rideOptions.vehicleTypeDisplay, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        carLabel.set(text: ride.rideOptions.vehicleTypeDisplay.isEmpty ? "-" : ride.rideOptions.vehicleTypeDisplay, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         // map data
         if let image = ImageManager.fetchImage(with: ride.id) {
             mapImage.image = image
