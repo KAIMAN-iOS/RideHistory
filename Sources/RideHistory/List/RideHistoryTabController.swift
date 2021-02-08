@@ -28,6 +28,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     
     static func create(rides: [RideHistoryModelable],
                        delegate: RideHistoryActionnable,
+                       defaultSelectedTab: RideHistoryType,
                        coordinatorDelegate: RideHistoryCoordinatorDelegate,
                        mapDelegate: RideHistoryMapDelegate,
                        conf: ATAConfiguration!) -> RideHistoryTabController {
@@ -37,11 +38,15 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         ctrl.mapDelegate = mapDelegate
         ctrl.coordinatorDelegate = coordinatorDelegate
         ctrl.rides = rides
+        ctrl.defaultSelectedTab = defaultSelectedTab
         return ctrl
     }
     
+    var defaultSelectedTab: RideHistoryType!
     private(set) var rides: [RideHistoryModelable] = []  {
         didSet {
+            // async control
+            guard let coordinatorDelegate = coordinatorDelegate else { return }
             let tabs = rides.tabs
             controllers.removeAll()
             RideHistoryType.allCases.forEach { tab in
@@ -114,13 +119,17 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         title = "Mes Courses".bundleLocale().capitalized
         navigationController?.navigationBar.prefersLargeTitles = true
         buttonBarView.reloadData()
-//        reloadPages()
-        // load rides from WS too...
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.moveToViewController(at: RideHistoryType.allCases.firstIndex(of: self.defaultSelectedTab) ?? 0, animated: false)
+        }
+        
         addLoadingBar()
         rideDelegate.loadRides { [weak self] rides in
-            self?.navigationItem.rightBarButtonItem = nil
-            self?.rides = rides
-            self?.reloadPagerTabStripView()
+            guard let self = self else { return }
+            self.navigationItem.rightBarButtonItem = nil
+            self.rides = rides
+            self.reloadPagerTabStripView()
         }
     }
     
