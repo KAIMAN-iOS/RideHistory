@@ -42,8 +42,9 @@ class RideHistoryDetailSecondaryActionCell: UICollectionViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subtitle: UILabel!
     
-    func configure(_ actionType: SecondaryActionType) {
-        title.set(text: actionType.title, for: .callout, textColor: RideHistoryTabController.conf.palette.mainTexts)
-        subtitle.set(text: actionType.subtitle, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.mainTexts)
+    func configure(_ actionType: SecondaryActionType, isEnabled: Bool = true, isLastcell: Bool = false) {
+        title.set(text: actionType.title, for: .callout, textColor: isEnabled ? RideHistoryTabController.conf.palette.mainTexts : RideHistoryTabController.conf.palette.inactive)
+        subtitle.set(text: actionType.subtitle, for: .body, fontScale: 0.8, textColor: isEnabled ? RideHistoryTabController.conf.palette.mainTexts : RideHistoryTabController.conf.palette.inactive)
+        separator.isHidden = isLastcell
     }
 }

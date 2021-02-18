@@ -12,9 +12,9 @@
 "amount stat" = "TARIF TTC";
 "distance stat" = "DISTANCE";
 "time stat" = "durée";
-"booked display" = "course\nà venir";
+"booked display" = "à venir";
 "completed display" = "terminée";
-"cancelled display" = "course\nannulée";
+"cancelled display" = "annulée";
 "immediate ride" = "course immédiate";
 "booked ride" = "course programmée";
 "booked subtitle" = "Aucune course à venir pour l'instant";

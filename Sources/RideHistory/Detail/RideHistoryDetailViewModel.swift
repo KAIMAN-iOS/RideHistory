@@ -37,7 +37,7 @@ class RideHistoryDetailViewModel {
             case .map: height = 195
             case .stats: height = 95
             case .user: height = 57
-            case .addresses: height = 144
+            case .addresses: height = 141
             case .mainAction: height = 65
             case .secondaryAction: height = 97
             }
@@ -116,7 +116,7 @@ class RideHistoryDetailViewModel {
             
             case .secondaryAction(let action):
                 guard let cell: RideHistoryDetailSecondaryActionCell = collectionView.automaticallyDequeueReusableCell(forIndexPath: indexPath) else { return nil }
-                cell.configure(action)
+                cell.configure(action, isEnabled: self.ride.rideType != .booked, isLastcell: action == .lostAndFound)
                 return cell
             }
         }
@@ -169,7 +169,7 @@ class RideHistoryDetailViewModel {
     }
     
     func cellType(at indexPath: IndexPath) -> CellType? {
-        return dataSource.itemIdentifier(for: indexPath)
+        return self.ride.rideType != .booked ? dataSource.itemIdentifier(for: indexPath) : nil
     }
 }
 
