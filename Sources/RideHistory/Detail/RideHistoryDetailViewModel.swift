@@ -38,7 +38,7 @@ class RideHistoryDetailViewModel {
             case .stats: height = 95
             case .user: height = 57
             case .addresses: height = 141
-            case .mainAction: height = 65
+            case .mainAction: height = 77
             case .secondaryAction: height = 97
             }
             return NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(height))

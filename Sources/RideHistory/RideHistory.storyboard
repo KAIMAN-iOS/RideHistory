@@ -494,10 +494,10 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RideHistoryDetailActionCell" id="paj-8H-8kS" customClass="RideHistoryDetailActionCell" customModule="RideHistory">
-                                        <rect key="frame" x="0.0" y="560" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="560" width="414" height="77"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ifs-93-mBe">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ex2-sv-l3H" customClass="ActionButton" customModule="ActionButton">
@@ -511,17 +511,17 @@
                                             <constraints>
                                                 <constraint firstItem="Ex2-sv-l3H" firstAttribute="leading" secondItem="ifs-93-mBe" secondAttribute="leading" constant="24" id="BVe-Hj-8AW"/>
                                                 <constraint firstItem="Ex2-sv-l3H" firstAttribute="top" secondItem="ifs-93-mBe" secondAttribute="top" constant="8" id="WF0-qr-2Gj"/>
-                                                <constraint firstAttribute="bottom" secondItem="Ex2-sv-l3H" secondAttribute="bottom" constant="8" id="lao-kv-Qif"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ex2-sv-l3H" secondAttribute="bottom" constant="20" id="lao-kv-Qif"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ex2-sv-l3H" secondAttribute="trailing" constant="24" id="mgL-oR-iUU"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="414" height="65"/>
+                                        <size key="customSize" width="414" height="77"/>
                                         <connections>
                                             <outlet property="actionButton" destination="Ex2-sv-l3H" id="IB7-OH-OMA"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RideHistoryDetailSecondaryActionCell" id="zY5-fX-igs" customClass="RideHistoryDetailSecondaryActionCell" customModule="RideHistory">
-                                        <rect key="frame" x="0.0" y="635" width="414" height="97"/>
+                                        <rect key="frame" x="0.0" y="647" width="414" height="97"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="prQ-hi-i3W">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="97"/>
@@ -696,10 +696,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="selectedTitleColor">
-            <color red="0.84705882352941175" green="0.27058823529411763" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.7839999794960022" green="0.31400001049041748" blue="0.28200000524520874" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="textColor">
-            <color red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.16099999845027924" green="0.17599999904632568" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
