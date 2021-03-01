@@ -690,13 +690,13 @@
             <color red="0.62400001287460327" green="0.65100002288818359" blue="0.70599997043609619" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="secondaryTexts">
-            <color red="0.32800000905990601" green="0.32800000905990601" blue="0.32800000905990601" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.51399999856948853" green="0.54500001668930054" blue="0.6119999885559082" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="selectedButtonColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="selectedTitleColor">
-            <color red="0.7839999794960022" green="0.31400001049041748" blue="0.28200000524520874" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.84700000286102295" green="0.27099999785423279" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="textColor">
             <color red="0.16099999845027924" green="0.17599999904632568" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
