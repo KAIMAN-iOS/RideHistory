@@ -38,7 +38,7 @@ class RideHistoryViewModel {
         }
     }
     
-    private var routes: [String: RouteStateResult] = [:]
+    private var routes: [Int: RouteStateResult] = [:]
     private(set) weak var mapDelegate: RideHistoryMapDelegate!
     typealias DataSource = UICollectionViewDiffableDataSource<Section, CellType>
     typealias SnapShot = NSDiffableDataSourceSnapshot<Section, CellType>

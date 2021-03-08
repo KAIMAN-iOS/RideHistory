@@ -23,7 +23,7 @@ public protocol OptionsReprensentable {
 }
 
 public protocol RideHistoryModelable {
-    var id: String { get }
+    var id: Int { get }
     var startLocation: AddressReprensentable { get }
     var endLocation: AddressReprensentable? { get }
     var pickUpLocation: AddressReprensentable? { get }

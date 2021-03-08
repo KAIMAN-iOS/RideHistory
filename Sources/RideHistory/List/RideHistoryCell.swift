@@ -66,7 +66,7 @@ class RideHistoryCell: UICollectionViewCell {
         fromLabel.set(text: ride.startLocation.displayAddress, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         carLabel.set(text: ride.rideOptions.vehicleTypeDisplay.isEmpty ? "-" : ride.rideOptions.vehicleTypeDisplay, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         // map data
-        if let image = ImageManager.fetchImage(with: ride.id) {
+        if let image = ImageManager.fetchImage(with: "\(ride.id)") {
             mapImage.image = image
             map.isHidden = true
             mapImage.isHidden = false
@@ -98,7 +98,7 @@ class RideHistoryCell: UICollectionViewCell {
                          lines: overlays.compactMap({ PolylineData(polyline: $0, renderer: mapDelegate.renderer(for: $0)) })) { [weak self] image in
             guard let self = self else { return }
             guard let image = image else { return }
-            let res = try? ImageManager.save(image, imagePath: self.ride.id)
+            let res = try? ImageManager.save(image, imagePath: "\(self.ride.id)")
             print(res)
             self.mapImage.image = image
             self.map.isHidden = true

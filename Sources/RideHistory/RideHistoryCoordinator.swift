@@ -38,7 +38,7 @@ public enum RideHistoryType: Int, CaseIterable, Comparable {
 }
 
 public protocol RideHistoryActionnable: class {
-    func cancel(_ rideId: String, completion: @escaping (() -> Void))
+    func cancel(_ rideId: Int, completion: @escaping (() -> Void))
     func printTicket(for ride: RideHistoryModelable)
     func openDispute(for ride: RideHistoryModelable)
     func foundObject(for ride: RideHistoryModelable)
