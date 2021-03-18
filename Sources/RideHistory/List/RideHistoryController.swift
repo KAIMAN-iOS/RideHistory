@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import ATACommonObjects
 
 class RideHistoryController: UIViewController {
     
-    static func create(rides: [RideHistoryModelable],
+    static func create(rides: [RideHistoryModel],
                        rideType: RideHistoryType,
                        delegate: RideHistoryActionnable,
                        coordinatorDelegate: RideHistoryCoordinatorDelegate,
@@ -24,7 +25,7 @@ class RideHistoryController: UIViewController {
         return ctrl
     }
     var rideType: RideHistoryType!
-    var rides: [RideHistoryModelable] =  []
+    var rides: [RideHistoryModel] =  []
     weak var rideDelegate: RideHistoryActionnable!
     weak var coordinatorDelegate: RideHistoryCoordinatorDelegate!
     weak var mapDelegate: RideHistoryMapDelegate!
@@ -52,7 +53,7 @@ class RideHistoryController: UIViewController {
     var model: RideHistoryViewModel!
     
     deinit {
-        print("💀 DEINIT \(rideType) - \(URL(fileURLWithPath: #file).lastPathComponent)")
+        print("💀 DEINIT \(rideType ?? .completed) - \(URL(fileURLWithPath: #file).lastPathComponent)")
     }
     
     var datasource: RideHistoryViewModel.DataSource!

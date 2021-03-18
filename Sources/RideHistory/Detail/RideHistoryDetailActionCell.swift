@@ -7,6 +7,7 @@
 
 import UIKit
 import ActionButton
+import ATACommonObjects
 
 public enum RideMainActionType {
     case printTicket, cancel
@@ -26,12 +27,12 @@ public enum RideMainActionType {
     }
 }
 
-extension RideHistoryModelable {
+extension RideHistoryModel {
     var mainActionType: RideMainActionType? {
-        switch rideType {
+        switch state {
         case .booked: return .cancel
-        case .completed: return .printTicket
-        case .cancelled: return nil
+        case .ended: return .printTicket
+        default: return nil
         }
     }
 }

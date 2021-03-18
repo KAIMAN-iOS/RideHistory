@@ -16,6 +16,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/jerometonnelier/KExtensions", .branch("master")),
+        .package(url: "https://github.com/jerometonnelier/ATACommonObjects", .branch("master")),
         .package(url: "https://github.com/jerometonnelier/ATAConfiguration", .branch("master")),
         .package(url: "https://github.com/jerometonnelier/ActionButton", .branch("master")),
         .package(url: "https://github.com/jerometonnelier/KCoordinatorKit", .branch("master")),
@@ -26,6 +27,6 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "RideHistory",
-            dependencies: ["KExtensions", "ATAConfiguration", "KCoordinatorKit", "KStorage", "ActionButton"])
+            dependencies: ["KExtensions", "ATAConfiguration", "KCoordinatorKit", "KStorage", "ActionButton", "ATACommonObjects"])
     ]
 )

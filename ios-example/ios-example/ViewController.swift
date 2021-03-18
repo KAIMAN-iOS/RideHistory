@@ -59,15 +59,15 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: RideHistoryActionnable {
-    func printTicket(for ride: RideHistoryModelable) {
+    func printTicket(for ride: RideHistoryModel) {
         print("printTicket")
     }
     
-    func openDispute(for ride: RideHistoryModelable) {
+    func openDispute(for ride: RideHistoryModel) {
         print("openDispute")
     }
     
-    func foundObject(for ride: RideHistoryModelable) {
+    func foundObject(for ride: RideHistoryModel) {
         print("foundObject")
     }
     
@@ -75,7 +75,7 @@ extension ViewController: RideHistoryActionnable {
         print("cancel")
     }
     
-    func loadRides(completion: @escaping (([RideHistoryModelable]) -> Void)) {
+    func loadRides(completion: @escaping (([RideHistoryModel]) -> Void)) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.rides.append(contentsOf: [Ride.with(id: "87987"), Ride.with(id: "28E97"), Ride.with(id: "389749")])
             completion(self.rides)
@@ -105,7 +105,7 @@ extension ViewController: RideHistoryMapDelegate {
         return renderer
     }
     
-    func annotations(for ride: RideHistoryModelable) -> [MKAnnotation] {
+    func annotations(for ride: RideHistoryModel) -> [MKAnnotation] {
         var anno: [MKAnnotation] = []
         anno.append(RideAnnotation(address: ride.startLocation, isStart: true))
         if let end = ride.endLocation {
@@ -128,7 +128,7 @@ extension ViewController: RideHistoryMapDelegate {
         return overlays
     }
     
-    func loadRoutes(for ride: RideHistoryModelable, completion: @escaping RouteCompletion) {
+    func loadRoutes(for ride: RideHistoryModel, completion: @escaping RouteCompletion) {
         guard let ride = ride as? Ride else { return }
         RideDirectionManager.shared.loadDirections(for: ride, completion: completion)
     }
@@ -145,7 +145,7 @@ public extension MKMultiPoint {
     }
 }
 
-struct Ride: RideHistoryModelable, Hashable, CustomStringConvertible {
+struct Ride: RideHistoryModel, Hashable, CustomStringConvertible {
     static func == (lhs: Ride, rhs: Ride) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
@@ -160,7 +160,7 @@ struct Ride: RideHistoryModelable, Hashable, CustomStringConvertible {
     var originDisplay: String
     var rideType: RideHistoryType
     var rideOptions: OptionsReprensentable
-    var rideStats: [RideStatsModelable] = []
+    var rideStats: [PendingPaymentRideData] = []
     var plate: String?
     var username: String
     var userIconURL: String?
@@ -200,7 +200,7 @@ struct Ride: RideHistoryModelable, Hashable, CustomStringConvertible {
     }
 }
 
-struct RideStats: RideStatsModelable {
+struct RideStats: PendingPaymentRideData {
     var value: Double
     var additionnalValue: Double?
     var unit: String

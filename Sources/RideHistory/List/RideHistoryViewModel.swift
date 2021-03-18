@@ -8,6 +8,7 @@
 import UIKit
 import UIViewExtension
 import TableViewExtension
+import ATACommonObjects
 
 typealias RouteStateResult = (state: RouteState, routes: [Route])
 enum RouteState {
@@ -22,8 +23,8 @@ class RideHistoryViewModel {
         static func == (lhs: CellType, rhs: CellType) -> Bool {
             return lhs.ride.id == rhs.ride.id
         }
-        case ride(_: RideHistoryModelable)
-        var ride: RideHistoryModelable {
+        case ride(_: RideHistoryModel)
+        var ride: RideHistoryModel {
             switch self {
             case .ride(let ride): return ride
             }
@@ -45,10 +46,10 @@ class RideHistoryViewModel {
     private var dataSource: DataSource!
     
     deinit {
-        print("💀 DEINIT \(rides.first?.rideType) - \(URL(fileURLWithPath: #file).lastPathComponent)")
+        print("💀 DEINIT \(rides.first?.rideType ?? .completed) - \(URL(fileURLWithPath: #file).lastPathComponent)")
     }
     
-    init(rides: [RideHistoryModelable], mapDelegate: RideHistoryMapDelegate) {
+    init(rides: [RideHistoryModel], mapDelegate: RideHistoryMapDelegate) {
         self.rides = rides
         self.mapDelegate = mapDelegate
     }
@@ -73,7 +74,7 @@ class RideHistoryViewModel {
         return dataSource
     }
     
-    private var rides: [RideHistoryModelable] = []
+    private var rides: [RideHistoryModel] = []
     func applySnapshot(in dataSource: DataSource, animatingDifferences: Bool = true, completion: @escaping (() -> Void)) {
         var snap = dataSource.snapshot()
         if snap.itemIdentifiers.isEmpty {
@@ -98,7 +99,7 @@ class RideHistoryViewModel {
         return layoutSection
     }
     
-    func reload(_ ride: RideHistoryModelable) {
+    func reload(_ ride: RideHistoryModel) {
         var snap = dataSource.snapshot()
         snap.reloadItems([CellType.ride(ride)])
         applySnapshot(in: dataSource, animatingDifferences: false) {}

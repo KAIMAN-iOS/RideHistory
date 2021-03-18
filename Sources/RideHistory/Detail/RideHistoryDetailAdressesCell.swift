@@ -10,6 +10,7 @@ import UIViewExtension
 import Ampersand
 import LabelExtension
 import ATAConfiguration
+import ATACommonObjects
 
 class RideHistoryDetailAdressesCell: UICollectionViewCell {
     @IBOutlet weak var dashedView: DottedView!  {
@@ -45,15 +46,15 @@ class RideHistoryDetailAdressesCell: UICollectionViewCell {
     @IBOutlet weak var toAddress: UILabel!
     @IBOutlet weak var toContainer: UIView!
     
-    func configure(_ ride: RideHistoryModelable) {
-        fromAddress.set(text: ride.startLocation.displayAddress, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
-        if let pickUp = ride.pickUpLocation {
-            pickUpAddress.set(text: pickUp.displayAddress, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+    func configure(_ ride: RideHistoryModel) {
+        fromAddress.set(text: ride.fromAddress.address, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        if let pickUp = ride.pickUpAddress {
+            pickUpAddress.set(text: pickUp.address, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         }
-        pickUpContainer.isHidden = ride.pickUpLocation == nil
-        if let toAddress = ride.endLocation {
-            self.toAddress.set(text: toAddress.displayAddress, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        pickUpContainer.isHidden = ride.pickUpAddress == nil
+        if let toAddress = ride.toAddress {
+            self.toAddress.set(text: toAddress.address, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         }
-        toContainer.isHidden = ride.endLocation == nil
+        toContainer.isHidden = ride.toAddress == nil
     }
 }

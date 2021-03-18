@@ -10,10 +10,11 @@ import ATAConfiguration
 import Ampersand
 import SnapKit
 import UIViewControllerExtension
+import ATACommonObjects
 
-extension Array where Element == RideHistoryModelable {
-    var tabs: [RideHistoryType : [RideHistoryModelable]] {
-        Dictionary(grouping: self) { $0.rideType }
+extension Array where Element == RideHistoryModel {
+    var tabs: [RideHistoryType : [RideHistoryModel]] {
+        Dictionary(grouping: self) { $0.rideType ?? RideHistoryType.completed }
     }
 }
 
@@ -26,7 +27,7 @@ extension UIView {
 class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     static var conf: ATAConfiguration!
     
-    static func create(rides: [RideHistoryModelable],
+    static func create(rides: [RideHistoryModel],
                        delegate: RideHistoryActionnable,
                        defaultSelectedTab: RideHistoryType,
                        coordinatorDelegate: RideHistoryCoordinatorDelegate,
@@ -43,14 +44,14 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     }
     
     var defaultSelectedTab: RideHistoryType!
-    private(set) var rides: [RideHistoryModelable] = []  {
+    private(set) var rides: [RideHistoryModel] = []  {
         didSet {
             // async control
             guard let coordinatorDelegate = coordinatorDelegate else { return }
             let tabs = rides.tabs
             controllers.removeAll()
             RideHistoryType.allCases.forEach { tab in
-                var rides: [RideHistoryModelable] = []
+                var rides: [RideHistoryModel] = []
                 if let index = tabs.index(forKey: tab) {
                     rides = tabs[index].value
                 }
@@ -64,7 +65,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
             }
         }
     }
-//    var tabs: [RideHistoryType : [RideHistoryModelable]] = [:]
+//    var tabs: [RideHistoryType : [RideHistoryModel]] = [:]
     var controllers: [RideHistoryType : RideHistoryController] = [:]
     weak var rideDelegate: RideHistoryActionnable!
     weak var coordinatorDelegate: RideHistoryCoordinatorDelegate!

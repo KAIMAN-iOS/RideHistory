@@ -9,52 +9,27 @@ import UIKit
 import KCoordinatorKit
 import ATAConfiguration
 import MapKit
+import ATACommonObjects
 
-public enum RideHistoryType: Int, CaseIterable, Comparable {
-    public static func < (lhs: RideHistoryType, rhs: RideHistoryType) -> Bool {
-        lhs.rawValue < rhs.rawValue
-    }
-    
-    case booked = 0, completed, cancelled
-    var canCancel: Bool {
-        return self == .booked
-    }
-    
-    var title: String {
-        switch self {
-        case .booked: return "booked".bundleLocale().uppercased()
-        case .completed: return "completed".bundleLocale().uppercased()
-        case .cancelled: return "cancelled".bundleLocale().uppercased()
-        }
-    }
-    
-    var subtitle: String {
-        switch self {
-        case .booked: return "booked subtitle".bundleLocale().uppercased()
-        case .completed: return "completed subtitle".bundleLocale().uppercased()
-        case .cancelled: return "cancelled subtitle".bundleLocale().uppercased()
-        }
-    }
-}
 
 public protocol RideHistoryActionnable: class {
     func cancel(_ rideId: Int, completion: @escaping (() -> Void))
-    func printTicket(for ride: RideHistoryModelable)
-    func openDispute(for ride: RideHistoryModelable)
-    func foundObject(for ride: RideHistoryModelable)
-    func loadRides(completion: @escaping (([RideHistoryModelable]) -> Void))
+    func printTicket(for ride: RideHistoryModel)
+    func openDispute(for ride: RideHistoryModel)
+    func foundObject(for ride: RideHistoryModel)
+    func loadRides(completion: @escaping (([RideHistoryModel]) -> Void))
 }
 
 protocol RideHistoryCoordinatorDelegate: class {
-    func didSelect(_ ride: RideHistoryModelable)
+    func didSelect(_ ride: RideHistoryModel)
 }
 
 public protocol RideHistoryMapDelegate: class {
     func view(for annotation: MKAnnotation) -> MKAnnotationView?
     func renderer(for overlay: MKOverlay) -> MKPolylineRenderer
-    func annotations(for ride: RideHistoryModelable) -> [MKAnnotation]
+    func annotations(for ride: RideHistoryModel) -> [MKAnnotation]
     func overlays(for routes: [Route]) -> [MKOverlay]
-    func loadRoutes(for ride: RideHistoryModelable, completion: @escaping ((RideHistoryModelable, [Route]) -> Void))
+    func loadRoutes(for ride: RideHistoryModel, completion: @escaping ((RideHistoryModel, [Route]) -> Void))
 }
 
 public struct Route {
@@ -79,7 +54,7 @@ public class RideHistoryCoordinator<DeepLink>: Coordinator<DeepLink> {
     public init(router: RouterType,
                 mode: Mode,
                 defaultSelectedTab: RideHistoryType = .booked,
-                rides: [RideHistoryModelable],
+                rides: [RideHistoryModel],
                 delegate: RideHistoryActionnable,
                 mapDelegate: RideHistoryMapDelegate,
                 conf: ATAConfiguration) {
@@ -101,7 +76,7 @@ public class RideHistoryCoordinator<DeepLink>: Coordinator<DeepLink> {
 }
 
 extension RideHistoryCoordinator: RideHistoryCoordinatorDelegate {
-    func didSelect(_ ride: RideHistoryModelable) {
+    func didSelect(_ ride: RideHistoryModel) {
         let ctrl: RideHistoryDetailController = RideHistoryDetailController.create(ride: ride,
                                                                                    mode: mode,
                                                                                    delegate: controller.rideDelegate,

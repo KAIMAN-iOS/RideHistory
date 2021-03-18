@@ -11,6 +11,7 @@ import LabelExtension
 import ATAConfiguration
 import UIImageViewExtension
 import Nuke
+import ATACommonObjects
 
 extension RideHistoryType {
     var color: UIColor {
@@ -55,7 +56,7 @@ class RideHistoryDetailPassengerCell: UICollectionViewCell {
         imageTast = nil
     }
     
-    func configure(_ ride: RideHistoryModelable) {
+    func configure(_ ride: RideHistoryModel) {
         backgroundColor = RideHistoryTabController.conf.palette.lightGray
         passenger.set(text: ride.username, for: .body, fontScale: 0.9, traits: [.traitBold], textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         if let url = ride.userIconURL,
@@ -66,11 +67,11 @@ class RideHistoryDetailPassengerCell: UICollectionViewCell {
             passengerImage.image = UIImage(named: "documentUser", in: .module, compatibleWith: nil)
             passengerImage.contentMode = .scaleAspectFit
         }
-        options.set(text: String(format: "%d pers. %d bag.".bundleLocale(), ride.rideOptions.numberOfPassengers, ride.rideOptions.numberOfLuggages),
+        options.set(text: String(format: "%d pers. %d bag.".bundleLocale(), ride.numberOfPassengers, ride.numberOfLuggages),
                     for: .footnote,
                     textColor: RideHistoryTabController.conf.palette.secondaryTexts)
-        stateContainer.backgroundColor = ride.rideType.color
-        state.set(text: ride.rideType.stateDisplay.uppercased(),
+        stateContainer.backgroundColor = ride.rideType?.color
+        state.set(text: ride.rideType?.stateDisplay.uppercased(),
                   for: .callout,
 //                  fontScale: 0.8,
                   textColor:RideHistoryTabController.conf.palette.textOnPrimary)

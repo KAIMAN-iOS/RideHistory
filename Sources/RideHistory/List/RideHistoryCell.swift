@@ -12,6 +12,7 @@ import ATAConfiguration
 import MapKit
 import UIViewExtension
 import KStorage
+import ATACommonObjects
 
 class RideHistoryCell: UICollectionViewCell {
     static var dayFormatter: DateFormatter = {
@@ -52,19 +53,19 @@ class RideHistoryCell: UICollectionViewCell {
     @IBOutlet weak var carLabel: UILabel!
     private var snapshotter: SnapManager = SnapManager()
     
-    private(set) var ride: RideHistoryModelable!
+    private(set) var ride: RideHistoryModel!
     private(set) var mapDelegate: RideHistoryMapDelegate!
-    func configure(_ ride: RideHistoryModelable, mapDelegate: RideHistoryMapDelegate) {
+    func configure(_ ride: RideHistoryModel, mapDelegate: RideHistoryMapDelegate) {
         self.ride = ride
         self.mapDelegate = mapDelegate
         
-        dateLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.startDate).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.startDate)),
+        dateLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.date.value).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.date.value)),
                       for: .subheadline,
                       textColor: RideHistoryTabController.conf.palette.mainTexts)
         priceLabel.isHidden = ride.priceDisplay == nil
         priceLabel.set(text: ride.priceDisplay, for: .subheadline, traits: [.traitBold], textColor: RideHistoryTabController.conf.palette.primary)
-        fromLabel.set(text: ride.startLocation.displayAddress, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
-        carLabel.set(text: ride.rideOptions.vehicleTypeDisplay.isEmpty ? "-" : ride.rideOptions.vehicleTypeDisplay, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        fromLabel.set(text: ride.fromAddress.address, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        carLabel.set(text: ride.vehicle.longDescription, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         // map data
         if let image = ImageManager.fetchImage(with: "\(ride.id)") {
             mapImage.image = image
@@ -98,8 +99,7 @@ class RideHistoryCell: UICollectionViewCell {
                          lines: overlays.compactMap({ PolylineData(polyline: $0, renderer: mapDelegate.renderer(for: $0)) })) { [weak self] image in
             guard let self = self else { return }
             guard let image = image else { return }
-            let res = try? ImageManager.save(image, imagePath: "\(self.ride.id)")
-            print(res)
+            let _ = try? ImageManager.save(image, imagePath: "\(self.ride.id)")
             self.mapImage.image = image
             self.map.isHidden = true
             self.mapImage.isHidden = false

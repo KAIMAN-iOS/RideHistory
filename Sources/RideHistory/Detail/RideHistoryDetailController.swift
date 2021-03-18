@@ -7,10 +7,11 @@
 
 import UIKit
 import UIViewControllerExtension
+import ATACommonObjects
 
 class RideHistoryDetailController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!    
-    static func create(ride: RideHistoryModelable,
+    static func create(ride: RideHistoryModel,
                        mode: Mode,
                        delegate: RideHistoryActionnable,
                        coordinatorDelegate: RideHistoryCoordinatorDelegate,
@@ -23,7 +24,7 @@ class RideHistoryDetailController: UIViewController {
         ctrl.model = RideHistoryDetailViewModel(ride: ride, mapDelegate: mapDelegate, mode: mode)
         return ctrl
     }
-    var ride: RideHistoryModelable!
+    var ride: RideHistoryModel!
     weak var rideDelegate: RideHistoryActionnable!
     weak var coordinatorDelegate: RideHistoryCoordinatorDelegate!
     weak var mapDelegate: RideHistoryMapDelegate!

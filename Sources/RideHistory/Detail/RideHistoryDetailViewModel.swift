@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import ATACommonObjects
 
 class RideHistoryDetailViewModel {
-    private(set) var ride: RideHistoryModelable
+    private(set) var ride: RideHistoryModel
     private(set) var mapDelegate: RideHistoryMapDelegate
     private var mode: Mode!
-    init(ride: RideHistoryModelable, mapDelegate: RideHistoryMapDelegate, mode: Mode) {
+    init(ride: RideHistoryModel, mapDelegate: RideHistoryMapDelegate, mode: Mode) {
         self.ride = ride
         self.mapDelegate = mapDelegate
         self.mode = mode
@@ -160,7 +161,7 @@ class RideHistoryDetailViewModel {
     }
     
     private func generateLayout(for section: Int, environnement: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? {
-        guard section < dataSource.snapshot().sectionIdentifiers.count else { return nil }
+        guard section < dataSource.snapshot().sectionIdentifiers.count else { return nil }
         let section = dataSource.snapshot().sectionIdentifiers[section]
         let fullItem = NSCollectionLayoutItem(layoutSize: section.layoutSize)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: section.layoutSize, subitem: fullItem, count: 1)

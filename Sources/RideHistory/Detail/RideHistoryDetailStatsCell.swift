@@ -9,12 +9,13 @@ import UIKit
 import Ampersand
 import LabelExtension
 import ATAConfiguration
+import ATACommonObjects
 
-extension RideHistoryModelable {
-    var amountStat: RideStatsModelable? { stat(for: .amount) }
-    var distanceStat: RideStatsModelable? { stat(for: .distance) }
-    var timeStat: RideStatsModelable? { stat(for: .time) }
-    private func stat(for type: RideStat) -> RideStatsModelable? { rideStats.filter({ $0.statType == type }).first }
+extension RideHistoryModel {
+    var amountStat: PendingPaymentRideData? { stat(for: .amount) }
+    var distanceStat: PendingPaymentRideData? { stat(for: .distance) }
+    var timeStat: PendingPaymentRideData? { stat(for: .time) }
+    private func stat(for type: RideEndStat) -> PendingPaymentRideData? { stats.filter({ $0.type == type }).first }
 }
 
 class RideHistoryDetailStatsCell: UICollectionViewCell {
@@ -24,21 +25,21 @@ class RideHistoryDetailStatsCell: UICollectionViewCell {
     @IBOutlet weak var distanceValue: UILabel!
     @IBOutlet weak var distanceUnit: UILabel! {
         didSet {
-            distanceUnit.set(text: RideStat.distance.title.uppercased(), for: 10, weight: .regular, textColor: RideHistoryTabController.conf.palette.mainTexts)
+            distanceUnit.set(text: RideEndStat.distance.title.uppercased(), for: 10, weight: .regular, textColor: RideHistoryTabController.conf.palette.mainTexts)
         }
     }
     @IBOutlet weak var distanceContainer: UIView!
     @IBOutlet weak var timeValue: UILabel!
     @IBOutlet weak var timeUnit: UILabel!  {
         didSet {
-            timeUnit.set(text: RideStat.time.title.uppercased(), for: 10, weight: .regular, textColor: RideHistoryTabController.conf.palette.mainTexts)
+            timeUnit.set(text: RideEndStat.time.title.uppercased(), for: 10, weight: .regular, textColor: RideHistoryTabController.conf.palette.mainTexts)
         }
     }
     @IBOutlet weak var timeContainer: UIView!
     @IBOutlet weak var priceValue: UILabel!
     @IBOutlet weak var priceUnit: UILabel! {
         didSet {
-            priceUnit.set(text: RideStat.amount.title.uppercased(), for: 10, weight: .regular, textColor: RideHistoryTabController.conf.palette.primary)
+            priceUnit.set(text: RideEndStat.amount.title.uppercased(), for: 10, weight: .regular, textColor: RideHistoryTabController.conf.palette.primary)
         }
     }
     @IBOutlet weak var priceContainer: UIView!
@@ -49,30 +50,29 @@ class RideHistoryDetailStatsCell: UICollectionViewCell {
         [priceValue, distanceValue, timeValue].forEach({ $0?.text = "-" })
     }
     
-    func configure(_ ride: RideHistoryModelable) {
-        dayLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.startDate).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.startDate)),
+    func configure(_ ride: RideHistoryModel) {
+        dayLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.date.value).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.date.value)),
                      for: .subheadline,
                      textColor: RideHistoryTabController.conf.palette.mainTexts)
-        vehicleType.set(text: ride.rideOptions.vehicleTypeDisplay.isEmpty ? "-" : ride.rideOptions.vehicleTypeDisplay, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
-        plate.set(text: ride.plate, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
-        plate.isHidden = ride.plate?.isEmpty ?? true
+        vehicleType.set(text: ride.vehicle.longDescription, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        plate.set(text: ride.vehicle.plate, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         [priceValue, distanceValue, timeValue].forEach({ $0?.text = "-" })
-        ride.rideStats.forEach { stat in
-            switch stat.statType {
+        ride.stats.forEach { stat in
+            switch stat.type {
             case .amount: update(priceContainer, value: priceValue, stat: stat)
             case .distance: update(distanceContainer, value: distanceValue, stat: stat)
             case .time: update(timeContainer, value: timeValue, stat: stat)
             }
         }
-        rideType.set(text: "\(ride.isImmediate ? "immediate ride".bundleLocale() : "booked ride".bundleLocale())  : \(ride.originDisplay)".uppercased(),
+        rideType.set(text: "\(ride.isImmediate ? "immediate ride".bundleLocale() : "booked ride".bundleLocale())  : \(ride.origin)".uppercased(),
                      for: .subheadline,
                      fontScale: 0.85,
                      textColor: RideHistoryTabController.conf.palette.textOnPrimary)
         rideTypeContainer.backgroundColor = RideHistoryTabController.conf.palette.secondary
     }
     
-    private func update(_ container: UIView, value: UILabel, stat: RideStatsModelable) {
-        let textColor = stat.statType == .amount ?  RideHistoryTabController.conf.palette.primary : RideHistoryTabController.conf.palette.mainTexts
+    private func update(_ container: UIView, value: UILabel, stat: PendingPaymentRideData) {
+        let textColor = stat.type == .amount ?  RideHistoryTabController.conf.palette.primary : RideHistoryTabController.conf.palette.mainTexts
         value.attributedText = stat.attributedString(textColor: textColor)
     }
 }

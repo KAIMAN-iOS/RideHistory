@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import ATACommonObjects
 
 class RideHistoryDetailMapCell: UICollectionViewCell {
     @IBOutlet weak var map: MKMapView!  {
@@ -20,9 +21,9 @@ class RideHistoryDetailMapCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     private(set) var mapDelegate: RideHistoryMapDelegate!
     private var snapshotter: SnapManager = SnapManager()
-    private(set) var ride: RideHistoryModelable!
+    private(set) var ride: RideHistoryModel!
     
-    func configure(_ ride: RideHistoryModelable, mapDelegate: RideHistoryMapDelegate) {
+    func configure(_ ride: RideHistoryModel, mapDelegate: RideHistoryMapDelegate) {
         self.ride = ride
         self.mapDelegate = mapDelegate
         if let image = ImageManager.fetchImage(with: "\(ride.id)") {
@@ -50,7 +51,7 @@ class RideHistoryDetailMapCell: UICollectionViewCell {
                          lines: overlays.compactMap({ PolylineData(polyline: $0, renderer: mapDelegate.renderer(for: $0)) })) { [weak self] image in
             guard let self = self else { return }
             guard let image = image else { return }
-            let res = try? ImageManager.save(image, imagePath: "\(self.ride.id)")
+            let _ = try? ImageManager.save(image, imagePath: "\(self.ride.id)")
             self.image.image = image
             self.map.isHidden = true
             self.image.isHidden = false
