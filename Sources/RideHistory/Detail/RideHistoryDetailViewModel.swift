@@ -10,7 +10,8 @@ import ATACommonObjects
 
 class RideHistoryDetailViewModel {
     private(set) var ride: RideHistoryModel
-    private(set) var mapDelegate: RideHistoryMapDelegate
+    private(set) var mapDelegate: RideHistoryMapDelegate!
+    private let directionManager = RideDirectionManager.shared
     private var mode: Mode!
     init(ride: RideHistoryModel, mapDelegate: RideHistoryMapDelegate, mode: Mode) {
         self.ride = ride
@@ -88,7 +89,7 @@ class RideHistoryDetailViewModel {
                     cell.add(routes: state.routes)
                 } else if self.routeState == nil && ImageManager.fetchImage(with: "\(self.ride.id)") == nil {
                     self.routeState = (state: .requested, routes: [])
-                    self.mapDelegate.loadRoutes(for: self.ride) { [weak self] ride, routes in
+                    self.directionManager.loadDirections(for: self.ride) { [weak self] ride, routes in
                         self?.routeState = (state: .completed, routes: routes)
                         self?.reloadMap()
                     }

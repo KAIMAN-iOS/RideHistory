@@ -41,6 +41,7 @@ class RideHistoryViewModel {
     
     private var routes: [Int: RouteStateResult] = [:]
     private(set) weak var mapDelegate: RideHistoryMapDelegate!
+    private let directionManager = RideDirectionManager.shared
     typealias DataSource = UICollectionViewDiffableDataSource<Section, CellType>
     typealias SnapShot = NSDiffableDataSourceSnapshot<Section, CellType>
     private var dataSource: DataSource!
@@ -64,7 +65,7 @@ class RideHistoryViewModel {
                 cell.add(routes: route.routes)
             } else if self.routes[model.ride.id] == nil {
                 self.routes[model.ride.id] = (state: .requested, routes: [])
-                self.mapDelegate.loadRoutes(for: model.ride) { [weak self] ride, routes in
+                self.directionManager.loadDirections(for: model.ride) { [weak self] ride, routes in
                     self?.routes[ride.id] = (state: .completed, routes: routes)
                     self?.reload(ride)
                 }

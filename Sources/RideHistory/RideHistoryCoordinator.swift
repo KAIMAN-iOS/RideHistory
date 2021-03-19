@@ -28,7 +28,6 @@ public protocol RideHistoryMapDelegate: class {
     func renderer(for overlay: MKOverlay) -> MKPolylineRenderer
     func annotations(for ride: RideHistoryModel) -> [MKAnnotation]
     func overlays(for routes: [Route]) -> [MKOverlay]
-    func loadRoutes(for ride: RideHistoryModel, completion: @escaping ((RideHistoryModel, [Route]) -> Void))
 }
 
 public enum Mode {
