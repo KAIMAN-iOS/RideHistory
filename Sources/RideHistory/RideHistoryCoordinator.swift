@@ -11,7 +11,6 @@ import ATAConfiguration
 import MapKit
 import ATACommonObjects
 
-
 public protocol RideHistoryActionnable: class {
     func cancel(_ rideId: Int, completion: @escaping (() -> Void))
     func printTicket(for ride: RideHistoryModel)
@@ -30,18 +29,6 @@ public protocol RideHistoryMapDelegate: class {
     func annotations(for ride: RideHistoryModel) -> [MKAnnotation]
     func overlays(for routes: [Route]) -> [MKOverlay]
     func loadRoutes(for ride: RideHistoryModel, completion: @escaping ((RideHistoryModel, [Route]) -> Void))
-}
-
-public struct Route {
-    public enum RouteType {
-        case approach, ride
-    }
-    public var routeType: RouteType!
-    public var route: MKRoute?
-    public init(routeType: RouteType!, route: MKRoute?) {
-        self.routeType = routeType
-        self.route = route
-    }
 }
 
 public enum Mode {
