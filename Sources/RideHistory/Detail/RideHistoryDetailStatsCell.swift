@@ -51,7 +51,7 @@ class RideHistoryDetailStatsCell: UICollectionViewCell {
     }
     
     func configure(_ ride: RideHistoryModel) {
-        dayLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.date.value).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.date.value)),
+        dayLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.startDate.value).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.startDate.value)),
                      for: .subheadline,
                      textColor: RideHistoryTabController.conf.palette.mainTexts)
         vehicleType.set(text: ride.vehicle.longDescription, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)

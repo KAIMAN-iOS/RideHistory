@@ -59,7 +59,7 @@ class RideHistoryCell: UICollectionViewCell {
         self.ride = ride
         self.mapDelegate = mapDelegate
         
-        dateLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.date.value).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.date.value)),
+        dateLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.startDate.value).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.startDate.value)),
                       for: .subheadline,
                       textColor: RideHistoryTabController.conf.palette.mainTexts)
         priceLabel.isHidden = ride.priceDisplay == nil
