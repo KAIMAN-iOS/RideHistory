@@ -29,7 +29,7 @@ public enum RideMainActionType {
 
 extension RideHistoryModel {
     var mainActionType: RideMainActionType? {
-        switch state {
+        switch ride.state {
         case .booked: return .cancel
         case .ended: return .printTicket
         default: return nil

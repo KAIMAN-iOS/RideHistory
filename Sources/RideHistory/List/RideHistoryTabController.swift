@@ -14,7 +14,7 @@ import ATACommonObjects
 
 extension Array where Element == RideHistoryModel {
     var tabs: [RideHistoryType : [RideHistoryModel]] {
-        Dictionary(grouping: self) { $0.rideType ?? RideHistoryType.completed }
+        Dictionary(grouping: self) { $0.ride.rideType ?? RideHistoryType.completed }
     }
 }
 

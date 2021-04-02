@@ -47,14 +47,14 @@ class RideHistoryDetailAdressesCell: UICollectionViewCell {
     @IBOutlet weak var toContainer: UIView!
     
     func configure(_ ride: RideHistoryModel) {
-        fromAddress.set(text: ride.fromAddress.address, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        fromAddress.set(text: ride.ride.fromAddress.address, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         if let pickUp = ride.pickUpAddress {
             pickUpAddress.set(text: pickUp.address, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         }
         pickUpContainer.isHidden = ride.pickUpAddress == nil
-        if let toAddress = ride.toAddress {
+        if let toAddress = ride.ride.toAddress {
             self.toAddress.set(text: toAddress.address, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         }
-        toContainer.isHidden = ride.toAddress == nil
+        toContainer.isHidden = ride.ride.toAddress == nil
     }
 }

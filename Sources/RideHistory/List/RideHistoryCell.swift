@@ -59,15 +59,15 @@ class RideHistoryCell: UICollectionViewCell {
         self.ride = ride
         self.mapDelegate = mapDelegate
         
-        dateLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.startDate.value).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.startDate.value)),
+        dateLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.ride.startDate.value).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.startDate.value)),
                       for: .subheadline,
                       textColor: RideHistoryTabController.conf.palette.mainTexts)
         priceLabel.isHidden = ride.priceDisplay == nil
         priceLabel.set(text: ride.priceDisplay, for: .subheadline, traits: [.traitBold], textColor: RideHistoryTabController.conf.palette.primary)
-        fromLabel.set(text: ride.fromAddress.address, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        fromLabel.set(text: ride.ride.fromAddress.address, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         carLabel.set(text: ride.vehicle.longDescription, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         // map data
-        if let image = ImageManager.fetchImage(with: "\(ride.id)") {
+        if let image = ImageManager.fetchImage(with: "\(ride.ride.id)") {
             mapImage.image = image
             map.isHidden = true
             mapImage.isHidden = false
@@ -99,7 +99,7 @@ class RideHistoryCell: UICollectionViewCell {
                          lines: overlays.compactMap({ PolylineData(polyline: $0, renderer: mapDelegate.renderer(for: $0)) })) { [weak self] image in
             guard let self = self else { return }
             guard let image = image else { return }
-            let _ = try? ImageManager.save(image, imagePath: "\(self.ride.id)")
+            let _ = try? ImageManager.save(image, imagePath: "\(self.ride.ride.id)")
             self.mapImage.image = image
             self.map.isHidden = true
             self.mapImage.isHidden = false

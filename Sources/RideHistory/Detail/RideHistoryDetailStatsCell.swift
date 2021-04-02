@@ -10,12 +10,14 @@ import Ampersand
 import LabelExtension
 import ATAConfiguration
 import ATACommonObjects
+import DateExtension
 
 extension RideHistoryModel {
     var amountStat: PendingPaymentRideData? { stat(for: .amount) }
     var distanceStat: PendingPaymentRideData? { stat(for: .distance) }
     var timeStat: PendingPaymentRideData? { stat(for: .time) }
-    private func stat(for type: RideEndStat) -> PendingPaymentRideData? { stats.filter({ $0.type == type }).first }
+    private func stat(for type: RideEndStat) -> PendingPaymentRideData? { payment.stats.filter({ $0.type == type }).first }
+    var startDate: CustomDate<ISOMillisecondsDateFormatterDecodable> { ride.startDate }
 }
 
 class RideHistoryDetailStatsCell: UICollectionViewCell {
@@ -51,20 +53,20 @@ class RideHistoryDetailStatsCell: UICollectionViewCell {
     }
     
     func configure(_ ride: RideHistoryModel) {
-        dayLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.startDate.value).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.startDate.value)),
+        dayLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.ride.startDate.value).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.startDate.value)),
                      for: .subheadline,
                      textColor: RideHistoryTabController.conf.palette.mainTexts)
         vehicleType.set(text: ride.vehicle.longDescription, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         plate.set(text: ride.vehicle.plate, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         [priceValue, distanceValue, timeValue].forEach({ $0?.text = "-" })
-        ride.stats.forEach { stat in
+        ride.payment.stats.forEach { stat in
             switch stat.type {
             case .amount: update(priceContainer, value: priceValue, stat: stat)
             case .distance: update(distanceContainer, value: distanceValue, stat: stat)
             case .time: update(timeContainer, value: timeValue, stat: stat)
             }
         }
-        rideType.set(text: "\(ride.isImmediate ? "immediate ride".bundleLocale() : "booked ride".bundleLocale())  : \(ride.origin)".uppercased(),
+        rideType.set(text: "\(ride.ride.isImmediate ? "immediate ride".bundleLocale() : "booked ride".bundleLocale())  : \(ride.ride.origin)".uppercased(),
                      for: .subheadline,
                      fontScale: 0.85,
                      textColor: RideHistoryTabController.conf.palette.textOnPrimary)

@@ -87,9 +87,9 @@ class RideHistoryDetailViewModel {
                 cell.configure(self.ride, mapDelegate: self.mapDelegate)
                 if let state = self.routeState, state.state == .completed {
                     cell.add(routes: state.routes)
-                } else if self.routeState == nil && ImageManager.fetchImage(with: "\(self.ride.id)") == nil {
+                } else if self.routeState == nil && ImageManager.fetchImage(with: "\(self.ride.ride.id)") == nil {
                     self.routeState = (state: .requested, routes: [])
-                    self.directionManager.loadDirections(for: self.ride) { [weak self] ride, routes in
+                    self.directionManager.loadDirections(for: self.ride.ride) { [weak self] ride, routes in
                         self?.routeState = (state: .completed, routes: routes)
                         self?.reloadMap()
                     }
@@ -118,7 +118,7 @@ class RideHistoryDetailViewModel {
             
             case .secondaryAction(let action):
                 guard let cell: RideHistoryDetailSecondaryActionCell = collectionView.automaticallyDequeueReusableCell(forIndexPath: indexPath) else { return nil }
-                cell.configure(action, isEnabled: self.ride.rideType != .booked, isLastcell: action == .lostAndFound)
+                cell.configure(action, isEnabled: self.ride.ride.rideType != .booked, isLastcell: action == .lostAndFound)
                 return cell
             }
         }
@@ -171,7 +171,7 @@ class RideHistoryDetailViewModel {
     }
     
     func cellType(at indexPath: IndexPath) -> CellType? {
-        return self.ride.rideType != .booked ? dataSource.itemIdentifier(for: indexPath) : nil
+        return self.ride.ride.rideType != .booked ? dataSource.itemIdentifier(for: indexPath) : nil
     }
 }
 

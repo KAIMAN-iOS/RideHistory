@@ -21,7 +21,7 @@ class RideHistoryViewModel {
     }
     enum CellType: Hashable {
         static func == (lhs: CellType, rhs: CellType) -> Bool {
-            return lhs.ride.id == rhs.ride.id
+            return lhs.ride.ride.id == rhs.ride.ride.id
         }
         case ride(_: RideHistoryModel)
         var ride: RideHistoryModel {
@@ -33,8 +33,8 @@ class RideHistoryViewModel {
         func hash(into hasher: inout Hasher) {
             switch self {
             case .ride(let ride):
-                hasher.combine(ride.id)
-                hasher.combine(ride.rideType)
+                hasher.combine(ride.ride.id)
+                hasher.combine(ride.ride.rideType)
             }
         }
     }
@@ -47,7 +47,7 @@ class RideHistoryViewModel {
     private var dataSource: DataSource!
     
     deinit {
-        print("💀 DEINIT \(rides.first?.rideType ?? .completed) - \(URL(fileURLWithPath: #file).lastPathComponent)")
+        print("💀 DEINIT \(rides.first?.ride.rideType ?? .completed) - \(URL(fileURLWithPath: #file).lastPathComponent)")
     }
     
     init(rides: [RideHistoryModel], mapDelegate: RideHistoryMapDelegate) {
@@ -61,13 +61,13 @@ class RideHistoryViewModel {
             guard let self = self else { return nil }
             guard let cell: RideHistoryCell = collectionView.automaticallyDequeueReusableCell(forIndexPath: indexPath) else { return nil }
             cell.configure(model.ride, mapDelegate: self.mapDelegate)
-            if let route = self.routes[model.ride.id], route.state == .completed {
+            if let route = self.routes[model.ride.ride.id], route.state == .completed {
                 cell.add(routes: route.routes)
-            } else if self.routes[model.ride.id] == nil {
-                self.routes[model.ride.id] = (state: .requested, routes: [])
-                self.directionManager.loadDirections(for: model.ride) { [weak self] ride, routes in
+            } else if self.routes[model.ride.ride.id] == nil {
+                self.routes[model.ride.ride.id] = (state: .requested, routes: [])
+                self.directionManager.loadDirections(for: model.ride.ride) { [weak self] ride, routes in
                     self?.routes[ride.id] = (state: .completed, routes: routes)
-                    self?.reload(ride)
+                    self?.reload(model.ride)
                 }
             }
             return cell
