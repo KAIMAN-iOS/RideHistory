@@ -11,7 +11,7 @@ import ATAConfiguration
 import MapKit
 import ATACommonObjects
 
-public protocol RideHistoryActionnable: class {
+public protocol RideHistoryActionnable: NSObjectProtocol {
     func cancel(_ rideId: Int, completion: @escaping (() -> Void))
     func printTicket(for ride: RideHistoryModel)
     func openDispute(for ride: RideHistoryModel)
@@ -19,11 +19,11 @@ public protocol RideHistoryActionnable: class {
     func loadRides(completion: @escaping (([RideHistoryModel]) -> Void))
 }
 
-protocol RideHistoryCoordinatorDelegate: class {
+protocol RideHistoryCoordinatorDelegate: NSObjectProtocol {
     func didSelect(_ ride: RideHistoryModel)
 }
 
-public protocol RideHistoryMapDelegate: class {
+public protocol RideHistoryMapDelegate: NSObjectProtocol {
     func view(for annotation: MKAnnotation) -> MKAnnotationView?
     func renderer(for overlay: MKOverlay) -> MKPolylineRenderer
     func annotations(for ride: RideHistoryModel) -> [MKAnnotation]

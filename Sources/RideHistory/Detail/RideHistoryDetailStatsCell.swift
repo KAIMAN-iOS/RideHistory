@@ -17,7 +17,7 @@ extension RideHistoryModel {
     var distanceStat: PendingPaymentRideData? { stat(for: .distance) }
     var timeStat: PendingPaymentRideData? { stat(for: .time) }
     private func stat(for type: RideEndStat) -> PendingPaymentRideData? { payment.stats.filter({ $0.type == type }).first }
-    var startDate: CustomDate<ISOMillisecondsDateFormatterDecodable> { ride.startDate }
+    var startDate: CustomDate<GMTISODateFormatterDecodable> { ride.startDate }
 }
 
 class RideHistoryDetailStatsCell: UICollectionViewCell {
