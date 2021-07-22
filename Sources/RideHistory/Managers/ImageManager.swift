@@ -27,6 +27,6 @@ class ImageManager {
     
     static func fetchImage(with name: String) -> UIImage? {
         guard let url = URL(string: DataStorage.storageDirectoryPath + "/" + name) else { return nil }
-        return try? ImageManager.shared.storage.fetchImage(at: url)
+        return try? ImageManager.shared.storage.fetchImage(at: url, commponent: name)
     }
 }

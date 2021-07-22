@@ -67,7 +67,7 @@ class RideHistoryCell: UICollectionViewCell {
         fromLabel.set(text: ride.ride.fromAddress.address, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         carLabel.set(text: ride.vehicle.longDescription, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         // map data
-        if let image = ImageManager.fetchImage(with: "\(ride.ride.id)") {
+        if let image = ImageManager.fetchImage(with: "ride/\(ride.ride.id)") {
             mapImage.image = image
             map.isHidden = true
             mapImage.isHidden = false
@@ -86,6 +86,7 @@ class RideHistoryCell: UICollectionViewCell {
     }
     
     func add(routes: [Route]) {
+        guard map.isHidden == false, mapImage.isHidden == true else { return }
         let overlays = mapDelegate
             .overlays(for: routes)
             .compactMap({ $0 as? MKPolyline })
@@ -99,7 +100,7 @@ class RideHistoryCell: UICollectionViewCell {
                          lines: overlays.compactMap({ PolylineData(polyline: $0, renderer: mapDelegate.renderer(for: $0)) })) { [weak self] image in
             guard let self = self else { return }
             guard let image = image else { return }
-            let _ = try? ImageManager.save(image, imagePath: "\(self.ride.ride.id)")
+            let _ = try? ImageManager.save(image, imagePath: "ride/\(self.ride.ride.id)")
             self.mapImage.image = image
             self.map.isHidden = true
             self.mapImage.isHidden = false

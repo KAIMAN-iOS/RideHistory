@@ -56,7 +56,7 @@ class RideHistoryDetailStatsCell: UICollectionViewCell {
         dayLabel.set(text: String(format: "%@, %@", RideHistoryCell.dayFormatter.string(from: ride.ride.startDate.value).capitalizingFirstLetter(), RideHistoryCell.timeFormatter.string(from: ride.startDate.value)),
                      for: .subheadline,
                      textColor: RideHistoryTabController.conf.palette.mainTexts)
-        vehicleType.set(text: ride.vehicle.longDescription, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        vehicleType.set(text: ride.vehicle.mediumDescription, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         plate.set(text: ride.vehicle.plate, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         [priceValue, distanceValue, timeValue].forEach({ $0?.text = "-" })
         ride.payment.stats.forEach { stat in
