@@ -13,7 +13,7 @@ struct PolylineData {
     var renderer: MKPolylineRenderer
 }
 
-struct SnapManager {
+class SnapManager: NSObject {
     func snap(from map: MKMapView,
               annotationViews: [MKAnnotationView],
               lines: [PolylineData],
@@ -24,7 +24,8 @@ struct SnapManager {
         options.scale = UIScreen.main.scale
         
         let snapshotter = MKMapSnapshotter(options: options)
-        snapshotter.start {(snapshot: MKMapSnapshotter.Snapshot?, error: Error?) -> Void in
+        snapshotter.start {[weak self] (snapshot: MKMapSnapshotter.Snapshot?, error: Error?) -> Void in
+            guard let self = self else { return }
             guard error == nil, let snapshot = snapshot else { return }
             
             UIGraphicsBeginImageContextWithOptions(snapshot.image.size, true, snapshot.image.scale)
