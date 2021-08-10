@@ -56,7 +56,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
                     rides = tabs[index].value
                 }
                 
-                let ctrl: RideHistoryController = RideHistoryController.create(rides: rides,
+                let ctrl: RideHistoryController = RideHistoryController.create(rides: rides.sorted(by: { $0.ride.startDate.value > $1.ride.startDate.value }),
                                                                                rideType: tab,
                                                                                delegate: rideDelegate,
                                                                                coordinatorDelegate: coordinatorDelegate,

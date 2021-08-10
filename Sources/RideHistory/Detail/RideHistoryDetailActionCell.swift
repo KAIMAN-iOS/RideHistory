@@ -31,7 +31,8 @@ extension RideHistoryModel {
     var mainActionType: RideMainActionType? {
         switch ride.state {
         case .booked: return .cancel
-        case .ended: return .printTicket
+        // deazctivate the print ticket functaionnality for now on
+//        case .ended: return .printTicket
         default: return nil
         }
     }
