@@ -15,12 +15,12 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/jerometonnelier/KExtensions", .branch("master")),
-        .package(url: "https://github.com/jerometonnelier/ATACommonObjects", .branch("master")),
-        .package(url: "https://github.com/jerometonnelier/ATAConfiguration", .branch("master")),
-        .package(url: "https://github.com/jerometonnelier/ActionButton", .branch("master")),
-        .package(url: "https://github.com/jerometonnelier/KCoordinatorKit", .branch("master")),
-        .package(url: "https://github.com/jerometonnelier/KStorage", .branch("master")),
+        .package(url: "https://github.com/KAIMAN-IOS/KExtensions", .branch("master")),
+        .package(url: "https://github.com/KAIMAN-IOS/ATACommonObjects", .branch("master")),
+        .package(url: "https://github.com/KAIMAN-IOS/ATAConfiguration", .branch("master")),
+        .package(url: "https://github.com/KAIMAN-IOS/ActionButton", .branch("master")),
+        .package(url: "https://github.com/KAIMAN-IOS/KCoordinatorKit", .branch("master")),
+        .package(url: "https://github.com/KAIMAN-IOS/KStorage", .branch("master")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
