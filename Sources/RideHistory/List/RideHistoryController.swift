@@ -11,20 +11,20 @@ import ATACommonObjects
 class RideHistoryController: UIViewController {
     
     static func create(rides: [RideHistoryModel],
-                       rideType: RideHistoryType,
+                       rideState: RideState,
                        delegate: RideHistoryActionnable,
                        coordinatorDelegate: RideHistoryCoordinatorDelegate,
                        mapDelegate: RideHistoryMapDelegate) -> RideHistoryController {
         let ctrl: RideHistoryController = UIStoryboard(name: "RideHistory", bundle: Bundle.module).instantiateViewController(identifier: "RideHistoryController")
         ctrl.rides = rides
-        ctrl.rideType = rideType
+        ctrl.rideState = rideState
         ctrl.rideDelegate = delegate
         ctrl.mapDelegate = mapDelegate
         ctrl.coordinatorDelegate = coordinatorDelegate
         ctrl.model = RideHistoryViewModel(rides: rides, mapDelegate: mapDelegate)
         return ctrl
     }
-    var rideType: RideHistoryType!
+    var rideState: RideState!
     var rides: [RideHistoryModel] =  []
     weak var rideDelegate: RideHistoryActionnable!
     weak var coordinatorDelegate: RideHistoryCoordinatorDelegate!
@@ -53,7 +53,7 @@ class RideHistoryController: UIViewController {
     var model: RideHistoryViewModel!
     
     deinit {
-        print("💀 DEINIT \(rideType ?? .completed) - \(URL(fileURLWithPath: #file).lastPathComponent)")
+        print("💀 DEINIT \(rideState ?? .ended) - \(URL(fileURLWithPath: #file).lastPathComponent)")
     }
     
     var datasource: RideHistoryViewModel.DataSource!
@@ -63,7 +63,7 @@ class RideHistoryController: UIViewController {
         collectionView.dataSource = datasource
         collectionView.collectionViewLayout = model.layout()
         noRidesContainer.isHidden = rides.count > 0
-        noRidesLabel.set(text: rideType.subtitle, for: .subheadline, textColor: RideHistoryTabController.conf.palette.inactive)
+        noRidesLabel.set(text: rideState.subtitle, for: .subheadline, textColor: RideHistoryTabController.conf.palette.inactive)
         model.applySnapshot(in: datasource) {
             
         }
@@ -78,6 +78,6 @@ extension RideHistoryController: UICollectionViewDelegate {
 
 extension RideHistoryController: IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        IndicatorInfo(title: rideType.title)
+        IndicatorInfo(title: rideState.displayText)
     }
 }

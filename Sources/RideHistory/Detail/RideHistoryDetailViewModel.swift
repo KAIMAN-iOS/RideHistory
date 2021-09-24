@@ -118,7 +118,7 @@ class RideHistoryDetailViewModel {
             
             case .secondaryAction(let action):
                 guard let cell: RideHistoryDetailSecondaryActionCell = collectionView.automaticallyDequeueReusableCell(forIndexPath: indexPath) else { return nil }
-                cell.configure(action, isEnabled: self.ride.ride.rideType != .booked, isLastcell: action == .lostAndFound)
+                cell.configure(action, isEnabled: self.ride.ride.state != .booked, isLastcell: action == .lostAndFound)
                 return cell
             }
         }
@@ -171,7 +171,7 @@ class RideHistoryDetailViewModel {
     }
     
     func cellType(at indexPath: IndexPath) -> CellType? {
-        return self.ride.ride.rideType != .booked ? dataSource.itemIdentifier(for: indexPath) : nil
+        return self.ride.ride.state != .booked ? dataSource.itemIdentifier(for: indexPath) : nil
     }
 }
 

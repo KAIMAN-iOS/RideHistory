@@ -13,8 +13,8 @@ import UIViewControllerExtension
 import ATACommonObjects
 
 extension Array where Element == RideHistoryModel {
-    var tabs: [RideHistoryType : [RideHistoryModel]] {
-        Dictionary(grouping: self) { $0.ride.rideType ?? RideHistoryType.completed }
+    var tabs: [RideState : [RideHistoryModel]] {
+        Dictionary(grouping: self) { $0.ride.state }
     }
 }
 
@@ -28,8 +28,9 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     static var conf: ATAConfiguration!
     
     static func create(rides: [RideHistoryModel],
+                       allowedRideStates: [RideState],
                        delegate: RideHistoryActionnable,
-                       defaultSelectedTab: RideHistoryType,
+                       defaultSelectedTab: RideState,
                        coordinatorDelegate: RideHistoryCoordinatorDelegate,
                        mapDelegate: RideHistoryMapDelegate,
                        conf: ATAConfiguration!) -> RideHistoryTabController {
@@ -38,26 +39,30 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         ctrl.rideDelegate = delegate
         ctrl.mapDelegate = mapDelegate
         ctrl.coordinatorDelegate = coordinatorDelegate
+        ctrl.allowedRideStates = allowedRideStates
         ctrl.rides = rides
         ctrl.defaultSelectedTab = defaultSelectedTab
         return ctrl
     }
     
-    var defaultSelectedTab: RideHistoryType!
+    var defaultSelectedTab: RideState!
     private(set) var rides: [RideHistoryModel] = []  {
         didSet {
             // async control
             guard let coordinatorDelegate = coordinatorDelegate else { return }
-            let tabs = rides.tabs
+            let tabs = rides.tabs.filter { tab in
+                isAllowedRideState(rideState: tab.key)
+            }
             controllers.removeAll()
-            RideHistoryType.allCases.forEach { tab in
+            
+            for tab in RideState.allCases where isAllowedRideState(rideState: tab){
                 var rides: [RideHistoryModel] = []
                 if let index = tabs.index(forKey: tab) {
                     rides = tabs[index].value
                 }
                 
                 let ctrl: RideHistoryController = RideHistoryController.create(rides: rides.sorted(by: { $0.ride.startDate.value > $1.ride.startDate.value }),
-                                                                               rideType: tab,
+                                                                               rideState: tab,
                                                                                delegate: rideDelegate,
                                                                                coordinatorDelegate: coordinatorDelegate,
                                                                                mapDelegate: mapDelegate)
@@ -65,8 +70,10 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
             }
         }
     }
+    
+    var allowedRideStates: [RideState] = []
 //    var tabs: [RideHistoryType : [RideHistoryModel]] = [:]
-    var controllers: [RideHistoryType : RideHistoryController] = [:]
+    var controllers: [RideState : RideHistoryController] = [:]
     weak var rideDelegate: RideHistoryActionnable!
     weak var coordinatorDelegate: RideHistoryCoordinatorDelegate!
     weak var mapDelegate: RideHistoryMapDelegate!
@@ -122,7 +129,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         buttonBarView.reloadData()
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.moveToViewController(at: RideHistoryType.allCases.firstIndex(of: self.defaultSelectedTab) ?? 0, animated: false)
+            self.moveToViewController(at: self.allowedRideStates.firstIndex(of: self.defaultSelectedTab) ?? 0, animated: false)
         }
         
         addLoadingBar()
@@ -152,7 +159,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         }
     }
     
-    private func key(at index: Int) -> RideHistoryType? {
+    private func key(at index: Int) -> RideState? {
         return index < controllers.keys.count ? controllers.keys.sorted(by: { $0.rawValue < $1.rawValue })[index] : nil
     }
     
@@ -160,5 +167,11 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         let ctrls = controllers.keys.sorted().compactMap({ controllers[$0] })
         print("ctrls \(ctrls)")
         return ctrls
+    }
+    
+    private func isAllowedRideState(rideState: RideState) -> Bool {
+        allowedRideStates.first { allowedRideState in
+            rideState == allowedRideState
+        } != nil
     }
 }
