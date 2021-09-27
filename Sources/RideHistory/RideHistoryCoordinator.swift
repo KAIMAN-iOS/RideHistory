@@ -39,15 +39,17 @@ public class RideHistoryCoordinator<DeepLink>: Coordinator<DeepLink> {
     private var mode: Mode!
     public init(router: RouterType,
                 mode: Mode,
-                defaultSelectedTab: RideHistoryType = .booked,
+                defaultSelectedTab: RideState = .booked,
                 rides: [RideHistoryModel],
+                allowedRideStates: [RideState],
                 delegate: RideHistoryActionnable,
                 mapDelegate: RideHistoryMapDelegate,
                 conf: ATAConfiguration) {
         super.init(router: router)
         controller = RideHistoryTabController.create(rides: rides,
-                                                     delegate: delegate,
+                                                     allowedRideStates: allowedRideStates,
                                                      defaultSelectedTab: defaultSelectedTab,
+                                                     delegate: delegate,
                                                      coordinatorDelegate: self,
                                                      mapDelegate: mapDelegate,
                                                      conf: conf)

@@ -34,7 +34,7 @@ class RideHistoryViewModel {
             switch self {
             case .ride(let ride):
                 hasher.combine(ride.ride.id)
-                hasher.combine(ride.ride.rideType)
+                hasher.combine(ride.ride.state)
             }
         }
     }
@@ -47,7 +47,7 @@ class RideHistoryViewModel {
     private var dataSource: DataSource!
     
     deinit {
-        print("💀 DEINIT \(rides.first?.ride.rideType ?? .completed) - \(URL(fileURLWithPath: #file).lastPathComponent)")
+        print("💀 DEINIT \(rides.first?.ride.state ?? .ended) - \(URL(fileURLWithPath: #file).lastPathComponent)")
     }
     
     init(rides: [RideHistoryModel], mapDelegate: RideHistoryMapDelegate) {

@@ -13,20 +13,22 @@ import UIImageViewExtension
 import Nuke
 import ATACommonObjects
 
-extension RideHistoryType {
+extension RideState {
     var color: UIColor {
         switch self {
         case .booked: return RideHistoryTabController.conf.palette.action
-        case .completed: return RideHistoryTabController.conf.palette.confirmation
+        case .ended: return RideHistoryTabController.conf.palette.confirmation
         case .cancelled: return RideHistoryTabController.conf.palette.primary
+        default: return RideHistoryTabController.conf.palette.primary
         }
     }
     
     var stateDisplay: String {
         switch self {
         case .booked: return "booked display".bundleLocale()
-        case .completed: return "completed display".bundleLocale()
+        case .ended: return "completed display".bundleLocale()
         case .cancelled: return "cancelled display".bundleLocale()
+        default: return "cancelled display".bundleLocale()
         }
     }
 }
@@ -70,8 +72,8 @@ class RideHistoryDetailPassengerCell: UICollectionViewCell {
         options.set(text: String(format: "%d pers. %d bag.".bundleLocale(), ride.ride.numberOfPassengers, ride.ride.numberOfLuggages),
                     for: .footnote,
                     textColor: RideHistoryTabController.conf.palette.secondaryTexts)
-        stateContainer.backgroundColor = ride.ride.rideType?.color
-        state.set(text: ride.ride.rideType?.stateDisplay.uppercased(),
+        stateContainer.backgroundColor = ride.ride.state.color
+        state.set(text: ride.ride.state.displayText?.uppercased(),
                   for: .callout,
 //                  fontScale: 0.8,
                   textColor:RideHistoryTabController.conf.palette.textOnPrimary)
