@@ -48,8 +48,8 @@ public class RideHistoryCoordinator<DeepLink>: Coordinator<DeepLink> {
         super.init(router: router)
         controller = RideHistoryTabController.create(rides: rides,
                                                      allowedRideStates: allowedRideStates,
-                                                     delegate: delegate,
                                                      defaultSelectedTab: defaultSelectedTab,
+                                                     delegate: delegate,
                                                      coordinatorDelegate: self,
                                                      mapDelegate: mapDelegate,
                                                      conf: conf)

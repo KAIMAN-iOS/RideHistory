@@ -39,8 +39,8 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         ctrl.rideDelegate = delegate
         ctrl.mapDelegate = mapDelegate
         ctrl.coordinatorDelegate = coordinatorDelegate
-        ctrl.rides = rides
         ctrl.allowedRideStates = allowedRideStates
+        ctrl.rides = rides
         ctrl.defaultSelectedTab = defaultSelectedTab
         return ctrl
     }
@@ -50,12 +50,10 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         didSet {
             // async control
             guard let coordinatorDelegate = coordinatorDelegate else { return }
-            let tabs = rides.tabs.filter { tab in
-                isAllowedRideState(rideState: tab.key)
-            }
+            let tabs = rides.tabs.filter { allowedRideStates.contains($0.key) }
             controllers.removeAll()
             
-            for tab in RideState.allCases where isAllowedRideState(rideState: tab){
+            allowedRideStates.forEach { tab in
                 var rides: [RideHistoryModel] = []
                 if let index = tabs.index(forKey: tab) {
                     rides = tabs[index].value
