@@ -91,6 +91,7 @@ class RideHistoryCell: UICollectionViewCell {
             .overlays(for: routes)
             .compactMap({ $0 as? MKPolyline })
         map.addOverlays(overlays)
+        // TODO: ECH > faire un union sur les MapRect au lieu de prendre le premier. Tips > Utiliser reduce
         if let first = routes.first?.route {
             let rect = routes.compactMap({ $0.route?.polyline.boundingMapRect }).reduce(first.polyline.boundingMapRect, { $1.union($0) })
             map.setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30), animated: false)
