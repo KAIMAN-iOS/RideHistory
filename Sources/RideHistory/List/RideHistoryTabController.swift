@@ -29,8 +29,8 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     
     static func create(rides: [RideHistoryModel],
                        allowedRideStates: [RideState],
-                       delegate: RideHistoryActionnable,
                        defaultSelectedTab: RideState,
+                       delegate: RideHistoryActionnable,
                        coordinatorDelegate: RideHistoryCoordinatorDelegate,
                        mapDelegate: RideHistoryMapDelegate,
                        conf: ATAConfiguration!) -> RideHistoryTabController {
@@ -39,8 +39,8 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         ctrl.rideDelegate = delegate
         ctrl.mapDelegate = mapDelegate
         ctrl.coordinatorDelegate = coordinatorDelegate
-        ctrl.allowedRideStates = allowedRideStates
         ctrl.rides = rides
+        ctrl.allowedRideStates = allowedRideStates
         ctrl.defaultSelectedTab = defaultSelectedTab
         return ctrl
     }
