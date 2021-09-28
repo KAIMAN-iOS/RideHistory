@@ -61,7 +61,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
                 
                 let ctrl: RideHistoryController = RideHistoryController.create(rides: rides.sorted(by: { $0.ride.startDate.value > $1.ride.startDate.value }),
                                                                                rideState: tab,
-                                                                               delegate: rideDelegate,
+                                                                               delegate: self,
                                                                                coordinatorDelegate: coordinatorDelegate,
                                                                                mapDelegate: mapDelegate)
                 controllers[tab] = ctrl
@@ -129,14 +129,6 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
             guard let self = self else { return }
             self.moveToViewController(at: self.allowedRideStates.firstIndex(of: self.defaultSelectedTab) ?? 0, animated: false)
         }
-        
-        addLoadingBar()
-        rideDelegate.loadRides { [weak self] rides in
-            guard let self = self else { return }
-            self.navigationItem.rightBarButtonItem = nil
-            self.rides = rides
-            self.reloadPagerTabStripView()
-        }
     }
     
     private func updateSettings() {
@@ -171,5 +163,32 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         allowedRideStates.first { allowedRideState in
             rideState == allowedRideState
         } != nil
+    }
+}
+
+extension RideHistoryTabController: RideHistoryActionnable {
+    func cancel(_ rideId: Int, completion: @escaping (() -> Void)) {
+        rideDelegate.cancel(rideId, completion: completion)
+    }
+    
+    func printTicket(for ride: RideHistoryModel) {
+        rideDelegate.printTicket(for: ride)
+    }
+    
+    func openDispute(for ride: RideHistoryModel) {
+        rideDelegate.openDispute(for: ride)
+    }
+    
+    func foundObject(for ride: RideHistoryModel) {
+        rideDelegate.foundObject(for: ride)
+    }
+    
+    func loadRides(rideState: RideState, completion: @escaping (([RideHistoryModel]) -> Void)) {
+        addLoadingBar()
+        rideDelegate.loadRides(rideState: rideState) { [weak self] rides in
+            guard let self = self else { return }
+            self.navigationItem.rightBarButtonItem = nil
+            completion(rides)
+        }
     }
 }
