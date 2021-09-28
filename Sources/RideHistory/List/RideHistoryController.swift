@@ -67,7 +67,7 @@ class RideHistoryController: UIViewController {
         model.applySnapshot(in: datasource) {
             
         }
-        rideDelegate.loadRides(rideState: rideState) { [weak self] rides in
+        rideDelegate.loadRides(for: rideState) { [weak self] rides in
             self?.reloadRides(rides)
         }
     }

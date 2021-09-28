@@ -16,7 +16,7 @@ public protocol RideHistoryActionnable: NSObjectProtocol {
     func printTicket(for ride: RideHistoryModel)
     func openDispute(for ride: RideHistoryModel)
     func foundObject(for ride: RideHistoryModel)
-    func loadRides(rideState: RideState, completion: @escaping (([RideHistoryModel]) -> Void))
+    func loadRides(for state: RideState, completion: @escaping (([RideHistoryModel]) -> Void))
 }
 
 protocol RideHistoryCoordinatorDelegate: NSObjectProtocol {
