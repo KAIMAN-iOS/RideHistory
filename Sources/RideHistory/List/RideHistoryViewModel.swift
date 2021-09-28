@@ -79,7 +79,7 @@ class RideHistoryViewModel {
     func applySnapshot(in dataSource: DataSource, animatingDifferences: Bool = true, completion: @escaping (() -> Void)) {
         var snap = dataSource.snapshot()
         if snap.itemIdentifiers.isEmpty {
-            if !snap.sectionIdentifiers.contains(.main) { snap.appendSections([.main]) }
+            if snap.sectionIdentifiers.contains(.main) == false { snap.appendSections([.main]) }
             snap.appendItems(rides.compactMap({ CellType.ride($0) }), toSection: .main)
         }
         dataSource.apply(snap, animatingDifferences: animatingDifferences, completion: completion)
