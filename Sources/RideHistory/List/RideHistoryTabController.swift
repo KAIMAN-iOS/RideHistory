@@ -183,9 +183,9 @@ extension RideHistoryTabController: RideHistoryActionnable {
         rideDelegate.foundObject(for: ride)
     }
     
-    func loadRides(rideState: RideState, completion: @escaping (([RideHistoryModel]) -> Void)) {
+    func loadRides(for state: RideState, completion: @escaping (([RideHistoryModel]) -> Void)) {
         addLoadingBar()
-        rideDelegate.loadRides(rideState: rideState) { [weak self] rides in
+        rideDelegate.loadRides(for: state) { [weak self] rides in
             guard let self = self else { return }
             self.navigationItem.rightBarButtonItem = nil
             completion(rides)
