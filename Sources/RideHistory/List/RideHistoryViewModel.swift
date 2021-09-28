@@ -79,7 +79,7 @@ class RideHistoryViewModel {
     func applySnapshot(in dataSource: DataSource, animatingDifferences: Bool = true, completion: @escaping (() -> Void)) {
         var snap = dataSource.snapshot()
         if snap.itemIdentifiers.isEmpty {
-            snap.appendSections([.main])
+            if snap.sectionIdentifiers.contains(.main) == false { snap.appendSections([.main]) }
             snap.appendItems(rides.compactMap({ CellType.ride($0) }), toSection: .main)
         }
         dataSource.apply(snap, animatingDifferences: animatingDifferences, completion: completion)
@@ -103,6 +103,11 @@ class RideHistoryViewModel {
     func reload(_ ride: RideHistoryModel) {
         var snap = dataSource.snapshot()
         snap.reloadItems([CellType.ride(ride)])
+        applySnapshot(in: dataSource, animatingDifferences: false) {}
+    }
+    
+    func updateRides(_ rides: [RideHistoryModel]) {
+        self.rides = rides
         applySnapshot(in: dataSource, animatingDifferences: false) {}
     }
 }

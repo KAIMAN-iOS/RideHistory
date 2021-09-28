@@ -67,6 +67,15 @@ class RideHistoryController: UIViewController {
         model.applySnapshot(in: datasource) {
             
         }
+        rideDelegate.loadRides(rideState: rideState) { [weak self] rides in
+            self?.reloadRides(rides)
+        }
+    }
+    
+    func reloadRides(_ rides: [RideHistoryModel]){
+        self.rides = rides
+        model.updateRides(rides)
+        noRidesContainer.isHidden = rides.count > 0
     }
 }
 
