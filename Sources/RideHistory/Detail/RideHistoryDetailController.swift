@@ -53,7 +53,7 @@ extension RideHistoryDetailController: UICollectionViewDelegate {
         switch cellType {
         case .mainAction(let action):
             switch action {
-            case .printTicket: rideDelegate.printTicket(for: ride)
+            case .printTicket: () //rideDelegate.printTicket(for: ride)
             case .cancel: rideDelegate.cancel(ride.ride.id) {}
             }
             

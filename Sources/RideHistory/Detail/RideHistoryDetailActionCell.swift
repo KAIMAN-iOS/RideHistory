@@ -19,9 +19,11 @@ public enum RideMainActionType {
         }
     }
     
+    var isEnabled: Bool { self != .printTicket }
+    
     var color: UIColor {
         switch self {
-        case .printTicket: return RideHistoryTabController.conf.palette.confirmation
+        case .printTicket: return RideHistoryTabController.conf.palette.inactive
         case .cancel: return RideHistoryTabController.conf.palette.action
         }
     }
@@ -32,7 +34,7 @@ extension RideHistoryModel {
         switch ride.state {
         case .booked: return .cancel
         // deazctivate the print ticket functaionnality for now on
-//        case .ended: return .printTicket
+        case .ended: return .printTicket
         default: return nil
         }
     }
@@ -44,6 +46,6 @@ class RideHistoryDetailActionCell: UICollectionViewCell {
     func configure(_ mainActionType: RideMainActionType) {
         actionButton.setTitle(mainActionType.title, for: .normal)
         actionButton.backgroundColor = mainActionType.color
-        actionButton.isUserInteractionEnabled = false
+        actionButton.isUserInteractionEnabled = mainActionType.isEnabled
     }
 }
