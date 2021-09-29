@@ -77,7 +77,20 @@ class RideHistoryDetailPassengerCell: UICollectionViewCell {
                   for: .callout,
 //                  fontScale: 0.8,
                   textColor:RideHistoryTabController.conf.palette.textOnPrimary)
-        reason.superview?.isHidden = ride.cancellationReason?.isEmpty ?? true == true
-        reason.set(text: ride.cancellationReason, for: .caption1, textColor: RideHistoryTabController.conf.palette.primary)
+        reason.superview?.isHidden = ride.cancellationReason == nil
+        reason.set(text: ride.cancellationReason?.reason, for: .caption1, textColor: RideHistoryTabController.conf.palette.primary)
+    }
+}
+
+extension RideCancelReason {
+    var reason: String? {
+        switch self {
+        case .cancelPendingRideByPassenger: return "cancelPendingRideByPassenger reason".bundleLocale()
+        case .noDriverFound: return "noDriverFound reason".bundleLocale()
+        case .engineBreakdown: return "engineBreakdown reason".bundleLocale()
+        case .passengerNotFound: return "passengerNotFound reason".bundleLocale()
+        case .otherReasonbyDriver: return "otherReasonbyDriver reason".bundleLocale()
+        case .cancelledyPassenger: return "cancelledyPassenger reason".bundleLocale()
+        }
     }
 }

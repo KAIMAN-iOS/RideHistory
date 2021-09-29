@@ -20,3 +20,9 @@
 "booked subtitle" = "Aucune course à venir pour l'instant";
 "completed subtitle" = "Aucune course terminée pour l'instant";
 "cancelled subtitle" = "Aucune course annulée pour l'instant";
+"cancelPendingRideByPassenger reason" = "Demande annulée par le passager";
+"noDriverFound reason" = "Aucun chauffeur disponible";
+"engineBreakdown reason" = "Taxi en panne";
+"passengerNotFound reason" = "Client absent";
+"otherReasonbyDriver reason" = "Autre raison";
+"cancelledyPassenger reason" = "Annulée par le client";
