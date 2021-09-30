@@ -85,6 +85,7 @@ class RideHistoryDetailPassengerCell: UICollectionViewCell {
 extension RideCancelReason {
     var reason: String? {
         switch self {
+        case .none: return nil
         case .cancelPendingRideByPassenger: return "cancelPendingRideByPassenger reason".bundleLocale()
         case .noDriverFound: return "noDriverFound reason".bundleLocale()
         case .engineBreakdown: return "engineBreakdown reason".bundleLocale()

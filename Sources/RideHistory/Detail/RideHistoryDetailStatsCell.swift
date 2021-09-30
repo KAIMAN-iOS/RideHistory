@@ -66,7 +66,7 @@ class RideHistoryDetailStatsCell: UICollectionViewCell {
             case .time: update(timeContainer, value: timeValue, stat: stat)
             }
         }
-        rideType.set(text: "\(ride.ride.isImmediate ? "immediate ride".bundleLocale() : "booked ride".bundleLocale())  : \(ride.ride.origin)".uppercased(),
+        rideType.set(text: "\(ride.ride.isImmediate ? "immediate ride".bundleLocale() : "booked ride".bundleLocale())  : \(ride.ride.origin.displayText)".uppercased(),
                      for: .subheadline,
                      fontScale: 0.85,
                      textColor: RideHistoryTabController.conf.palette.textOnPrimary)
