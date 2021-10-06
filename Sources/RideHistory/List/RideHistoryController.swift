@@ -67,6 +67,9 @@ class RideHistoryController: UIViewController {
         model.applySnapshot(in: datasource) {
             
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         rideDelegate.loadRides(for: rideState) { [weak self] rides in
             self?.reloadRides(rides)
         }
