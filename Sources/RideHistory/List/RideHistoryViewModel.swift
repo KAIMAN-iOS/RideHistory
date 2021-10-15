@@ -55,6 +55,8 @@ class RideHistoryViewModel {
         self.mapDelegate = mapDelegate
     }
     
+    let dispatchQueue = DispatchQueue(label: "loadDirectionQueue", qos: DispatchQoS.userInteractive)
+    let semaphore = DispatchSemaphore(value: 0)
     func dataSource(for collectionView: UICollectionView) -> DataSource {
         // Handle cells
         dataSource = DataSource(collectionView: collectionView) { [weak self] (collection, indexPath, model) -> UICollectionViewCell? in
@@ -65,9 +67,14 @@ class RideHistoryViewModel {
                 cell.add(routes: route.routes)
             } else if self.routes[model.ride.ride.id] == nil {
                 self.routes[model.ride.ride.id] = (state: .requested, routes: [])
-                self.directionManager.loadDirections(for: model.ride.ride) { [weak self] ride, routes in
-                    self?.routes[ride.id] = (state: .completed, routes: routes)
-                    self?.reload(model.ride)
+                self.dispatchQueue.async {
+                    self.directionManager.loadDirections(for: model.ride.ride) { [weak self] ride, routes in
+                        guard let self = self else { return }
+                        self.routes[ride.id] = (state: .completed, routes: routes)
+                        self.reload(model.ride)
+                        self.semaphore.signal()
+                    }
+                    self.semaphore.wait()
                 }
             }
             return cell
@@ -76,8 +83,8 @@ class RideHistoryViewModel {
     }
     
     private var rides: [RideHistoryModel] = []
-    func applySnapshot(in dataSource: DataSource, animatingDifferences: Bool = true, completion: @escaping (() -> Void)) {
-        var snap = dataSource.snapshot()
+    func applySnapshot(_ snapshot: SnapShot? = nil, in dataSource: DataSource, animatingDifferences: Bool = true, completion: @escaping (() -> Void)) {
+        var snap = snapshot ?? dataSource.snapshot()
         if snap.itemIdentifiers.isEmpty {
             if snap.sectionIdentifiers.contains(.main) == false { snap.appendSections([.main]) }
             snap.appendItems(rides.compactMap({ CellType.ride($0) }), toSection: .main)
@@ -102,8 +109,13 @@ class RideHistoryViewModel {
     
     func reload(_ ride: RideHistoryModel) {
         var snap = dataSource.snapshot()
-        snap.reloadItems([CellType.ride(ride)])
-        applySnapshot(in: dataSource, animatingDifferences: false) {}
+        if #available(iOS 15.0, *) {
+            snap.reconfigureItems([CellType.ride(ride)])
+        } else {
+            // Fallback on earlier versions
+            snap.reloadItems([CellType.ride(ride)])
+        }
+        applySnapshot(snap, in: dataSource, animatingDifferences: false) {}
     }
     
     func updateRides(_ rides: [RideHistoryModel]) {
