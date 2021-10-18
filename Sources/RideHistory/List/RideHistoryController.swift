@@ -34,8 +34,17 @@ class RideHistoryController: UIViewController {
         didSet {
             collectionView.register(UINib(nibName: "RideHistoryCell", bundle: .module), forCellWithReuseIdentifier: "RideHistoryCell")
             collectionView.delegate = self
+            collectionView.refreshControl = refreshControl
         }
     }
+    
+    private let refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = RideHistoryTabController.conf.palette.primary
+        refreshControl.addTarget(self, action: #selector(refreshRides), for: .valueChanged)
+        return refreshControl
+    } ()
+    
     @IBOutlet weak var noRidesIcon: UIImageView!  {
         didSet {
             noRidesIcon.tintColor = RideHistoryTabController.conf.palette.inactive
@@ -67,8 +76,13 @@ class RideHistoryController: UIViewController {
         model.applySnapshot(in: datasource) {
             
         }
-        rideDelegate.loadRides(for: rideState) { [weak self] rides in
-            self?.reloadRides(rides)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if self.rides.isEmpty {
+            rideDelegate.loadRides(for: rideState) { [weak self] rides in
+                self?.reloadRides(rides)
+            }
         }
     }
     
@@ -76,6 +90,14 @@ class RideHistoryController: UIViewController {
         self.rides = rides
         model.updateRides(rides)
         noRidesContainer.isHidden = rides.count > 0
+    }
+    
+    @objc private func refreshRides() {
+        refreshControl.beginRefreshing()
+        rideDelegate.loadRides(for: rideState) { [weak self] rides in
+            self?.reloadRides(rides)
+            self?.refreshControl.endRefreshing()
+        }
     }
 }
 
