@@ -107,7 +107,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     
     func addLoadingBar() {
         let activity = UIActivityIndicatorView(style: .medium)
-        activity.color = RideHistoryTabController.conf.palette.activityIndicator
+        activity.color = RideHistoryTabController.conf.palette.navigationItem
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activity)
         activity.startAnimating()
     }
