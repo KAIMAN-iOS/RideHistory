@@ -40,7 +40,7 @@ class RideHistoryController: UIViewController {
     
     private let refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = RideHistoryTabController.conf.palette.primary
+        refreshControl.tintColor = RideHistoryTabController.conf.palette.confirmation
         refreshControl.addTarget(self, action: #selector(refreshRides), for: .valueChanged)
         return refreshControl
     } ()
