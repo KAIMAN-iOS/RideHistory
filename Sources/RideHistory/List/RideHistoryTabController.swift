@@ -107,7 +107,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     
     func addLoadingBar() {
         let activity = UIActivityIndicatorView(style: .medium)
-        activity.color = RideHistoryTabController.conf.palette.navigationItem
+        activity.color = RideHistoryTabController.conf.palette.confirmation
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activity)
         activity.startAnimating()
     }
@@ -134,7 +134,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     private func updateSettings() {
         settings.style.buttonBarBackgroundColor = navigationController?.navigationBar.barTintColor ?? .white
         settings.style.buttonBarItemBackgroundColor = navigationController?.navigationBar.barTintColor ?? .white
-        settings.style.selectedBarBackgroundColor = RideHistoryTabController.conf.palette.primary
+        settings.style.selectedBarBackgroundColor = RideHistoryTabController.conf.palette.confirmation
         settings.style.buttonBarItemFont = .applicationFont(forTextStyle: .subheadline)
         settings.style.selectedBarHeight = 2.0
         settings.style.buttonBarMinimumLineSpacing = 0
@@ -144,8 +144,8 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         settings.style.buttonBarRightContentInset = 0
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
-            oldCell?.label.textColor = RideHistoryTabController.conf.palette.mainTexts
-            newCell?.label.textColor = RideHistoryTabController.conf.palette.primary
+            oldCell?.label.textColor = RideHistoryTabController.conf.palette.confirmation
+            newCell?.label.textColor = RideHistoryTabController.conf.palette.confirmation
         }
     }
     

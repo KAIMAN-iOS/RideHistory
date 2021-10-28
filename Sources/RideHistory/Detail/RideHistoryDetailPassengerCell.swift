@@ -73,7 +73,7 @@ class RideHistoryDetailPassengerCell: UICollectionViewCell {
                     for: .footnote,
                     textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         stateContainer.backgroundColor = ride.ride.state.color
-        state.set(text: ride.ride.state.displayText?.uppercased(),
+        state.set(text: ride.ride.state.displayCellText?.uppercased(),
                   for: .callout,
 //                  fontScale: 0.8,
                   textColor:RideHistoryTabController.conf.palette.textOnPrimary)
