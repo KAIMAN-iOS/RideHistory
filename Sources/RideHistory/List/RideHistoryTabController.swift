@@ -28,6 +28,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     static var conf: ATAConfiguration!
     
     static func create(rides: [RideHistoryModel],
+                       mode: Mode,
                        allowedRideStates: [RideState],
                        defaultSelectedTab: RideState,
                        delegate: RideHistoryActionnable,
@@ -41,6 +42,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         ctrl.coordinatorDelegate = coordinatorDelegate
         ctrl.allowedRideStates = allowedRideStates
         ctrl.rides = rides
+        ctrl.mode = mode
         ctrl.defaultSelectedTab = defaultSelectedTab
         return ctrl
     }
@@ -68,7 +70,8 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
             }
         }
     }
-    
+
+    private var mode: Mode!
     var allowedRideStates: [RideState] = []
 //    var tabs: [RideHistoryType : [RideHistoryModel]] = [:]
     var controllers: [RideState : RideHistoryController] = [:]
@@ -134,7 +137,11 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     private func updateSettings() {
         settings.style.buttonBarBackgroundColor = navigationController?.navigationBar.barTintColor ?? .white
         settings.style.buttonBarItemBackgroundColor = navigationController?.navigationBar.barTintColor ?? .white
-        settings.style.selectedBarBackgroundColor = RideHistoryTabController.conf.palette.confirmation
+        switch mode {
+        case .driver:    settings.style.selectedBarBackgroundColor = RideHistoryTabController.conf.palette.confirmation
+        case .passenger: settings.style.selectedBarBackgroundColor = RideHistoryTabController.conf.palette.primary
+        default: ()
+        }
         settings.style.buttonBarItemFont = .applicationFont(forTextStyle: .subheadline)
         settings.style.selectedBarHeight = 2.0
         settings.style.buttonBarMinimumLineSpacing = 0
@@ -145,7 +152,11 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             oldCell?.label.textColor = RideHistoryTabController.conf.palette.mainTexts
-            newCell?.label.textColor = RideHistoryTabController.conf.palette.confirmation
+            switch self.mode {
+            case .driver:    newCell?.label.textColor = RideHistoryTabController.conf.palette.confirmation
+            case .passenger: newCell?.label.textColor = RideHistoryTabController.conf.palette.primary
+            default: ()
+            }
         }
     }
     

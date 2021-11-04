@@ -47,6 +47,7 @@ public class RideHistoryCoordinator<DeepLink>: Coordinator<DeepLink> {
                 conf: ATAConfiguration) {
         super.init(router: router)
         controller = RideHistoryTabController.create(rides: rides,
+                                                     mode: mode,
                                                      allowedRideStates: allowedRideStates,
                                                      defaultSelectedTab: defaultSelectedTab,
                                                      delegate: delegate,
