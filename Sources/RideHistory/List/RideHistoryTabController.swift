@@ -41,8 +41,8 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         ctrl.mapDelegate = mapDelegate
         ctrl.coordinatorDelegate = coordinatorDelegate
         ctrl.allowedRideStates = allowedRideStates
+        ctrl.mode = mode // before setting ctrl.rides, otherwise fails
         ctrl.rides = rides
-        ctrl.mode = mode
         ctrl.defaultSelectedTab = defaultSelectedTab
         return ctrl
     }
@@ -62,6 +62,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
                 }
                 
                 let ctrl: RideHistoryController = RideHistoryController.create(rides: rides.sorted(by: { $0.ride.startDate.value > $1.ride.startDate.value }),
+                                                                               mode: mode,
                                                                                rideState: tab,
                                                                                delegate: self,
                                                                                coordinatorDelegate: coordinatorDelegate,
@@ -110,7 +111,11 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     
     func addLoadingBar() {
         let activity = UIActivityIndicatorView(style: .medium)
-        activity.color = RideHistoryTabController.conf.palette.confirmation
+        switch mode {
+        case .driver:    activity.color = RideHistoryTabController.conf.palette.confirmation
+        case .passenger: activity.color = RideHistoryTabController.conf.palette.navigationItem
+        default: ()
+        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activity)
         activity.startAnimating()
     }

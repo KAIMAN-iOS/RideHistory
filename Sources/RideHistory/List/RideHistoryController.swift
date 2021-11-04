@@ -11,12 +11,14 @@ import ATACommonObjects
 class RideHistoryController: UIViewController {
     
     static func create(rides: [RideHistoryModel],
+                       mode: Mode,
                        rideState: RideState,
                        delegate: RideHistoryActionnable,
                        coordinatorDelegate: RideHistoryCoordinatorDelegate,
                        mapDelegate: RideHistoryMapDelegate) -> RideHistoryController {
         let ctrl: RideHistoryController = UIStoryboard(name: "RideHistory", bundle: Bundle.module).instantiateViewController(identifier: "RideHistoryController")
         ctrl.rides = rides
+        ctrl.mode = mode
         ctrl.rideState = rideState
         ctrl.rideDelegate = delegate
         ctrl.mapDelegate = mapDelegate
@@ -26,6 +28,7 @@ class RideHistoryController: UIViewController {
     }
     var rideState: RideState!
     var rides: [RideHistoryModel] =  []
+    var mode: Mode!
     weak var rideDelegate: RideHistoryActionnable!
     weak var coordinatorDelegate: RideHistoryCoordinatorDelegate!
     weak var mapDelegate: RideHistoryMapDelegate!
@@ -38,12 +41,16 @@ class RideHistoryController: UIViewController {
         }
     }
     
-    private let refreshControl: UIRefreshControl = {
+    private lazy var refreshControl: UIRefreshControl = { mode in
         let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = RideHistoryTabController.conf.palette.confirmation
+        switch mode {
+        case .driver:    refreshControl.tintColor = RideHistoryTabController.conf.palette.confirmation
+        case .passenger: refreshControl.tintColor = RideHistoryTabController.conf.palette.primary
+        default: ()
+        }
         refreshControl.addTarget(self, action: #selector(refreshRides), for: .valueChanged)
         return refreshControl
-    } ()
+    } (mode)
     
     @IBOutlet weak var noRidesIcon: UIImageView!  {
         didSet {
