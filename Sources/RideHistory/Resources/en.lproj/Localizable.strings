@@ -26,3 +26,4 @@
 "passengerNotFound reason" = "Client absent";
 "otherReasonbyDriver reason" = "Autre raison";
 "cancelledyPassenger reason" = "Annulée par le client";
+"noRides" = "No such ride";

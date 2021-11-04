@@ -72,7 +72,7 @@ class RideHistoryController: UIViewController {
         collectionView.dataSource = datasource
         collectionView.collectionViewLayout = model.layout()
         noRidesContainer.isHidden = rides.count > 0
-        noRidesLabel.set(text: rideState.subtitle, for: .subheadline, textColor: RideHistoryTabController.conf.palette.inactive)
+        noRidesLabel.set(text: "noRides".bundleLocale(), for: .subheadline, textColor: RideHistoryTabController.conf.palette.inactive)
         model.applySnapshot(in: datasource) {
             
         }
@@ -109,6 +109,6 @@ extension RideHistoryController: UICollectionViewDelegate {
 
 extension RideHistoryController: IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        IndicatorInfo(title: rideState.displayText)
+        IndicatorInfo(title: rideState.displayText?.uppercased())
     }
 }
