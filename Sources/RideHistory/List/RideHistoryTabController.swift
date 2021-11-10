@@ -112,7 +112,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     func addLoadingBar() {
         let activity = UIActivityIndicatorView(style: .medium)
         switch mode {
-        case .driver:    activity.color = RideHistoryTabController.conf.palette.confirmation
+        case .driver:    activity.color = RideHistoryTabController.conf.palette.mainTexts
         case .passenger: activity.color = RideHistoryTabController.conf.palette.navigationItem
         default: ()
         }

@@ -44,7 +44,7 @@ class RideHistoryController: UIViewController {
     private lazy var refreshControl: UIRefreshControl = { mode in
         let refreshControl = UIRefreshControl()
         switch mode {
-        case .driver:    refreshControl.tintColor = RideHistoryTabController.conf.palette.confirmation
+        case .driver:    refreshControl.tintColor = RideHistoryTabController.conf.palette.mainTexts
         case .passenger: refreshControl.tintColor = RideHistoryTabController.conf.palette.primary
         default: ()
         }
