@@ -143,7 +143,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         settings.style.buttonBarBackgroundColor = navigationController?.navigationBar.barTintColor ?? .white
         settings.style.buttonBarItemBackgroundColor = navigationController?.navigationBar.barTintColor ?? .white
         switch mode {
-        case .driver:    settings.style.selectedBarBackgroundColor = RideHistoryTabController.conf.palette.confirmation
+        case .driver:    settings.style.selectedBarBackgroundColor = RideHistoryTabController.conf.palette.mainTexts
         case .passenger: settings.style.selectedBarBackgroundColor = RideHistoryTabController.conf.palette.primary
         default: ()
         }
