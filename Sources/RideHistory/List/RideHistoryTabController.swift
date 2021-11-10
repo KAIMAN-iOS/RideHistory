@@ -157,8 +157,10 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             oldCell?.label.textColor = RideHistoryTabController.conf.palette.mainTexts
+            oldCell?.label.font = oldCell?.label.font.noBold()
+            newCell?.label.font = newCell?.label.font.bold()
             switch self.mode {
-            case .driver:    newCell?.label.textColor = RideHistoryTabController.conf.palette.confirmation
+            case .driver:    newCell?.label.textColor = RideHistoryTabController.conf.palette.mainTexts
             case .passenger: newCell?.label.textColor = RideHistoryTabController.conf.palette.primary
             default: ()
             }
