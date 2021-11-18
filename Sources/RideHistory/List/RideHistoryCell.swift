@@ -69,7 +69,7 @@ class RideHistoryCell: UICollectionViewCell {
         priceLabel.isHidden = ride.priceDisplay == nil
         priceLabel.set(text: ride.priceDisplay, for: .subheadline, traits: [.traitBold], textColor: RideHistoryTabController.conf.palette.primary)
         fromLabel.set(text: ride.ride.fromAddress.address, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
-        if let toAdress = ride.ride.toAddress?.address {
+        if let toAdress = ride.ride.toAddress?.address, toAdress.isEmpty == false {
             toLabel.set(text: toAdress, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         } else {
             toLabel.isHidden = true
