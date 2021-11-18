@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -29,16 +29,16 @@
                                         <rect key="frame" x="0.0" y="0.0" width="330.5" height="65"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="uQH-JT-yiF">
-                                                <rect key="frame" x="0.0" y="0.0" width="330.5" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="330.5" height="20.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="999" verticalCompressionResistancePriority="1000" text="Aujourd'hui, 17h45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjL-7J-2Gl">
-                                                        <rect key="frame" x="0.0" y="0.0" width="261" height="24"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="270" height="20.5"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="900" verticalCompressionResistancePriority="1000" text="23,50€" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Org-rZ-il5">
-                                                        <rect key="frame" x="267" y="0.0" width="63.5" height="24"/>
+                                                        <rect key="frame" x="276" y="0.0" width="54.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                         <color key="textColor" name="selectedTitleColor"/>
                                                         <nil key="highlightedColor"/>
@@ -46,16 +46,16 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Mercedes Berlins Classe S" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Gcx-VB-0BC">
-                                                <rect key="frame" x="0.0" y="24" width="330.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="20.5" width="330.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <color key="textColor" name="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6VZ-um-ckD">
-                                                <rect key="frame" x="0.0" y="44.5" width="330.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="35" width="330.5" height="15"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sea-rP-HM8">
-                                                        <rect key="frame" x="0.0" y="3" width="15" height="15"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
                                                         <color key="backgroundColor" red="0.34117648010000001" green="0.72156864399999998" blue="0.65098041299999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Sea-rP-HM8" secondAttribute="height" multiplier="1:1" id="b8l-Wg-awX"/>
@@ -63,7 +63,26 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="29 rue paradis 13009 Marseille" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="guE-2J-dLi">
-                                                        <rect key="frame" x="23" y="0.0" width="307.5" height="20.5"/>
+                                                        <rect key="frame" x="23" y="0.0" width="307.5" height="15"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <color key="textColor" name="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pBm-XS-DCz">
+                                                <rect key="frame" x="0.0" y="50" width="330.5" height="15"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MrO-Mv-XEn">
+                                                        <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
+                                                        <color key="backgroundColor" name="primary"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="15" id="Bgn-2r-orr"/>
+                                                            <constraint firstAttribute="width" secondItem="MrO-Mv-XEn" secondAttribute="height" multiplier="1:1" id="TO1-kG-HFD"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="29 rue paradis 13009 Marseille" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GZw-dK-N8h">
+                                                        <rect key="frame" x="23" y="0.0" width="307.5" height="15"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <color key="textColor" name="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -121,14 +140,19 @@
                 <outlet property="map" destination="g9J-jc-LeO" id="umN-Fi-BE2"/>
                 <outlet property="mapImage" destination="FP1-vp-MoS" id="zyD-L9-ryi"/>
                 <outlet property="priceLabel" destination="Org-rZ-il5" id="wmC-eP-qhj"/>
+                <outlet property="toIconView" destination="MrO-Mv-XEn" id="FuQ-mV-Bd3"/>
+                <outlet property="toLabel" destination="GZw-dK-N8h" id="gtL-dP-ZYC"/>
             </connections>
             <point key="canvasLocation" x="463.768115942029" y="131.25"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="rightArrow" width="15.5" height="15.5"/>
+        <namedColor name="primary">
+            <color red="0.84313725490196079" green="0.27058823529411763" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="selectedTitleColor">
-            <color red="0.84700000286102295" green="0.27099999785423279" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.7839999794960022" green="0.31400001049041748" blue="0.28200000524520874" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="textColor">
             <color red="0.16099999845027924" green="0.17599999904632568" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

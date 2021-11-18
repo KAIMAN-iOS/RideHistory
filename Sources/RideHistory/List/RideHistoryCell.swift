@@ -18,9 +18,7 @@ class RideHistoryCell: UICollectionViewCell {
     static var dayFormatter: DateFormatter = {
         let form = DateFormatter()
         form.locale = .current
-        form.dateStyle = .medium
-        form.timeStyle = .none
-        form.doesRelativeDateFormatting = true
+        form.dateFormat = "EEEE d MMMM"
         return form
     }()
     static var timeFormatter: DateFormatter = {
@@ -50,6 +48,12 @@ class RideHistoryCell: UICollectionViewCell {
         }
     }
     @IBOutlet weak var fromLabel: UILabel!
+    @IBOutlet weak var toIconView: UIView!  {
+        didSet {
+            toIconView.roundedCorners = true
+        }
+    }
+    @IBOutlet weak var toLabel: UILabel!
     @IBOutlet weak var carLabel: UILabel!
     private var snapshotter: SnapManager = SnapManager()
     
@@ -65,6 +69,12 @@ class RideHistoryCell: UICollectionViewCell {
         priceLabel.isHidden = ride.priceDisplay == nil
         priceLabel.set(text: ride.priceDisplay, for: .subheadline, traits: [.traitBold], textColor: RideHistoryTabController.conf.palette.primary)
         fromLabel.set(text: ride.ride.fromAddress.address, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        if let toAdress = ride.ride.toAddress?.address {
+            toLabel.set(text: toAdress, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+        } else {
+            toLabel.isHidden = true
+            toIconView.isHidden = true
+        }
         carLabel.set(text: ride.vehicle.longDescription, for: .body, fontScale: 0.8, textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         // map data
         if let image = ImageManager.fetchImage(with: "ride/\(ride.ride.id)") {
