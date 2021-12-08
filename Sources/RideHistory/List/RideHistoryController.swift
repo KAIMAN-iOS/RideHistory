@@ -86,11 +86,11 @@ class RideHistoryController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if self.rides.isEmpty {
+//        if self.rides.isEmpty {
             rideDelegate.loadRides(for: rideState) { [weak self] rides in
                 self?.reloadRides(rides)
             }
-        }
+//        }
     }
     
     func reloadRides(_ rides: [RideHistoryModel]){

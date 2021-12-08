@@ -88,6 +88,10 @@ class RideHistoryViewModel {
         if snap.itemIdentifiers.isEmpty {
             if snap.sectionIdentifiers.contains(.main) == false { snap.appendSections([.main]) }
             snap.appendItems(rides.compactMap({ CellType.ride($0) }), toSection: .main)
+        } else {
+            snap.deleteAllItems()
+            if snap.sectionIdentifiers.contains(.main) == false { snap.appendSections([.main]) }
+            snap.appendItems(rides.compactMap({ CellType.ride($0) }), toSection: .main)
         }
         dataSource.apply(snap, animatingDifferences: animatingDifferences, completion: completion)
     }

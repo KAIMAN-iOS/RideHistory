@@ -54,7 +54,9 @@ extension RideHistoryDetailController: UICollectionViewDelegate {
         case .mainAction(let action):
             switch action {
             case .printTicket: () //rideDelegate.printTicket(for: ride)
-            case .cancel: rideDelegate.cancel(ride.ride.id) {}
+            case .cancel: rideDelegate.cancel(for: ride) { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }
             }
             
         case .secondaryAction(let action):

@@ -171,7 +171,7 @@ class RideHistoryDetailViewModel {
     }
     
     func cellType(at indexPath: IndexPath) -> CellType? {
-        return self.ride.ride.state != .booked ? dataSource.itemIdentifier(for: indexPath) : nil
+        return self.ride.ride.state == .booked ? dataSource.itemIdentifier(for: indexPath) : nil
     }
 }
 

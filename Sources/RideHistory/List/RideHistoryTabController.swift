@@ -189,6 +189,10 @@ extension RideHistoryTabController: RideHistoryActionnable {
         rideDelegate.cancel(rideId, completion: completion)
     }
     
+    func cancel(for ride: RideHistoryModel, completion: @escaping (() -> Void)) {
+        rideDelegate.cancel(for: ride, completion: completion)
+    }
+    
     func printTicket(for ride: RideHistoryModel) {
         rideDelegate.printTicket(for: ride)
     }

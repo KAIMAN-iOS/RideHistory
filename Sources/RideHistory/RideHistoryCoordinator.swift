@@ -13,6 +13,7 @@ import ATACommonObjects
 
 public protocol RideHistoryActionnable: NSObjectProtocol {
     func cancel(_ rideId: Int, completion: @escaping (() -> Void))
+    func cancel(for ride: RideHistoryModel, completion: @escaping (() -> Void))
     func printTicket(for ride: RideHistoryModel)
     func openDispute(for ride: RideHistoryModel)
     func foundObject(for ride: RideHistoryModel)

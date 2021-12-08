@@ -46,6 +46,6 @@ class RideHistoryDetailActionCell: UICollectionViewCell {
     func configure(_ mainActionType: RideMainActionType) {
         actionButton.setTitle(mainActionType.title, for: .normal)
         actionButton.backgroundColor = mainActionType.color
-        actionButton.isUserInteractionEnabled = mainActionType.isEnabled
+        actionButton.isUserInteractionEnabled = false //mainActionType.isEnabled
     }
 }
