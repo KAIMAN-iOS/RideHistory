@@ -93,13 +93,13 @@ class RideHistoryController: UIViewController {
 //        }
     }
     
-    func reloadRides(_ rides: [RideHistoryModel]){
+    func reloadRides(_ rides: [RideHistoryModel]) {
         self.rides = rides
         model.updateRides(rides)
         noRidesContainer.isHidden = rides.count > 0
     }
     
-    @objc private func refreshRides() {
+    @objc func refreshRides() {
         refreshControl.beginRefreshing()
         rideDelegate.loadRides(for: rideState) { [weak self] rides in
             self?.reloadRides(rides)

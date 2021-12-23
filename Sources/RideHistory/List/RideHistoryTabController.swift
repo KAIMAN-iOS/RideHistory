@@ -139,6 +139,10 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         }
     }
     
+    func refreshCurrentTab() {
+        (viewControllers[currentIndex] as? RideHistoryController)?.refreshRides()
+    }
+    
     private func updateSettings() {
         settings.style.buttonBarBackgroundColor = navigationController?.navigationBar.barTintColor ?? .white
         settings.style.buttonBarItemBackgroundColor = navigationController?.navigationBar.barTintColor ?? .white
@@ -175,12 +179,6 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         let ctrls = controllers.keys.sorted().compactMap({ controllers[$0] })
         print("ctrls \(ctrls)")
         return ctrls
-    }
-    
-    private func isAllowedRideState(rideState: RideState) -> Bool {
-        allowedRideStates.first { allowedRideState in
-            rideState == allowedRideState
-        } != nil
     }
 }
 

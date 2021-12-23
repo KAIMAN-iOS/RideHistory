@@ -22,6 +22,7 @@ public protocol RideHistoryActionnable: NSObjectProtocol {
 
 protocol RideHistoryCoordinatorDelegate: NSObjectProtocol {
     func didSelect(_ ride: RideHistoryModel)
+    func refreshRides(andPop: Bool)
 }
 
 public protocol RideHistoryMapDelegate: NSObjectProtocol {
@@ -73,6 +74,13 @@ extension RideHistoryCoordinator: RideHistoryCoordinatorDelegate {
                                                                                    coordinatorDelegate: self,
                                                                                    mapDelegate: controller.mapDelegate)
         router.push(ctrl, animated: true, completion: nil)
+    }
+    
+    func refreshRides(andPop pop: Bool) {
+        controller.refreshCurrentTab()
+        if pop {
+            router.navigationController.popViewController(animated: true)
+        }
     }
 }
 
