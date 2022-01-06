@@ -103,7 +103,7 @@ class RideHistoryDetailViewModel {
                 
             case .user:
                 guard let cell: RideHistoryDetailPassengerCell = collectionView.automaticallyDequeueReusableCell(forIndexPath: indexPath) else { return nil }
-                cell.configure(self.ride)
+                cell.configure(self.ride, mode: self.mode)
                 return cell
                 
             case .addresses:

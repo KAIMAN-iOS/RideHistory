@@ -58,10 +58,16 @@ class RideHistoryDetailPassengerCell: UICollectionViewCell {
         imageTast = nil
     }
     
-    func configure(_ ride: RideHistoryModel) {
+    func configure(_ ride: RideHistoryModel, mode: Mode) {
         backgroundColor = RideHistoryTabController.conf.palette.lightGray
         passenger.set(text: ride.passenger?.fullname, for: .body, fontScale: 0.9, traits: [.traitBold], textColor: RideHistoryTabController.conf.palette.secondaryTexts)
-        if let url = ride.passenger?.imageUrl,
+        var imageUrl: String?
+        switch mode {
+        case .passenger: imageUrl = ride.driver?.imageUrl
+        case .driver: imageUrl = ride.passenger?.imageUrl
+        default: ()
+        }
+        if let url = imageUrl,
            let imageUrl = URL(string: url) {
             imageTast = passengerImage.downloadImage(from: imageUrl, placeholder: UIImage(named: "documentUser", in: .module, compatibleWith: nil), activityColor: RideHistoryTabController.conf.palette.primary)
             passengerImage.contentMode = .scaleAspectFill
