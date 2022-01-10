@@ -60,11 +60,15 @@ class RideHistoryDetailPassengerCell: UICollectionViewCell {
     
     func configure(_ ride: RideHistoryModel, mode: Mode) {
         backgroundColor = RideHistoryTabController.conf.palette.lightGray
-        passenger.set(text: ride.passenger?.fullname, for: .body, fontScale: 0.9, traits: [.traitBold], textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         var imageUrl: String?
         switch mode {
-        case .passenger: imageUrl = ride.driver?.imageUrl
-        case .driver: imageUrl = ride.passenger?.imageUrl
+        case .passenger:
+            imageUrl = ride.driver?.imageUrl
+            passenger.set(text: ride.driver?.fullname, for: .body, fontScale: 0.9, traits: [.traitBold], textColor: RideHistoryTabController.conf.palette.secondaryTexts)
+            
+        case .driver: imageUrl =
+            ride.passenger?.imageUrl
+            passenger.set(text: ride.passenger?.fullname, for: .body, fontScale: 0.9, traits: [.traitBold], textColor: RideHistoryTabController.conf.palette.secondaryTexts)
         default: ()
         }
         if let url = imageUrl,
