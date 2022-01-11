@@ -69,7 +69,7 @@ class RideHistoryDetailStatsCell: UICollectionViewCell {
         rideType.set(text: "\(ride.ride.isImmediate ? "immediate ride".bundleLocale() : "booked ride".bundleLocale())  : \(ride.ride.origin.displayText)".uppercased(),
                      for: .subheadline,
                      fontScale: 0.85,
-                     textColor: RideHistoryTabController.conf.palette.textOnPrimary)
+                     textColor: RideHistoryTabController.conf.palette.textOnDark)
         rideTypeContainer.backgroundColor = RideHistoryTabController.conf.palette.secondary
     }
     

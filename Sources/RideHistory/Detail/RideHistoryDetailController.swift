@@ -32,6 +32,8 @@ class RideHistoryDetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = RideHistoryTabController.conf.palette.background
+        collectionView.backgroundColor = RideHistoryTabController.conf.palette.background
         hideBackButtonText = true
         title = "ride detail".bundleLocale()
         datasource = model.dataSource(for: collectionView)

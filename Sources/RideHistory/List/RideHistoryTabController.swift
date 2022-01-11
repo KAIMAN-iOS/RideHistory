@@ -71,10 +71,10 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
             }
         }
     }
-
+    
     private var mode: Mode!
     var allowedRideStates: [RideState] = []
-//    var tabs: [RideHistoryType : [RideHistoryModel]] = [:]
+    //    var tabs: [RideHistoryType : [RideHistoryModel]] = [:]
     var controllers: [RideState : RideHistoryController] = [:]
     weak var rideDelegate: RideHistoryActionnable!
     weak var coordinatorDelegate: RideHistoryCoordinatorDelegate!
@@ -82,18 +82,19 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     @IBOutlet weak var loader: UIActivityIndicatorView!
     
     lazy var scrollView = UIScrollView()
-      lazy var barView: ButtonBarView = {
+    lazy var barView: ButtonBarView = {
         let layout = UICollectionViewFlowLayout()
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 64)
         let collectionView = ButtonBarView(frame: frame, collectionViewLayout: layout)
-        collectionView.backgroundColor = navigationController?.navigationBar.barTintColor ?? .white
+        collectionView.backgroundColor = navigationController?.navigationBar.barTintColor ?? RideHistoryTabController.conf.palette.background
         return collectionView
-      }()
+    }()
     
     private func addViews() {
         
         view.addSubview(barView)
         buttonBarView = barView
+        buttonBarView.backgroundColor = RideHistoryTabController.conf.palette.background
         barView.snp.makeConstraints {
             $0.top.equalTo(view.safeArea.top)
             $0.left.equalToSuperview()
@@ -102,6 +103,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         }
         
         view.addSubview(scrollView)
+        scrollView.backgroundColor = RideHistoryTabController.conf.palette.background
         containerView = scrollView
         scrollView.snp.makeConstraints {
             $0.top.equalTo(barView.snp.bottom)
@@ -128,7 +130,7 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
         updateSettings()
         addViews()
         super.viewDidLoad()
-        
+        view.backgroundColor = RideHistoryTabController.conf.palette.background
         hideBackButtonText = true
         title = "Mes Courses".bundleLocale().capitalized
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -144,8 +146,8 @@ class RideHistoryTabController: ButtonBarPagerTabStripViewController {
     }
     
     private func updateSettings() {
-        settings.style.buttonBarBackgroundColor = navigationController?.navigationBar.barTintColor ?? .white
-        settings.style.buttonBarItemBackgroundColor = navigationController?.navigationBar.barTintColor ?? .white
+        settings.style.buttonBarBackgroundColor = navigationController?.navigationBar.barTintColor ?? RideHistoryTabController.conf.palette.background
+        settings.style.buttonBarItemBackgroundColor = navigationController?.navigationBar.barTintColor ?? RideHistoryTabController.conf.palette.background
         switch mode {
         case .driver:    settings.style.selectedBarBackgroundColor = RideHistoryTabController.conf.palette.mainTexts
         case .passenger: settings.style.selectedBarBackgroundColor = RideHistoryTabController.conf.palette.primary

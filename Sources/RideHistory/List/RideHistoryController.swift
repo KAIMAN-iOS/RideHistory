@@ -75,6 +75,8 @@ class RideHistoryController: UIViewController {
     var datasource: RideHistoryViewModel.DataSource!
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = RideHistoryTabController.conf.palette.background
+        collectionView.backgroundColor = RideHistoryTabController.conf.palette.background
         datasource = model.dataSource(for: collectionView)
         collectionView.dataSource = datasource
         collectionView.collectionViewLayout = model.layout()

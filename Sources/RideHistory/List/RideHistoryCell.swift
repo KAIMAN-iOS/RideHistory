@@ -30,7 +30,11 @@ class RideHistoryCell: UICollectionViewCell {
         return form
     }()
     
-    @IBOutlet weak var card: UIView!
+    @IBOutlet weak var card: UIView! {
+        didSet {
+            card.backgroundColor = RideHistoryTabController.conf.palette.background
+        }
+    }
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var map: MKMapView!  {
