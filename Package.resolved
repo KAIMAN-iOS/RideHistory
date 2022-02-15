@@ -11,42 +11,6 @@
         }
       },
       {
-        "package": "Alamofire",
-        "repositoryURL": "https://github.com/Alamofire/Alamofire",
-        "state": {
-          "branch": null,
-          "revision": "f96b619bcb2383b43d898402283924b80e2c4bae",
-          "version": "5.4.3"
-        }
-      },
-      {
-        "package": "Ampersand",
-        "repositoryURL": "https://github.com/darjeelingsteve/Ampersand",
-        "state": {
-          "branch": null,
-          "revision": "9498afe66ef14428c80647a4b1046c9aab97655a",
-          "version": "1.1.0"
-        }
-      },
-      {
-        "package": "ATACommonObjects",
-        "repositoryURL": "https://github.com/KAIMAN-IOS/ATACommonObjects",
-        "state": {
-          "branch": "master",
-          "revision": "50daafb4efb12454ddd24700f02f5a31da83cedf",
-          "version": null
-        }
-      },
-      {
-        "package": "ATAConfiguration",
-        "repositoryURL": "https://github.com/KAIMAN-IOS/ATAConfiguration",
-        "state": {
-          "branch": "master",
-          "revision": "bee5d53f06f15f9a7c036bc7ed29e504eb230c35",
-          "version": null
-        }
-      },
-      {
         "package": "Haptica",
         "repositoryURL": "https://github.com/efremidze/Haptica",
         "state": {
@@ -65,24 +29,6 @@
         }
       },
       {
-        "package": "KExtensions",
-        "repositoryURL": "https://github.com/KAIMAN-IOS/KExtensions",
-        "state": {
-          "branch": "master",
-          "revision": "629b5a7cc44c0d37e0b96db01371cc87965f57c2",
-          "version": null
-        }
-      },
-      {
-        "package": "KStorage",
-        "repositoryURL": "https://github.com/KAIMAN-IOS/KStorage",
-        "state": {
-          "branch": "master",
-          "revision": "92390107f52b6215f15254cd3ad765c820c29cbc",
-          "version": null
-        }
-      },
-      {
         "package": "NSAttributedStringBuilder",
         "repositoryURL": "https://github.com/ethanhuang13/NSAttributedStringBuilder",
         "state": {
@@ -92,57 +38,12 @@
         }
       },
       {
-        "package": "Nuke",
-        "repositoryURL": "https://github.com/kean/Nuke",
-        "state": {
-          "branch": null,
-          "revision": "7f73ceaeacd5df75a7994cd82e165ad9ff1815db",
-          "version": "9.6.1"
-        }
-      },
-      {
         "package": "Peep",
         "repositoryURL": "https://github.com/efremidze/Peep",
         "state": {
           "branch": null,
           "revision": "6ba6217b6fa53d53e635f20ed225261398b32116",
           "version": "3.0.0"
-        }
-      },
-      {
-        "package": "PhoneNumberKit",
-        "repositoryURL": "https://github.com/KAIMAN-iOS/PhoneNumberKit",
-        "state": {
-          "branch": null,
-          "revision": "d73665b4ae26aa57245bd4fdc5b6bab7a18033f3",
-          "version": "4.0.0"
-        }
-      },
-      {
-        "package": "PromiseKit",
-        "repositoryURL": "https://github.com/mxcl/PromiseKit",
-        "state": {
-          "branch": null,
-          "revision": "d2f7ba14bcdc45e18f4f60ad9df883fb9055f081",
-          "version": "6.15.3"
-        }
-      },
-      {
-        "package": "SnapKit",
-        "repositoryURL": "https://github.com/SnapKit/SnapKit",
-        "state": {
-          "branch": null,
-          "revision": "d458564516e5676af9c70b4f4b2a9178294f1bc6",
-          "version": "5.0.1"
-        }
-      },
-      {
-        "package": "SwiftLocation",
-        "repositoryURL": "https://github.com/malcommac/SwiftLocation",
-        "state": {
-          "branch": null,
-          "revision": "f8ec8e97095eb3a5312370ad94b921768217625f",
-          "version": "5.1.0"
         }
       }
     ]
