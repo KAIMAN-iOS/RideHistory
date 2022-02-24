@@ -75,6 +75,6 @@ class RideHistoryDetailStatsCell: UICollectionViewCell {
     
     private func update(_ container: UIView, value: UILabel, stat: PendingPaymentRideData) {
         let textColor = stat.type == .amount ?  RideHistoryTabController.conf.palette.primary : RideHistoryTabController.conf.palette.mainTexts
-        value.attributedText = stat.attributedString(textColor: textColor)
+        value.attributedText = stat.attributedString(textColor: textColor, displayType: .history)
     }
 }
