@@ -94,8 +94,15 @@ class RideHistoryController: UIViewController {
     }
     
     func reloadRides(_ rides: [RideHistoryModel]) {
-        self.rides = rides
-        model.updateRides(rides)
+        self.rides = rides.sorted(by: { lhs, rhs in
+            switch (lhs.ride.state) {
+            case .booked:
+                return lhs.ride.startDate.value >= rhs.ride.startDate.value
+            default:
+                return lhs.ride.startDate.value < rhs.ride.startDate.value
+            }
+        })
+        model.updateRides(self.rides)
         noRidesContainer.isHidden = rides.count > 0
     }
     
