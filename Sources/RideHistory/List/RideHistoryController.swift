@@ -97,9 +97,9 @@ class RideHistoryController: UIViewController {
         self.rides = rides.sorted(by: { lhs, rhs in
             switch (lhs.ride.state) {
             case .booked:
-                return lhs.ride.startDate.value >= rhs.ride.startDate.value
-            default:
                 return lhs.ride.startDate.value < rhs.ride.startDate.value
+            default:
+                return lhs.ride.startDate.value >= rhs.ride.startDate.value
             }
         })
         model.updateRides(self.rides)
