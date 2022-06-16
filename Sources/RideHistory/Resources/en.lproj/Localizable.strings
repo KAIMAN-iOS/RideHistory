@@ -14,6 +14,7 @@
 "time stat" = "durée";
 "booked display" = "course\nà venir";
 "completed display" = "terminée";
+"start ride" = "Démarrer la course";
 "cancelled display" = "course\nannulée";
 "immediate ride" = "course immédiate";
 "booked ride" = "course programmée";

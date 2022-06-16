@@ -15,6 +15,7 @@
 "booked display" = "course\nà venir";
 "completed display" = "terminée";
 "cancelled display" = "course\nannulée";
+"start ride" = "Démarrer la course";
 "immediate ride" = "course immédiate";
 "booked ride" = "course programmée";
 "booked subtitle" = "Aucune course à venir pour l'instant";

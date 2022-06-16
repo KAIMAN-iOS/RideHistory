@@ -59,16 +59,17 @@ class RideHistoryDetailViewModel {
             case .mainAction(let action):
                 hasher.combine(4)
                 switch action {
-                case .cancel: hasher.combine("cancel")
-                case .printTicket: hasher.combine("printTicket")
+                    case .cancel: hasher.combine("cancel")
+                    case .printTicket: hasher.combine("printTicket")
+                    case .startRide: hasher.combine("startRide")
                 }
                 
             case .secondaryAction(let action):
                 hasher.combine(5)
-                switch action {
-                case .dispute: hasher.combine("dispute")
-                case .lostAndFound: hasher.combine("lostAndFound")
-                }
+                    switch action {
+                        case .dispute: hasher.combine("dispute")
+                        case .lostAndFound: hasher.combine("lostAndFound")
+                    }
             }
         }
     }
@@ -139,9 +140,9 @@ class RideHistoryDetailViewModel {
         snap.appendItems([.stats], toSection: .stats)
         snap.appendItems([.user], toSection: .user)
         snap.appendItems([.addresses], toSection: .addresses)
-        if let action = ride.mainActionType {
+        if let actions = ride.mainActionTypes {
             snap.appendSections([.mainAction])
-            snap.appendItems([.mainAction(action)], toSection: .mainAction)
+            snap.appendItems(actions.compactMap({ CellType.mainAction($0) }), toSection: .mainAction)
         }
         switch mode {
         case .driver:

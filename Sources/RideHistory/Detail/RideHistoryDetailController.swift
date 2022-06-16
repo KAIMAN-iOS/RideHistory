@@ -10,7 +10,7 @@ import UIViewControllerExtension
 import ATACommonObjects
 
 class RideHistoryDetailController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!    
+    @IBOutlet weak var collectionView: UICollectionView!
     static func create(ride: RideHistoryModel,
                        mode: Mode,
                        delegate: RideHistoryActionnable,
@@ -44,28 +44,33 @@ class RideHistoryDetailController: UIViewController {
     }
     
     var datasource: RideHistoryDetailViewModel.DataSource!
-
+    
 }
 
 extension RideHistoryDetailController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cellType = model.cellType(at: indexPath) else { return }
         switch cellType {
-        case .mainAction(let action):
-            switch action {
-            case .printTicket: () //rideDelegate.printTicket(for: ride)
-            case .cancel: rideDelegate.cancel(for: ride) { [weak self] in
-                self?.coordinatorDelegate.refreshRides(andPop: true)
-            }
-            }
-            
-        case .secondaryAction(let action):
-            switch action {
-            case .dispute: rideDelegate.openDispute(for: ride)
-            case.lostAndFound: rideDelegate.foundObject(for: ride)
-            }
-            
-        default: ()
+            case .mainAction(let action):
+                switch action {
+                    case .printTicket: () //rideDelegate.printTicket(for: ride)
+                        
+                    case .cancel:
+                        rideDelegate.cancel(for: ride) { [weak self] in
+                            self?.coordinatorDelegate.refreshRides(andPop: true)
+                        }
+                        
+                    case .startRide:
+                        rideDelegate.start(ride: ride)
+                }
+                
+            case .secondaryAction(let action):
+                switch action {
+                    case .dispute: rideDelegate.openDispute(for: ride)
+                    case .lostAndFound: rideDelegate.foundObject(for: ride)
+                }
+                
+            default: ()
         }
     }
 }

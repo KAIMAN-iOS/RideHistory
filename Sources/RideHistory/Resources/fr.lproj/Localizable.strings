@@ -13,6 +13,7 @@
 "distance stat" = "DISTANCE";
 "time stat" = "durée";
 "booked display" = "à venir";
+"start ride" = "Démarrer la course";
 "completed display" = "terminée";
 "cancelled display" = "annulée";
 "immediate ride" = "course immédiate";
